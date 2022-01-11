@@ -7,9 +7,11 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance {x:Type local:MainViewModel}}"
         Title="Worktime Tracker" 
+        MinHeight="450"
+        MinWidth="300"
         Height="450"
-        SizeToContent="WidthAndHeight"
-        WindowStyle="ToolWindow">
+        Width="300"
+        WindowStyle="SingleBorderWindow">
     <!---TODO: refactoring use contentpresenters-->
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -39,11 +41,11 @@
             ItemsSource="{Binding WorkTimes,Mode=OneTime}"
             AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Start" Binding="{Binding StartTime, Mode=OneWay}"/>
-                <DataGridTextColumn Header="End" Binding="{Binding EndTime, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Work Time" Binding="{Binding WorkTime, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Break" Binding="{Binding Break, Mode=OneWay}"/>
+                <DataGridTextColumn Width="*" Header="Date" Binding="{Binding Date, Mode=OneWay}"/>
+                <DataGridTextColumn Width="Auto" Header="Start" Binding="{Binding StartTime, Mode=OneWay}"/>
+                <DataGridTextColumn Width="Auto" Header="End" Binding="{Binding EndTime, Mode=OneWay}"/>
+                <DataGridTextColumn Width="Auto" Header="Work Time" Binding="{Binding WorkTime, Mode=OneWay}"/>
+                <DataGridTextColumn Width="Auto" Header="Break" Binding="{Binding Break, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
         <ContentPresenter Grid.Row="2" Grid.Column="1" Content="{Binding Sum,Mode=OneWay}"/>
