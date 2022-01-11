@@ -1,51 +1,75 @@
-﻿<Window x:Class="WorkTimeTracker.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorkTimeTracker"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance {x:Type local:MainViewModel}}"
-        Title="Worktime Tracker" 
-        Height="450"
-        SizeToContent="WidthAndHeight"
-        WindowStyle="ToolWindow">
-    <!---TODO: refactoring use contentpresenters-->
+﻿<Window
+    x:Class="WorkTimeTracker.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WorkTimeTracker"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Worktime Tracker"
+    MinWidth="250"
+    MinHeight="450"
+    MaxWidth="400"
+    MaxHeight="600"
+    d:DataContext="{d:DesignInstance {x:Type local:MainViewModel}}"
+    ResizeMode="CanResizeWithGrip"
+    WindowStyle="SingleBorderWindow"
+    mc:Ignorable="d">
+    <!--  -TODO: refactoring use contentpresenters  -->
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="FilterComboBox" 
-                  Grid.Row="0" 
-                  Grid.Column="0"
-                  Grid.ColumnSpan="2"
-                  Width="200" 
-                  ItemsSource="{Binding Filters, Mode=OneWay}"
-                  SelectedItem="{Binding SelectedFilter, Mode=TwoWay}"
-                  Margin="0,10"
-                  DisplayMemberPath="DisplayText"
-                  SelectionChanged="ComboBox_SelectionChanged"/>
-        <DataGrid 
+        <ComboBox
+            x:Name="FilterComboBox"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Width="200"
+            Margin="0,10"
+            DisplayMemberPath="DisplayText"
+            ItemsSource="{Binding Filters, Mode=OneWay}"
+            SelectedItem="{Binding SelectedFilter, Mode=TwoWay}"
+            SelectionChanged="ComboBox_SelectionChanged" />
+        <DataGrid
             x:Name="WorkTimesGrid"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            ItemsSource="{Binding WorkTimes,Mode=OneTime}"
-            AutoGenerateColumns="False">
+            AutoGenerateColumns="False"
+            HeadersVisibility="Column"
+            ItemsSource="{Binding WorkTimes, Mode=OneTime}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Start" Binding="{Binding StartTime, Mode=OneWay}"/>
-                <DataGridTextColumn Header="End" Binding="{Binding EndTime, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Work Time" Binding="{Binding WorkTime, Mode=OneWay}"/>
-                <DataGridTextColumn Header="Break" Binding="{Binding Break, Mode=OneWay}"/>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Date, Mode=OneWay}"
+                    Header="Date" />
+                <DataGridTextColumn
+                    Width="Auto"
+                    Binding="{Binding StartTime, Mode=OneWay}"
+                    Header="Start" />
+                <DataGridTextColumn
+                    Width="Auto"
+                    Binding="{Binding EndTime, Mode=OneWay}"
+                    Header="End" />
+                <DataGridTextColumn
+                    Width="Auto"
+                    Binding="{Binding WorkTime, Mode=OneWay}"
+                    Header="Work Time" />
+                <DataGridTextColumn
+                    Width="Auto"
+                    Binding="{Binding Break, Mode=OneWay}"
+                    Header="Break" />
             </DataGrid.Columns>
         </DataGrid>
-        <ContentPresenter Grid.Row="2" Grid.Column="1" Content="{Binding Sum,Mode=OneWay}"/>
+        <ContentPresenter
+            Grid.Row="2"
+            Grid.Column="1"
+            Content="{Binding Sum, Mode=OneWay}" />
     </Grid>
 </Window>
