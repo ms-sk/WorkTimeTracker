@@ -55,7 +55,7 @@ namespace WorkTimeTracker
 
             SelectedFilterChanged += (_, __) =>
             {
-                _settings.LastSelectedFilter = SelectedFilter.Filter;
+                _settings.Filter = SelectedFilter.Filter;
                 _settingsStorage.Save(_settings);
             };
         }
@@ -114,7 +114,7 @@ namespace WorkTimeTracker
         {
             _settings = await _settingsStorage.Load();
 
-            SelectedFilter = Filters.FirstOrDefault(x => x.Filter == _settings.LastSelectedFilter);
+            SelectedFilter = Filters.FirstOrDefault(x => x.Filter == _settings.Filter);
         }
 
         void UpdateSumOnCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
