@@ -20,8 +20,9 @@ namespace WorkTimeTracker
         readonly WorkTimeUpdater _workTimeUpdater;
         readonly List<DayViewModel> _workTimes = new();
         readonly WorkTimeViewModelFactory _factory;
-
+        
         FilterViewModel? _filter;
+        Settings? _settings;
 
         public MainViewModel(IStorage<WorkTime> workTimeStorage, IStorage<Settings> settingsStorage, WorkTimeViewModelFactory factory, WorkTimeDtoFactory dtoFactory, WorkTimeTodayUpdater updater, WorkTimeUpdater workTimeUpdater, SumViewModel sum)
         {
@@ -54,8 +55,8 @@ namespace WorkTimeTracker
 
             SelectedFilterChanged += (_, __) =>
             {
-                Settings.LastSelectedFilter = SelectedFilter.Filter;
-                _settingsStorage.Save(new Settings { LastSelectedFilter = Settings.LastSelectedFilter });
+                _settings.LastSelectedFilter = SelectedFilter.Filter;
+                _settingsStorage.Save(_settings);
             };
         }
 
@@ -75,8 +76,6 @@ namespace WorkTimeTracker
         public ObservableCollection<FilterViewModel> Filters { get; } = new ObservableCollection<FilterViewModel>();
 
         public SumViewModel Sum { get; }
-
-        public SettingsViewModel? Settings { get; private set; }
 
         public FilterViewModel? SelectedFilter
         {
@@ -113,12 +112,9 @@ namespace WorkTimeTracker
 
         internal async Task LoadSettings()
         {
-            Settings = null;
+            _settings = await _settingsStorage.Load();
 
-            var settings = await _settingsStorage.Load();
-            Settings = new SettingsViewModel { LastSelectedFilter = settings.LastSelectedFilter };
-
-            SelectedFilter = Filters.FirstOrDefault(x => x.Filter == Settings.LastSelectedFilter);
+            SelectedFilter = Filters.FirstOrDefault(x => x.Filter == _settings.LastSelectedFilter);
         }
 
         void UpdateSumOnCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
