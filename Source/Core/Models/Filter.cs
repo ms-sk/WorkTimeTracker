@@ -1,6 +1,6 @@
-﻿namespace WorkTimeTracker.ViewModels
+﻿namespace Core.Models
 {
-    enum Filter
+    public enum Filter
     {
         None,
         Today,
