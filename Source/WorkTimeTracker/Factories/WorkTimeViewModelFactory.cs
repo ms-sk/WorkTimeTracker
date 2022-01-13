@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using WorkTimeTracker.ViewModels;
+using Core.Models;
 
 namespace WorkTimeTracker.Builder
 {

@@ -10,6 +10,7 @@ namespace Core.Modules
         public override void Load()
         {
             Bind<IStorage<WorkTime>>().To<WorkTimeStorage>();
+            Bind<IStorage<Settings>>().To<SettingsStorage>();
             Bind<ILogger>().To<Logger>();
         }
     }

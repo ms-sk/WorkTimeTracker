@@ -40,6 +40,7 @@ namespace WorkTimeTracker
             var mainViewModel = _kernel.Get<MainViewModel>();
             DataContext = mainViewModel;
             await mainViewModel.LoadWorkTimes();
+            await mainViewModel.LoadSettings();
         }
 
         void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
