@@ -23,6 +23,5 @@
             get => _displayText;
             set => SetValue(ref _displayText, value);
         }
-
     }
 }

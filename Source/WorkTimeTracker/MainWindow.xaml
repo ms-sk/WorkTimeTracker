@@ -59,11 +59,11 @@
                     Header="End" />
                 <DataGridTextColumn
                     Width="Auto"
-                    Binding="{Binding WorkTime, Mode=OneWay}"
+                    Binding="{Binding WorkTime, Mode=TwoWay}"
                     Header="Work Time" />
                 <DataGridTextColumn
                     Width="Auto"
-                    Binding="{Binding Break, Mode=OneWay}"
+                    Binding="{Binding Break, Mode=TwoWay}"
                     Header="Break" />
             </DataGrid.Columns>
         </DataGrid>

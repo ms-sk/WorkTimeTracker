@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using WorkTimeTracker.Builder;
 using WorkTimeTracker.Factories;
 using WorkTimeTracker.ViewModels;
