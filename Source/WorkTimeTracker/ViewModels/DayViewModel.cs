@@ -48,25 +48,27 @@ namespace WorkTimeTracker
 
         void OnDayChanged(object? sender, EventArgs e)
         {
-            if (Dto != null)
+            if (Dto == null)
             {
-                if (decimal.TryParse(Break, out var result))
-                {
-                    Dto.Break = result;
-                }
-                else
-                {
-                    Break = Dto.Break.GetValueOrDefault().ToString("F");
-                }
+                return;
+            }
 
-                if (decimal.TryParse(WorkTime, out var workTime))
-                {
-                    Dto.Time = workTime + Dto.Break;
-                }
-                else
-                {
-                    WorkTime = (Dto.Time.GetValueOrDefault() - Dto.Break.GetValueOrDefault()).ToString("F");
-                }
+            if (decimal.TryParse(Break, out var result))
+            {
+                Dto.Break = result;
+            }
+            else
+            {
+                Break = Dto.Break.GetValueOrDefault().ToString("F");
+            }
+
+            if (decimal.TryParse(WorkTime, out var workTime))
+            {
+                Dto.Time = workTime + Dto.Break;
+            }
+            else
+            {
+                WorkTime = (Dto.Time.GetValueOrDefault() - Dto.Break.GetValueOrDefault()).ToString("F");
             }
         }
     }
