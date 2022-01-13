@@ -1,5 +1,4 @@
 ﻿using System;
-using Core.Models;
 
 namespace WorkTimeTracker.ViewModels
 {
