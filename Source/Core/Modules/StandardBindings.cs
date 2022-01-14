@@ -1,4 +1,5 @@
 ﻿using Core.Logging;
+using Core.Math;
 using Core.Storage;
 using Dtos;
 using Ninject.Modules;
@@ -12,6 +13,7 @@ namespace Core.Modules
             Bind<IStorage<WorkTime>>().To<WorkTimeStorage>();
             Bind<IStorage<Settings>>().To<SettingsStorage>();
             Bind<ILogger>().To<Logger>();
+            Bind<ICalculator>().To<Calculator>();
         }
     }
 }

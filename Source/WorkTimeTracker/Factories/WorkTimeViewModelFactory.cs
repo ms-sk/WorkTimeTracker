@@ -3,11 +3,19 @@ using System;
 using System.Collections.Generic;
 using WorkTimeTracker.ViewModels;
 using Core.Models;
+using Core.Math;
 
 namespace WorkTimeTracker.Builder
 {
     internal sealed class WorkTimeViewModelFactory
     {
+        readonly ICalculator _calculator;
+
+        public WorkTimeViewModelFactory(ICalculator calculator)
+        {
+            _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
+        }
+
         public DayViewModel CreateWorkTimeViewModel(Day day)
         {
             var dayViewModel = new DayViewModel();
@@ -24,28 +32,12 @@ namespace WorkTimeTracker.Builder
             if (day.Time == null)
             {
                 var time = (day.End - day.Start).GetValueOrDefault().TotalHours;
-                var rounded = Math.Round(time * 4, MidpointRounding.ToEven) / 4.0;
-                day.Time = (decimal)rounded;
+                day.Time = _calculator.RoundQuarter(time);
             }
 
             if (day.Break == null)
             {
-                if (day.Time <= 6.0M)
-                {
-                    day.Break = decimal.Zero;
-                }
-                else if (day.Time < 9.0M)
-                {
-                    day.Break = 0.5M;
-                }
-                else if (day.Time < 10.0M)
-                {
-                    day.Break = 0.75M;
-                }
-                else
-                {
-                    day.Break = 1M;
-                }
+                day.Break = _calculator.CalculateBreak(day.Time.GetValueOrDefault());
             }
 
             var actualWorkTime = (day.Time - day.Break) ?? 0.0M;
