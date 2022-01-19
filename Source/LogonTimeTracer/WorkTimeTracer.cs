@@ -7,12 +7,10 @@ namespace LogonTimeTracer
     internal sealed class WorkTimeTracer
     {
         readonly IStorage<WorkTime> _workTimeStorage;
-        readonly ICalculator _calculator;
 
-        public WorkTimeTracer(IStorage<WorkTime> workTimeStorage, ICalculator calculator)
+        public WorkTimeTracer(IStorage<WorkTime> workTimeStorage)
         {
             _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
-            _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
         }
 
         internal async Task Logon()
@@ -40,7 +38,7 @@ namespace LogonTimeTracer
             if (today.End.HasValue && today.Start.HasValue)
             {
                 var hours = (today.End - today.Start).Value.TotalHours;
-                today.Time = _calculator.RoundQuarter(hours);
+                today.Time = CMath.RoundQuarter(hours);
             }
 
             await _workTimeStorage.Save(workTime);

@@ -1,8 +1,8 @@
 ﻿namespace Core.Math
 {
-    public sealed class Calculator : ICalculator
+    public static class CMath
     {
-        public decimal CalculateBreak(decimal hours)
+        public static decimal CalculateBreak(decimal hours)
         {
             decimal breakTime;
             if (hours <= 6M)
@@ -25,7 +25,7 @@
             return breakTime;
         }
 
-        public decimal RoundQuarter(double value)
+        public static decimal RoundQuarter(double value)
         {
             return (decimal)(System.Math.Round(value * 4, MidpointRounding.ToEven) / 4.0);
         }

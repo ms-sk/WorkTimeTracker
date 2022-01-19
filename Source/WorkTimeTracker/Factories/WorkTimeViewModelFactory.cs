@@ -9,13 +9,6 @@ namespace WorkTimeTracker.Builder
 {
     internal sealed class WorkTimeViewModelFactory
     {
-        readonly ICalculator _calculator;
-
-        public WorkTimeViewModelFactory(ICalculator calculator)
-        {
-            _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
-        }
-
         public DayViewModel CreateWorkTimeViewModel(Day day)
         {
             var dayViewModel = new DayViewModel();
@@ -32,12 +25,12 @@ namespace WorkTimeTracker.Builder
             if (day.Time == null)
             {
                 var time = (day.End - day.Start).GetValueOrDefault().TotalHours;
-                day.Time = _calculator.RoundQuarter(time);
+                day.Time = CMath.RoundQuarter(time);
             }
 
             if (day.Break == null)
             {
-                day.Break = _calculator.CalculateBreak(day.Time.GetValueOrDefault());
+                day.Break = CMath.CalculateBreak(day.Time.GetValueOrDefault());
             }
 
             var actualWorkTime = (day.Time - day.Break) ?? 0.0M;
@@ -52,7 +45,7 @@ namespace WorkTimeTracker.Builder
             return new List<FilterViewModel>()
             {
                 new FilterViewModel{ Filter = Filter.None, DisplayText = "All" },
-                new FilterViewModel{ Filter = Filter.Today, DisplayText = "Today"  },
+                new FilterViewModel{ Filter = Filter.Today, DisplayText = "Today" },
                 new FilterViewModel{ Filter = Filter.Week, DisplayText = "Current Week" },
                 new FilterViewModel{ Filter = Filter.LastWeek, DisplayText = "Last Week" },
                 new FilterViewModel{ Filter = Filter.Month , DisplayText = "Current Month"},

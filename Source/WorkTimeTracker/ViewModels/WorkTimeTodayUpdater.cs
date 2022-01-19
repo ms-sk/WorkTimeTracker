@@ -8,13 +8,11 @@ namespace WorkTimeTracker
     internal sealed class WorkTimeTodayUpdater
     {
         readonly WorkTimeViewModelFactory _factory;
-        readonly ICalculator _calculator;
         readonly Timer _timer;
 
-        public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory, ICalculator calculator)
+        public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory)
         {
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
-            _calculator = calculator;
             _timer = new(10000);
             _timer.Elapsed += UpdateDayViewModel;
         }
@@ -26,7 +24,7 @@ namespace WorkTimeTracker
                 DayViewModel.Dto.End = DateTime.Now;
 
                 var time = (DayViewModel.Dto.End - DayViewModel.Dto.Start).GetValueOrDefault().TotalHours;
-                DayViewModel.Dto.Time = _calculator.RoundQuarter(time);
+                DayViewModel.Dto.Time = CMath.RoundQuarter(time);
 
                 _factory.UpdateDayViewModel(DayViewModel, DayViewModel.Dto);
             }
