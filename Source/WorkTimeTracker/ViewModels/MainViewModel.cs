@@ -20,7 +20,7 @@ namespace WorkTimeTracker
         readonly WorkTimeUpdater _workTimeUpdater;
         readonly List<DayViewModel> _workTimes = new();
         readonly WorkTimeViewModelFactory _factory;
-        
+
         FilterViewModel? _filter;
         Settings? _settings;
 
@@ -123,7 +123,7 @@ namespace WorkTimeTracker
             {
                 if (d?.Dto?.Time != null)
                 {
-                    return d.Dto.Time.Value;
+                    return d.Dto.Time.Value - d.Dto.Break.GetValueOrDefault();
                 }
                 else
                 {

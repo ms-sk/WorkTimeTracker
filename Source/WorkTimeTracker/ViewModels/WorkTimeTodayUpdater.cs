@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Math;
+using System;
 using System.Timers;
 using WorkTimeTracker.Builder;
 
@@ -23,8 +24,7 @@ namespace WorkTimeTracker
                 DayViewModel.Dto.End = DateTime.Now;
 
                 var time = (DayViewModel.Dto.End - DayViewModel.Dto.Start).GetValueOrDefault().TotalHours;
-                var rounded = Math.Round(time * 4, MidpointRounding.ToEven) / 4.0;
-                DayViewModel.Dto.Time = (decimal)rounded;
+                DayViewModel.Dto.Time = CMath.RoundQuarter(time);
 
                 _factory.UpdateDayViewModel(DayViewModel, DayViewModel.Dto);
             }

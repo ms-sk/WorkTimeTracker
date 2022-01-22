@@ -1,4 +1,5 @@
-﻿using Core.Storage;
+﻿using Core.Math;
+using Core.Storage;
 using Dtos;
 
 namespace LogonTimeTracer
@@ -16,17 +17,14 @@ namespace LogonTimeTracer
         {
             var workTime = await _workTimeStorage.Load();
 
-            var today = workTime.Days.FirstOrDefault(day => day.Start.HasValue && day.Start.Value.Date == DateTime.Today);
+            var today = workTime.Days.FirstOrDefault(day => day.Start.GetValueOrDefault() == DateTime.Today);
 
-            if (today == null)
-            {
-                workTime.Days.Add(new Day() { Start = DateTime.Now });
-            }
-            else
+            if (today != null)
             {
                 return;
             }
 
+            workTime.Days.Add(new Day() { Start = DateTime.Now });
             workTime.Days = workTime.Days.OrderBy(day => day.Start).ToList();
             await _workTimeStorage.Save(workTime);
         }
@@ -34,14 +32,13 @@ namespace LogonTimeTracer
         internal async Task Logoff()
         {
             var workTime = await _workTimeStorage.Load();
-            var today = workTime.Days.First(day => day.Start.HasValue && day.Start.Value.Date == DateTime.Today);
+            var today = workTime.Days.First(day => day.Start.GetValueOrDefault() == DateTime.Today);
             today.End = DateTime.Now;
 
             if (today.End.HasValue && today.Start.HasValue)
             {
                 var hours = (today.End - today.Start).Value.TotalHours;
-                var rounded = Math.Round(hours * 4, MidpointRounding.ToEven) / 4.0;
-                today.Time = (decimal)rounded;
+                today.Time = CMath.RoundQuarter(hours);
             }
 
             await _workTimeStorage.Save(workTime);
