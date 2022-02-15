@@ -1,5 +1,5 @@
-﻿using Core.Storage;
-using Dtos;
+﻿using Core.Dtos;
+using Core.Storage;
 
 namespace LogonTimeTracer
 {

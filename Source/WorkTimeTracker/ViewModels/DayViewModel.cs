@@ -1,4 +1,4 @@
-﻿using Dtos;
+﻿using Core.Dtos;
 
 namespace WorkTimeTracker.ViewModels
 {

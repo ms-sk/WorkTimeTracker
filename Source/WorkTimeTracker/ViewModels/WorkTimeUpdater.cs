@@ -1,6 +1,6 @@
-﻿using Core.Logging;
+﻿using Core.Dtos;
+using Core.Logging;
 using Core.Storage;
-using Dtos;
 using System;
 using System.Timers;
 

@@ -15,7 +15,6 @@ namespace WorkTimeTracker.ViewModels
 
             var startDate = dayViewModel.Dto?.Start?.Date;
 
-            // Todo Fix date calculations
             switch (Filter)
             {
                 case Filter.None:

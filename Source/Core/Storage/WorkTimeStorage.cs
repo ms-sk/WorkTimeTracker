@@ -1,5 +1,5 @@
 ﻿using Core.Configuration;
-using Dtos;
+using Core.Dtos;
 using System.Text.Json;
 
 namespace Core.Storage

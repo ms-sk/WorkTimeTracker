@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Core.Extensions;
+using Core.Dtos;
 using Core.Storage;
-using Dtos;
 using WorkTimeTracker.Builder;
 using WorkTimeTracker.Factories;
 
@@ -17,12 +13,8 @@ namespace WorkTimeTracker.ViewModels
         private readonly IStorage<Settings> _settingsStorage;
         readonly WorkTimeTodayUpdater _updater;
         readonly WorkTimeUpdater _workTimeUpdater;
-        private readonly MasterViewModel _masterViewModel;
-        private readonly DetailsViewModel _detailsViewModel;
         readonly List<DayViewModel> _workTimes = new();
         readonly WorkTimeViewModelFactory _factory;
-        
-        Settings? _settings;
 
         public MainViewModel(IStorage<WorkTime> workTimeStorage, IStorage<Settings> settingsStorage, WorkTimeViewModelFactory factory, WorkTimeDtoFactory dtoFactory, WorkTimeTodayUpdater updater, WorkTimeUpdater workTimeUpdater, SumViewModel sum, MasterViewModel masterViewModel, DetailsViewModel detailsViewModel)
         {
@@ -34,9 +26,6 @@ namespace WorkTimeTracker.ViewModels
             MasterViewModel = masterViewModel ?? throw new ArgumentNullException(nameof(masterViewModel));
             DetailsViewModel = detailsViewModel ?? throw new ArgumentNullException(nameof(detailsViewModel));
             Sum = sum ?? throw new ArgumentNullException(nameof(workTimeStorage));
-
-            // Filters.Replace(factory.CreateFilterViewModels());
-            // SelectedFilter = Filters.FirstOrDefault();
 
             _workTimeUpdater.GetWorkTime = () =>
             {
@@ -54,49 +43,15 @@ namespace WorkTimeTracker.ViewModels
             //_workTimeUpdater.Start();
 
             //WorkTimes.CollectionChanged += UpdateSumOnCollectionChanged;
+        }        
 
-            SelectedFilterChanged += (_, __) =>
-            {
-                _settings.Filter = SelectedFilter.Filter;
-                _settingsStorage.Save(_settings);
-            };
-        }
 
-        public event EventHandler SelectedFilterChanged;
-
-        // public void Filter()
-        // {
-        //     if (SelectedFilter != null)
-        //     {
-        //         var filtered = _workTimes.Where(wt => SelectedFilter.Matches(wt));
-        //         WorkTimes.Replace(filtered);
-        //     }
-        // }
 
         public MasterViewModel MasterViewModel { get; }
 
         public DetailsViewModel DetailsViewModel { get; }
 
-        // public ObservableCollection<FilterViewModel> Filters { get; } = new ObservableCollection<FilterViewModel>();
-
         public SumViewModel Sum { get; }
-
-        public FilterViewModel? SelectedFilter
-        {
-            get => GetValue<FilterViewModel?>();
-            set
-            {
-                SetValue(value);
-                OnSelectedFilterChanged();
-            }
-        }
-
-        internal async Task LoadSettings()
-        {
-            _settings = await _settingsStorage.Load();
-
-            //SelectedFilter = Filters.FirstOrDefault(x => x.Filter == _settings.Filter);
-        }
 
         // void UpdateSumOnCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         // {
@@ -126,10 +81,5 @@ namespace WorkTimeTracker.ViewModels
         //
         //     Sum.DisplayText = $"{Sum.Sum} / {Sum.BreakSum + Sum.Sum}";
         // }
-
-        void OnSelectedFilterChanged()
-        {
-            SelectedFilterChanged?.Invoke(this, EventArgs.Empty);
-        }
     }
 }

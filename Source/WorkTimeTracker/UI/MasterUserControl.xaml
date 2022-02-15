@@ -19,14 +19,20 @@
             Width="200"
             Margin="5,5,5,0"
             DisplayMemberPath="DisplayText"
-            ItemsSource="{Binding Filters, Mode=OneWay}"
-            SelectedItem="{Binding SelectedFilter, Mode=TwoWay}" />
+            ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
+            SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
 
         <ListBox
             Grid.Row="1"
             Grid.Column="0"
             Margin="5,5,5,5"
             ItemsSource="{Binding MasterViewModel.WorkTimes, Mode=OneWay}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -35,19 +41,22 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
                             Grid.Row="0"
                             Grid.Column="0"
+                            Margin="2,2,0,2"
                             Text="{Binding Date, StringFormat=d}" />
 
                         <TextBlock
                             Grid.Row="0"
                             Grid.Column="1"
-                            Text="{Binding WorkTime}" />
+                            Margin="2,2,2,2"
+                            HorizontalAlignment="Right"
+                            Text="{Binding WorkTime, StringFormat=({0})}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

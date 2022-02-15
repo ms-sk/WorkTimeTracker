@@ -1,6 +1,6 @@
 ﻿using Core.Models;
 
-namespace Core.Storage
+namespace Core.Dtos
 {
     public sealed class Settings
     {

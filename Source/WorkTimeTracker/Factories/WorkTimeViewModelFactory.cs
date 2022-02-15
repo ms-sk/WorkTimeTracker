@@ -1,8 +1,8 @@
-﻿using Dtos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using WorkTimeTracker.ViewModels;
 using Core.Models;
+using Core.Dtos;
 
 namespace WorkTimeTracker.Builder
 {
