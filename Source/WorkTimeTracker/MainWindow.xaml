@@ -5,71 +5,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WorkTimeTracker"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:WorkTimeTracker.UI"
+    xmlns:viewModels="clr-namespace:WorkTimeTracker.ViewModels"
     Title="Worktime Tracker"
-    MinWidth="250"
-    MinHeight="450"
-    MaxWidth="400"
-    MaxHeight="600"
-    d:DataContext="{d:DesignInstance {x:Type local:MainViewModel}}"
+    Width="800"
+    Height="500"
+    d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}"
     ResizeMode="CanResizeWithGrip"
     WindowStyle="SingleBorderWindow"
     mc:Ignorable="d">
-    <!--  -TODO: refactoring use contentpresenters  -->
-    <Grid Margin="5">
+
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ComboBox
-            x:Name="FilterComboBox"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Width="200"
-            Margin="0,10"
-            DisplayMemberPath="DisplayText"
-            ItemsSource="{Binding Filters, Mode=OneWay}"
-            SelectedItem="{Binding SelectedFilter, Mode=TwoWay}"
-            SelectionChanged="ComboBox_SelectionChanged" />
-        <DataGrid
-            x:Name="WorkTimesGrid"
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            AutoGenerateColumns="False"
-            HeadersVisibility="Column"
-            ItemsSource="{Binding WorkTimes, Mode=OneTime}">
-            <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding Date, Mode=OneWay}"
-                    Header="Date" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding StartTime, Mode=OneWay}"
-                    Header="Start" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding EndTime, Mode=OneWay}"
-                    Header="End" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding WorkTime, Mode=TwoWay}"
-                    Header="Work Time" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding Break, Mode=TwoWay}"
-                    Header="Break" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <ContentPresenter
+
+        <ui:MasterUserControl Grid.Column="0" />
+
+        <ui:DetailsUserControl Grid.Column="1" />
+
+        <!--<ContentPresenter
             Grid.Row="2"
             Grid.Column="1"
-            Content="{Binding Sum, Mode=OneWay}" />
+            Content="{Binding Sum, Mode=OneWay}" />-->
     </Grid>
 </Window>

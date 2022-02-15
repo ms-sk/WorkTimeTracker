@@ -1,16 +1,29 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WorkTimeTracker
+namespace WorkTimeTracker.ViewModels
 {
     internal class ViewModel : INotifyPropertyChanged
     {
+        private Dictionary<string, object> _propertyStore = new();
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void SetValue<T>(ref T field, T value, [CallerMemberName()] string name = "")
+        public T GetValue<T>([CallerMemberName] string propertyName = "")
         {
-            field = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (_propertyStore.ContainsKey(propertyName))
+            {
+                return (T) _propertyStore[propertyName];
+            }
+
+            return default;
+        }
+        
+        public void SetValue<T>(T value, [CallerMemberName] string propertyName = "")
+        {
+            _propertyStore[propertyName] = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

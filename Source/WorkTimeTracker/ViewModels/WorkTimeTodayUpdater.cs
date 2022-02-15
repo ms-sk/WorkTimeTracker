@@ -2,7 +2,7 @@
 using System.Timers;
 using WorkTimeTracker.Builder;
 
-namespace WorkTimeTracker
+namespace WorkTimeTracker.ViewModels
 {
     internal sealed class WorkTimeTodayUpdater
     {

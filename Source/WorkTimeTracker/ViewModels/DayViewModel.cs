@@ -1,52 +1,38 @@
 ﻿using Dtos;
-using System;
 
-namespace WorkTimeTracker
+namespace WorkTimeTracker.ViewModels
 {
     internal class DayViewModel : ViewModel
     {
-        string _date = string.Empty;
-        string _startTime = string.Empty;
-        string _endTime = string.Empty;
-        string _workTime = string.Empty;
-        string _break = string.Empty;
+        public string Date { get => GetValue<string>(); set => SetValue(value); }
 
-        EventHandler DayChanged;
+        public string StartTime { get => GetValue<string>(); set => SetValue(value); }
 
-        public DayViewModel()
-        {
-            DayChanged += OnDayChanged;
-        }
-
-        public string Date { get => _date; set => SetValue(ref _date, value); }
-
-        public string StartTime { get => _startTime; set => SetValue(ref _startTime, value); }
-
-        public string EndTime { get => _endTime; set => SetValue(ref _endTime, value); }
+        public string EndTime { get => GetValue<string>(); set => SetValue(value); }
 
         public string WorkTime
         {
-            get => _workTime;
+            get => GetValue<string>();
             set
             {
-                SetValue(ref _workTime, value);
-                DayChanged.Invoke(this, EventArgs.Empty);
+                SetValue(value);
+                DayChanged();
             }
         }
 
         public string Break
         {
-            get => _break;
+            get => GetValue<string>();
             set
             {
-                SetValue(ref _break, value);
-                DayChanged.Invoke(this, EventArgs.Empty);
+                SetValue(value);
+                DayChanged();
             }
         }
 
         public Day? Dto { get; set; }
 
-        void OnDayChanged(object? sender, EventArgs e)
+        void DayChanged()
         {
             if (Dto == null)
             {

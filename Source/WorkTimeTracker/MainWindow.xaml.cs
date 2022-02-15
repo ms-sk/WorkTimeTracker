@@ -20,6 +20,9 @@ namespace WorkTimeTracker
             InitializeComponent();
 
             _kernel = new StandardKernel(new StandardBindings());
+            _kernel.Bind<MasterViewModel>().To<MasterViewModel>();
+            _kernel.Bind<DetailsViewModel>().To<DetailsViewModel>();
+            
             AppDomain.CurrentDomain.UnhandledException += HandleException;
 
             Loaded += LoadWorkTimes;
@@ -32,23 +35,23 @@ namespace WorkTimeTracker
 
         async void LoadWorkTimes(object sender, RoutedEventArgs e)
         {
-            Keyboard.Focus(FilterComboBox);
-
+            //Keyboard.Focus(FilterComboBox);
+        
             _kernel.Bind<WorkTimeUpdater>().To<WorkTimeUpdater>();
             _kernel.Bind<WorkTimeTodayUpdater>().To<WorkTimeTodayUpdater>();
 
             var mainViewModel = _kernel.Get<MainViewModel>();
             DataContext = mainViewModel;
-            await mainViewModel.LoadWorkTimes();
+            await mainViewModel.MasterViewModel.LoadWorkTimes();
             await mainViewModel.LoadSettings();
         }
-
-        void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (DataContext is MainViewModel mainViewModel)
-            {
-                mainViewModel.Filter();
-            }
-        }
+        //
+        // void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        // {
+        //     if (DataContext is MainViewModel mainViewModel)
+        //     {
+        //         mainViewModel.Filter();
+        //     }
+        // }
     }
 }

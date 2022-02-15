@@ -2,26 +2,22 @@
 {
     internal sealed class SumViewModel : ViewModel
     {
-        decimal _sum;
-        decimal _breakSum;
-        string _displayText = string.Empty;
-
         public decimal Sum
         {
-            get => _sum;
-            set => SetValue(ref _sum, value);
+            get => GetValue<decimal>();
+            set => SetValue(value);
         }
 
         public decimal BreakSum
         {
-            get => _breakSum;
-            set => SetValue(ref _breakSum, value);
+            get => GetValue<decimal>();
+            set => SetValue(value);
         }
 
         public string DisplayText
         {
-            get => _displayText;
-            set => SetValue(ref _displayText, value);
+            get => GetValue<string>();
+            set => SetValue(value);
         }
     }
 }

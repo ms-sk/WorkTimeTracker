@@ -15,6 +15,7 @@ namespace WorkTimeTracker.ViewModels
 
             var startDate = dayViewModel.Dto?.Start?.Date;
 
+            // Todo Fix date calculations
             switch (Filter)
             {
                 case Filter.None:
@@ -30,7 +31,7 @@ namespace WorkTimeTracker.ViewModels
                 case Filter.Month:
                     return dayViewModel.Dto?.Start?.Date.Month == today.Month && dayViewModel.Dto?.Start?.Date.Year == today.Year;
                 case Filter.LastMonth:
-                    return dayViewModel.Dto?.Start?.Date == today.AddMonths(-1);
+                    return dayViewModel.Dto?.Start?.Date.Month == today.AddMonths(-1).Month;
                 case Filter.Year:
                     return dayViewModel.Dto?.Start?.Date.Year == today.Year;
                 case Filter.LastYear:
