@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace WorkTimeTracker.ViewModels
 {
-    internal class ViewModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
         private Dictionary<string, object> _propertyStore = new();
 

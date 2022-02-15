@@ -6,7 +6,7 @@ using System.Timers;
 
 namespace WorkTimeTracker.ViewModels
 {
-    internal sealed class WorkTimeUpdater
+    public sealed class WorkTimeUpdater
     {
         readonly Timer _timer = new(60000);
         readonly IStorage<WorkTime> _storage;

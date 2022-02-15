@@ -4,7 +4,7 @@ using WorkTimeTracker.Builder;
 
 namespace WorkTimeTracker.ViewModels
 {
-    internal sealed class WorkTimeTodayUpdater
+    public sealed class WorkTimeTodayUpdater
     {
         readonly WorkTimeViewModelFactory _factory;
         readonly Timer _timer;

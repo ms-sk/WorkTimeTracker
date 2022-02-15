@@ -2,7 +2,7 @@
 
 namespace WorkTimeTracker.ViewModels
 {
-    internal class DayViewModel : ViewModel
+    public class DayViewModel : ViewModel
     {
         public string Date { get => GetValue<string>(); set => SetValue(value); }
 

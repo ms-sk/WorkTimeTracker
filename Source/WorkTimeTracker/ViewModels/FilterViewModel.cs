@@ -3,7 +3,7 @@ using System;
 
 namespace WorkTimeTracker.ViewModels
 {
-    internal sealed class FilterViewModel : ViewModel
+    public sealed class FilterViewModel : ViewModel
     {
         public Filter Filter { get; set; }
 

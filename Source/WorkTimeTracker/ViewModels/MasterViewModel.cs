@@ -10,7 +10,7 @@ using WorkTimeTracker.Builder;
 
 namespace WorkTimeTracker.ViewModels;
 
-internal sealed class MasterViewModel : ViewModel
+public sealed class MasterViewModel : ViewModel
 {
     private readonly IStorage<WorkTime> _workTimeStorage;
     private readonly SettingsStorage _settingsStorage;

@@ -1,6 +1,6 @@
 ﻿namespace WorkTimeTracker.ViewModels
 {
-    internal sealed class SumViewModel : ViewModel
+    public sealed class SumViewModel : ViewModel
     {
         public decimal Sum
         {

@@ -7,7 +7,7 @@ using WorkTimeTracker.Factories;
 
 namespace WorkTimeTracker.ViewModels
 {
-    internal sealed class MainViewModel : ViewModel
+    public sealed class MainViewModel : ViewModel
     {
         readonly IStorage<WorkTime> _workTimeStorage;
         private readonly IStorage<Settings> _settingsStorage;

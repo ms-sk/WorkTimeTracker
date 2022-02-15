@@ -6,7 +6,7 @@ using Core.Dtos;
 
 namespace WorkTimeTracker.Builder
 {
-    internal sealed class WorkTimeViewModelFactory
+    public sealed class WorkTimeViewModelFactory
     {
         public DayViewModel CreateWorkTimeViewModel(Day day)
         {

@@ -3,7 +3,6 @@ using Core.Modules;
 using Ninject;
 using System;
 using System.Windows;
-using System.Windows.Input;
 using WorkTimeTracker.ViewModels;
 
 namespace WorkTimeTracker
@@ -11,7 +10,7 @@ namespace WorkTimeTracker
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         readonly StandardKernel _kernel;
 
@@ -20,9 +19,11 @@ namespace WorkTimeTracker
             InitializeComponent();
 
             _kernel = new StandardKernel(new StandardBindings());
+            _kernel.Bind<WorkTimeUpdater>().To<WorkTimeUpdater>();
+            _kernel.Bind<WorkTimeTodayUpdater>().To<WorkTimeTodayUpdater>();
             _kernel.Bind<MasterViewModel>().To<MasterViewModel>();
             _kernel.Bind<DetailsViewModel>().To<DetailsViewModel>();
-            
+
             AppDomain.CurrentDomain.UnhandledException += HandleException;
 
             Loaded += LoadWorkTimes;
@@ -35,11 +36,6 @@ namespace WorkTimeTracker
 
         async void LoadWorkTimes(object sender, RoutedEventArgs e)
         {
-            //Keyboard.Focus(FilterComboBox);
-        
-            _kernel.Bind<WorkTimeUpdater>().To<WorkTimeUpdater>();
-            _kernel.Bind<WorkTimeTodayUpdater>().To<WorkTimeTodayUpdater>();
-
             var mainViewModel = _kernel.Get<MainViewModel>();
             DataContext = mainViewModel;
             await mainViewModel.MasterViewModel.LoadWorkTimes();
