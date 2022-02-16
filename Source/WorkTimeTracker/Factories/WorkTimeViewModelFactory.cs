@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using WorkTimeTracker.ViewModels;
 using Core.Models;
+using Core.Math;
 using Core.Dtos;
 
 namespace WorkTimeTracker.Builder
@@ -24,28 +25,12 @@ namespace WorkTimeTracker.Builder
             if (day.Time == null)
             {
                 var time = (day.End - day.Start).GetValueOrDefault().TotalHours;
-                var rounded = Math.Round(time * 4, MidpointRounding.ToEven) / 4.0;
-                day.Time = (decimal)rounded;
+                day.Time = CMath.RoundQuarter(time);
             }
 
             if (day.Break == null)
             {
-                if (day.Time <= 6.0M)
-                {
-                    day.Break = decimal.Zero;
-                }
-                else if (day.Time < 9.0M)
-                {
-                    day.Break = 0.5M;
-                }
-                else if (day.Time < 10.0M)
-                {
-                    day.Break = 0.75M;
-                }
-                else
-                {
-                    day.Break = 1M;
-                }
+                day.Break = CMath.CalculateBreak(day.Time.GetValueOrDefault());
             }
 
             var actualWorkTime = (day.Time - day.Break) ?? 0.0M;
@@ -60,7 +45,7 @@ namespace WorkTimeTracker.Builder
             return new List<FilterViewModel>()
             {
                 new FilterViewModel{ Filter = Filter.None, DisplayText = "All" },
-                new FilterViewModel{ Filter = Filter.Today, DisplayText = "Today"  },
+                new FilterViewModel{ Filter = Filter.Today, DisplayText = "Today" },
                 new FilterViewModel{ Filter = Filter.Week, DisplayText = "Current Week" },
                 new FilterViewModel{ Filter = Filter.LastWeek, DisplayText = "Last Week" },
                 new FilterViewModel{ Filter = Filter.Month , DisplayText = "Current Month"},

@@ -3,6 +3,7 @@ using Core.Dtos;
 using Core.Storage;
 using Core.Configuration;
 using System;
+using Core.Math;
 
 namespace Core.Test
 {
@@ -23,24 +24,8 @@ namespace Core.Test
                 var end = start.AddMinutes(rnd.Next(360, 540));
 
                 var hours = (end - start).TotalHours;
-                var rounded = Math.Round(hours * 4, MidpointRounding.ToEven) / 4.0;
 
-                // TODO Fix and optimize break calculation
-                var @break = 0.0;
-                if (hours <= 6.0)
-                {
-                    @break = 0.0;
-                }
-                else if (hours <= 9.0)
-                {
-                    @break = 0.5;
-                }
-                else
-                {
-                    @break = 1;
-                }
-
-                worktime.Days.Add(new Day { Start = start, End = end, Time = (decimal)rounded, Break = (decimal)@break });
+                worktime.Days.Add(new Day { Start = start, End = end, Time = CMath.RoundQuarter(hours), Break = CMath.CalculateBreak((decimal)hours) });
 
                 date = date.AddDays(1);
             }
