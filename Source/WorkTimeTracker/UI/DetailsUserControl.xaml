@@ -9,7 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Margin="5,10,10,10">
         <Grid.Style>
             <Style TargetType="Grid">
                 <Setter Property="Visibility" Value="Visible" />
@@ -28,7 +28,7 @@
 
         <GroupBox
             Grid.Row="0"
-            Margin="5,5,5,0"
+            Margin="0,0,0,5"
             Header="General">
             <Grid>
                 <Grid.RowDefinitions>
@@ -42,51 +42,51 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label
+                <TextBlock
                     Grid.Row="0"
                     Grid.Column="0"
-                    Margin="5,5,0,3"
-                    Content="Start: " />
+                    Margin="5,5,5,0"
+                    Text="Start: " />
                 <TextBlock
                     Grid.Row="0"
                     Grid.Column="1"
-                    Margin="5,5,5,3"
+                    Margin="5,5,5,0"
                     VerticalAlignment="Center"
                     Text="{Binding DetailsViewModel.SelectedDay.StartTime}" />
 
-                <Label
+                <TextBlock
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="5,2,0,3"
-                    Content="End: " />
+                    Margin="5,5,5,5"
+                    Text="End: " />
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="5,2,5,3"
+                    Margin="5,5,5,5"
                     VerticalAlignment="Center"
                     Text="{Binding DetailsViewModel.SelectedDay.EndTime}" />
 
-                <Label
+                <TextBlock
                     Grid.Row="0"
                     Grid.Column="2"
-                    Margin="5,5,0,3"
-                    Content="Work Time: " />
+                    Margin="5,5,5,0"
+                    Text="Work Time: " />
                 <TextBlock
                     Grid.Row="0"
                     Grid.Column="3"
-                    Margin="5,5,5,3"
+                    Margin="5,5,5,0"
                     VerticalAlignment="Center"
                     Text="{Binding DetailsViewModel.SelectedDay.WorkTime}" />
 
-                <Label
+                <TextBlock
                     Grid.Row="1"
                     Grid.Column="2"
-                    Margin="5,2,0,3"
-                    Content="Break: " />
+                    Margin="5,5,5,5"
+                    Text="Break: " />
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="3"
-                    Margin="5,2,5,3"
+                    Margin="5,5,5,5"
                     VerticalAlignment="Center"
                     Text="{Binding DetailsViewModel.SelectedDay.Break}" />
             </Grid>
@@ -94,7 +94,7 @@
 
         <GroupBox
             Grid.Row="1"
-            Margin="5,5,5,5"
+            Margin="0,5,0,0"
             Header="Tasks">
             <Grid>
                 <Grid.RowDefinitions>
@@ -102,8 +102,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <ScrollViewer Grid.Row="0">
-                    <ItemsControl Margin="5,5,5,3" ItemsSource="{Binding DetailsViewModel.SelectedDay.Tasks, Mode=OneWay}">
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl Margin="0,0,0,5" ItemsSource="{Binding DetailsViewModel.SelectedDay.Tasks, Mode=OneWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -116,7 +116,7 @@
                                     <TextBox
                                         Grid.Column="0"
                                         Height="25"
-                                        Margin="0,2,0,3"
+                                        Margin="5,5,0,0"
                                         VerticalContentAlignment="Center"
                                         Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -124,7 +124,7 @@
                                         Grid.Column="1"
                                         Width="40"
                                         Height="25"
-                                        Margin="5,2,0,3"
+                                        Margin="5,5,0,0"
                                         VerticalContentAlignment="Center"
                                         Text="{Binding WorkTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
 
@@ -132,7 +132,7 @@
                                         Grid.Column="2"
                                         Width="Auto"
                                         Height="Auto"
-                                        Margin="5,2,0,3"
+                                        Margin="5,5,5,0"
                                         Command="{Binding DataContext.DetailsViewModel.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Mode=OneTime}"
                                         CommandParameter="{Binding .}">
                                         <Rectangle Width="16" Height="16">
@@ -172,7 +172,7 @@
 
                 <StackPanel
                     Grid.Row="1"
-                    Margin="5"
+                    Margin="5,5,5,5"
                     HorizontalAlignment="Right">
                     <Button
                         Width="80"
