@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows;
-using Ninject;
 
 namespace WorkTimeTracker.ViewModels
 {
@@ -12,7 +10,8 @@ namespace WorkTimeTracker.ViewModels
         // readonly WorkTimeViewModelFactory _factory;
 
         public MainViewModel(
-            MasterViewModel masterViewModel
+            MasterViewModel masterViewModel,
+            DetailsViewModel detailsViewModel
             // IStorage<WorkTime> workTimeStorage,
             // IStorage<Settings> settingsStorage,
             // WorkTimeViewModelFactory factory,
@@ -23,6 +22,8 @@ namespace WorkTimeTracker.ViewModels
             )
         {
             MasterViewModel = masterViewModel ?? throw new ArgumentNullException(nameof(masterViewModel));
+            DetailsViewModel = detailsViewModel ?? throw new ArgumentNullException(nameof(detailsViewModel));
+            
             // _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             // _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
             // _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
@@ -47,11 +48,19 @@ namespace WorkTimeTracker.ViewModels
             
             MasterViewModel.SelectedDayChanged += (_, _) =>
             {
-                var kernel = Application.Current.Properties["kernel"] as StandardKernel ?? throw new InvalidOperationException();
-                DetailsViewModel = kernel.Get<DetailsViewModel>();
-                DetailsViewModel.Initialize(MasterViewModel.SelectedDay);
+                if (MasterViewModel.SelectedDay == null)
+                {
+                    return;
+                }
+                
+                DetailsViewModel.Reinitialize(MasterViewModel.SelectedDay);
             };
-            
+
+            MasterViewModel.SelectedFilterChanged += (_, _) =>
+            {
+                DetailsViewModel?.Clear();
+            };
+
             //WorkTimes.CollectionChanged += UpdateSumOnCollectionChanged;
         }        
 

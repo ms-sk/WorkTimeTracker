@@ -5,7 +5,7 @@ using Ninject.Modules;
 
 namespace Core.Modules
 {
-    public sealed class StandardBindings : NinjectModule
+    public sealed class CoreBindings : NinjectModule
     {
         public override void Load()
         {

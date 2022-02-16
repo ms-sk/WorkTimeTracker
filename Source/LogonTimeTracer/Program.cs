@@ -5,7 +5,7 @@ using Ninject;
 
 static async Task main(string[] args)
 {
-    var kernel = new StandardKernel(new StandardBindings());
+    var kernel = new StandardKernel(new CoreBindings());
     var workTimetracer = kernel.Get<WorkTimeTracer>();
 
     try

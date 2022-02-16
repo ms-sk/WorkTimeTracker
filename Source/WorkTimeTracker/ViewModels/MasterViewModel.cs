@@ -60,7 +60,7 @@ public sealed class MasterViewModel : ViewModel
     public ObservableCollection<FilterViewModel> Filters { get; } = new ObservableCollection<FilterViewModel>();
     public ObservableCollection<DayViewModel> WorkTimes { get; } = new ObservableCollection<DayViewModel>();
 
-    public DayViewModel SelectedDay
+    public DayViewModel? SelectedDay
     {
         get => GetValue<DayViewModel>();
         set

@@ -12,13 +12,17 @@ namespace WorkTimeTracker
     /// </summary>
     public partial class MainWindow
     {
-        private readonly StandardKernel _kernel;
-        
-        public MainWindow()
+        private readonly MainViewModel _mainViewModel;
+        private readonly ILogger _logger;
+
+        public MainWindow(MainViewModel mainViewModel, ILogger logger)
         {
             InitializeComponent();
             
-            _kernel = Application.Current.Properties["kernel"] as StandardKernel ?? throw new InvalidOperationException();
+            _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            DataContext = mainViewModel;
+            
             AppDomain.CurrentDomain.UnhandledException += HandleException;
 
             Loaded += LoadWorkTimes;
@@ -26,15 +30,13 @@ namespace WorkTimeTracker
 
         void HandleException(object sender, UnhandledExceptionEventArgs e)
         {
-            _kernel.Get<ILogger>().Error((Exception)e.ExceptionObject);
+            _logger.Error((Exception)e.ExceptionObject);
         }
 
         async void LoadWorkTimes(object sender, RoutedEventArgs e)
         {
-            var mainViewModel = _kernel.Get<MainViewModel>();
-            DataContext = mainViewModel;
-            await mainViewModel.MasterViewModel.LoadWorkTimes();
-            await mainViewModel.MasterViewModel.LoadSettings();
+            await _mainViewModel.MasterViewModel.LoadWorkTimes();
+            await _mainViewModel.MasterViewModel.LoadSettings();
         }
     }
 }
