@@ -17,6 +17,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -24,13 +25,13 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ui:MasterUserControl Grid.Column="0" />
+        <ui:WorkTimeTrackerToolbar
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2" />
 
-        <ui:DetailsUserControl Grid.Column="1" />
+        <ui:MasterUserControl Grid.Row="1" Grid.Column="0" />
 
-        <!--<ContentPresenter
-            Grid.Row="2"
-            Grid.Column="1"
-            Content="{Binding Sum, Mode=OneWay}" />-->
+        <ui:DetailsUserControl Grid.Row="1" Grid.Column="1" />
     </Grid>
 </Window>

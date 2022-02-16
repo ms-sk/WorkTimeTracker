@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:WorkTimeTracker.ViewModels">
     <DataTemplate DataType="{x:Type local:SumViewModel}">
-        <TextBlock FontWeight="Bold" Text="{Binding DisplayText, Mode=OneWay}" />
+        <TextBlock
+            VerticalAlignment="Center"
+            FontWeight="Bold"
+            Text="{Binding DisplayText, Mode=OneWay}" />
     </DataTemplate>
 </ResourceDictionary>

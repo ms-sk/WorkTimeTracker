@@ -9,20 +9,11 @@
     mc:Ignorable="d">
     <Grid Margin="10,10,5,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ComboBox
-            x:Name="FilterComboBox"
-            Grid.Row="0"
-            Grid.Column="0"
-            Width="200"
-            DisplayMemberPath="DisplayText"
-            ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
-            SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
 
         <ListBox
-            Grid.Row="1"
+            Grid.Row="0"
             Grid.Column="0"
             ItemsSource="{Binding MasterViewModel.WorkTimes, Mode=OneWay}"
             SelectedItem="{Binding MasterViewModel.SelectedDay, Mode=TwoWay}">

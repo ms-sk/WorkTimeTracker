@@ -11,7 +11,8 @@ namespace WorkTimeTracker.ViewModels
 
         public MainViewModel(
             MasterViewModel masterViewModel,
-            DetailsViewModel detailsViewModel
+            DetailsViewModel detailsViewModel,
+            ToolbarViewModel toolbarViewModel
             //WorkTimeTodayUpdater updater
             // IStorage<WorkTime> workTimeStorage,
             // IStorage<Settings> settingsStorage,
@@ -23,7 +24,8 @@ namespace WorkTimeTracker.ViewModels
         {
             MasterViewModel = masterViewModel ?? throw new ArgumentNullException(nameof(masterViewModel));
             DetailsViewModel = detailsViewModel ?? throw new ArgumentNullException(nameof(detailsViewModel));
-            
+            ToolbarViewModel = toolbarViewModel ?? throw new ArgumentNullException(nameof(ToolbarViewModel));
+
             // _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             // _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
             // _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
@@ -45,14 +47,14 @@ namespace WorkTimeTracker.ViewModels
             //     return dtoFactory.CreateWorkTime(days);
             // };
             //_workTimeUpdater.Start();
-            
+
             MasterViewModel.SelectedDayChanged += (_, _) =>
             {
                 if (MasterViewModel.SelectedDay == null)
                 {
                     return;
                 }
-                
+
                 DetailsViewModel.Reinitialize(MasterViewModel.SelectedDay);
             };
 
@@ -62,7 +64,7 @@ namespace WorkTimeTracker.ViewModels
             };
 
             //WorkTimes.CollectionChanged += UpdateSumOnCollectionChanged;
-        }        
+        }
 
         public MasterViewModel MasterViewModel { get; }
 
@@ -72,7 +74,7 @@ namespace WorkTimeTracker.ViewModels
             private set => SetValue(value);
         }
 
-        //public SumViewModel Sum { get; }
+        public ToolbarViewModel ToolbarViewModel { get; }
 
         // void UpdateSumOnCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         // {
