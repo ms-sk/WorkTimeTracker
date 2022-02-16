@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using WorkTimeTracker.ViewModels;
 using Core.Models;
 using Core.Math;
 using Core.Dtos;
+using Core.Extensions;
 
 namespace WorkTimeTracker.Builder
 {
@@ -37,7 +40,26 @@ namespace WorkTimeTracker.Builder
             viewModel.WorkTime = actualWorkTime.ToString("F") ?? "0.00";
             viewModel.Break = day.Break?.ToString("F") ?? "0.00";
 
+            if (day.Tasks?.Any() == true)
+            {
+                viewModel.Tasks.Replace(day.Tasks.Select(CreateTaskViewModel));
+            }
+
             return viewModel;
+        }
+
+        public TaskViewModel CreateTaskViewModel(TaskDto dto)
+        {
+            if (dto == null)
+            {
+                throw new ArgumentNullException(nameof(dto));
+            }
+
+            return new TaskViewModel
+            {
+                Description = dto.Description,
+                WorkTime = dto.WorkTime
+            };
         }
 
         public List<FilterViewModel> CreateFilterViewModels()

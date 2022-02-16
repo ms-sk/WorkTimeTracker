@@ -101,7 +101,7 @@ public sealed class MasterViewModel : ViewModel
             if (day.Start.HasValue && day.Start.Value.Date == today)
             {
                 _updater.DayViewModel = vm;
-                _updater.Start();
+                //_updater.Start();
             }
 
             _allWorkTimes.Add(vm);
