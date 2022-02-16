@@ -12,18 +12,13 @@ namespace WorkTimeTracker
     /// </summary>
     public partial class MainWindow
     {
-        readonly StandardKernel _kernel;
-
+        private readonly StandardKernel _kernel;
+        
         public MainWindow()
         {
             InitializeComponent();
-
-            _kernel = new StandardKernel(new StandardBindings());
-            _kernel.Bind<WorkTimeUpdater>().To<WorkTimeUpdater>();
-            _kernel.Bind<WorkTimeTodayUpdater>().To<WorkTimeTodayUpdater>();
-            _kernel.Bind<MasterViewModel>().To<MasterViewModel>();
-            _kernel.Bind<DetailsViewModel>().To<DetailsViewModel>();
-
+            
+            _kernel = Application.Current.Properties["kernel"] as StandardKernel ?? throw new InvalidOperationException();
             AppDomain.CurrentDomain.UnhandledException += HandleException;
 
             Loaded += LoadWorkTimes;

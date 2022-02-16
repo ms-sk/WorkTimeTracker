@@ -45,6 +45,8 @@ public sealed class MasterViewModel : ViewModel
 
     public event EventHandler SelectedFilterChanged;
 
+    public event EventHandler SelectedDayChanged;
+
     public FilterViewModel? SelectedFilter
     {
         get => GetValue<FilterViewModel?>();
@@ -57,7 +59,17 @@ public sealed class MasterViewModel : ViewModel
 
     public ObservableCollection<FilterViewModel> Filters { get; } = new ObservableCollection<FilterViewModel>();
     public ObservableCollection<DayViewModel> WorkTimes { get; } = new ObservableCollection<DayViewModel>();
-    
+
+    public DayViewModel SelectedDay
+    {
+        get => GetValue<DayViewModel>();
+        set
+        {
+            SetValue(value);
+            SelectedDayChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
     public void Filter()
     {
         if (SelectedFilter != null)

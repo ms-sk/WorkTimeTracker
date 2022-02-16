@@ -1,57 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using Core.Dtos;
-using Core.Storage;
-using WorkTimeTracker.Builder;
-using WorkTimeTracker.Factories;
+using System.Windows;
+using Ninject;
 
 namespace WorkTimeTracker.ViewModels
 {
     public sealed class MainViewModel : ViewModel
     {
-        readonly IStorage<WorkTime> _workTimeStorage;
-        private readonly IStorage<Settings> _settingsStorage;
-        readonly WorkTimeTodayUpdater _updater;
-        readonly WorkTimeUpdater _workTimeUpdater;
-        readonly List<DayViewModel> _workTimes = new();
-        readonly WorkTimeViewModelFactory _factory;
+        // readonly IStorage<WorkTime> _workTimeStorage;
+        // private readonly IStorage<Settings> _settingsStorage;
+        // readonly WorkTimeTodayUpdater _updater;
+        // readonly WorkTimeViewModelFactory _factory;
 
-        public MainViewModel(IStorage<WorkTime> workTimeStorage, IStorage<Settings> settingsStorage, WorkTimeViewModelFactory factory, WorkTimeDtoFactory dtoFactory, WorkTimeTodayUpdater updater, WorkTimeUpdater workTimeUpdater, SumViewModel sum, MasterViewModel masterViewModel, DetailsViewModel detailsViewModel)
+        public MainViewModel(
+            MasterViewModel masterViewModel
+            // IStorage<WorkTime> workTimeStorage,
+            // IStorage<Settings> settingsStorage,
+            // WorkTimeViewModelFactory factory,
+            //WorkTimeDtoFactory dtoFactory,
+            //WorkTimeTodayUpdater updater,
+            //WorkTimeUpdater workTimeUpdater,
+            //SumViewModel sum
+            )
         {
-            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
-            _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
-            _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
-            _updater = updater ?? throw new ArgumentNullException(nameof(updater));
-            _workTimeUpdater = workTimeUpdater ?? throw new ArgumentNullException(nameof(workTimeUpdater));
             MasterViewModel = masterViewModel ?? throw new ArgumentNullException(nameof(masterViewModel));
-            DetailsViewModel = detailsViewModel ?? throw new ArgumentNullException(nameof(detailsViewModel));
-            Sum = sum ?? throw new ArgumentNullException(nameof(workTimeStorage));
+            // _factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            // _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
+            // _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
+            // _updater = updater ?? throw new ArgumentNullException(nameof(updater));
+            //Sum = sum ?? throw new ArgumentNullException(nameof(sum));
 
-            _workTimeUpdater.GetWorkTime = () =>
-            {
-                List<Day> days = new();
-                foreach (var day in _workTimes)
-                {
-                    if (day.Dto != null)
-                    {
-                        days.Add(day.Dto);
-                    }
-                }
-
-                return dtoFactory.CreateWorkTime(days);
-            };
+            // if (workTimeUpdater == null) throw new ArgumentNullException(nameof(workTimeUpdater));
+            // workTimeUpdater.GetWorkTime = () =>
+            // {
+            //     List<Day> days = new();
+            //     foreach (var day in MasterViewModel.WorkTimes)
+            //     {
+            //         if (day.Dto != null)
+            //         {
+            //             days.Add(day.Dto);
+            //         }
+            //     }
+            //
+            //     return dtoFactory.CreateWorkTime(days);
+            // };
             //_workTimeUpdater.Start();
-
+            
+            MasterViewModel.SelectedDayChanged += (_, _) =>
+            {
+                var kernel = Application.Current.Properties["kernel"] as StandardKernel ?? throw new InvalidOperationException();
+                DetailsViewModel = kernel.Get<DetailsViewModel>();
+                DetailsViewModel.Initialize(MasterViewModel.SelectedDay);
+            };
+            
             //WorkTimes.CollectionChanged += UpdateSumOnCollectionChanged;
         }        
 
-
-
         public MasterViewModel MasterViewModel { get; }
 
-        public DetailsViewModel DetailsViewModel { get; }
+        public DetailsViewModel? DetailsViewModel
+        {
+            get => GetValue<DetailsViewModel>();
+            private set => SetValue(value);
+        }
 
-        public SumViewModel Sum { get; }
+        //public SumViewModel Sum { get; }
 
         // void UpdateSumOnCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         // {
