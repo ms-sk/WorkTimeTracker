@@ -25,7 +25,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0" Header="General">
+        <GroupBox
+            Grid.Row="0"
+            Margin="5,5,5,0"
+            Header="General">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -87,5 +90,10 @@
                     Text="{Binding DetailsViewModel.SelectedDay.Break}" />
             </Grid>
         </GroupBox>
+
+        <ItemsControl
+            Grid.Row="1"
+            Margin="5,5,5,5"
+            ItemsSource="{Binding DetailsViewModel.SelectedDay.Tasks, Mode=OneWay}" />
     </Grid>
 </UserControl>

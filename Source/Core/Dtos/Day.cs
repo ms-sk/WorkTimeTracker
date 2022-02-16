@@ -9,5 +9,7 @@
         public decimal? Time { get; set; }
 
         public decimal? Break { get; set; }
+        
+        public List<TaskDto>? Tasks { get; set; }
     }
 }

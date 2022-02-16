@@ -17,7 +17,7 @@ public sealed class MasterViewModel : ViewModel
     private readonly WorkTimeViewModelFactory _factory;
     private readonly WorkTimeTodayUpdater _updater;
 
-    private List<DayViewModel> _allWorkTimes = new List<DayViewModel>();
+    private readonly List<DayViewModel> _allWorkTimes = new();
 
     Settings? _settings;
 
@@ -31,7 +31,7 @@ public sealed class MasterViewModel : ViewModel
         Filters.Replace(factory.CreateFilterViewModels());
         SelectedFilter = Filters.FirstOrDefault();
 
-        SelectedFilterChanged += (_, __) =>
+        SelectedFilterChanged += (_, _) =>
         {
             if(_settings != null && SelectedFilter != null)
             {
@@ -45,7 +45,7 @@ public sealed class MasterViewModel : ViewModel
 
     public event EventHandler SelectedFilterChanged;
 
-    public event EventHandler SelectedDayChanged;
+    public event EventHandler? SelectedDayChanged;
 
     public FilterViewModel? SelectedFilter
     {
@@ -70,7 +70,7 @@ public sealed class MasterViewModel : ViewModel
         }
     }
 
-    public void Filter()
+    private void Filter()
     {
         if (SelectedFilter != null)
         {

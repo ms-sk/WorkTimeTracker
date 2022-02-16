@@ -1,16 +1,29 @@
-﻿using Core.Dtos;
+﻿using System.Collections.ObjectModel;
+using Core.Dtos;
 
 namespace WorkTimeTracker.ViewModels
 {
     public class DayViewModel : ViewModel
     {
-        public string Date { get => GetValue<string>(); set => SetValue(value); }
+        public string? Date
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
 
-        public string StartTime { get => GetValue<string>(); set => SetValue(value); }
+        public string? StartTime
+        {
+            get => GetValue<string>(); 
+            set => SetValue(value);
+        }
 
-        public string EndTime { get => GetValue<string>(); set => SetValue(value); }
+        public string? EndTime
+        {
+            get => GetValue<string>(); 
+            set => SetValue(value);
+        }
 
-        public string WorkTime
+        public string? WorkTime
         {
             get => GetValue<string>();
             set
@@ -20,7 +33,7 @@ namespace WorkTimeTracker.ViewModels
             }
         }
 
-        public string Break
+        public string? Break
         {
             get => GetValue<string>();
             set
@@ -31,6 +44,8 @@ namespace WorkTimeTracker.ViewModels
         }
 
         public Day? Dto { get; set; }
+
+        public ObservableCollection<TaskViewModel> Tasks { get; } = new();
 
         void DayChanged()
         {

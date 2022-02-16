@@ -14,7 +14,7 @@
             set => SetValue(value);
         }
 
-        public string DisplayText
+        public string? DisplayText
         {
             get => GetValue<string>();
             set => SetValue(value);
