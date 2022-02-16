@@ -1,13 +1,13 @@
 ﻿using Core.Dtos;
 using Core.Storage;
 
-namespace LogonTimeTracer
+namespace WorkTimeTracer
 {
-    internal sealed class WorkTimeTracer
+    internal sealed class Tracer
     {
         readonly IStorage<WorkTime> _workTimeStorage;
 
-        public WorkTimeTracer(IStorage<WorkTime> workTimeStorage)
+        public Tracer(IStorage<WorkTime> workTimeStorage)
         {
             _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
         }
@@ -20,7 +20,7 @@ namespace LogonTimeTracer
 
             if (today == null)
             {
-                workTime.Days.Add(new Day() { Start = DateTime.Now });
+                workTime.Days.Add(new Day{ Start = DateTime.Now });
             }
             else
             {

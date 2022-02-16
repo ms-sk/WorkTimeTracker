@@ -1,12 +1,12 @@
 ﻿using Core.Logging;
 using Core.Modules;
-using LogonTimeTracer;
 using Ninject;
+using WorkTimeTracer;
 
 static async Task main(string[] args)
 {
     var kernel = new StandardKernel(new CoreBindings());
-    var workTimetracer = kernel.Get<WorkTimeTracer>();
+    var workTimetracer = kernel.Get<Tracer>();
 
     try
     {
