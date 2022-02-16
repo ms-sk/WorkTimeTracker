@@ -72,5 +72,15 @@ namespace WorkTimeTracker.ViewModels
                 WorkTime = (Dto.Time.GetValueOrDefault() - Dto.Break.GetValueOrDefault()).ToString("F");
             }
         }
+
+        public void DeleteTask(TaskViewModel model)
+        {
+            if (!Tasks.Contains(model))
+            {
+                return;
+            }
+
+            Tasks.Remove(model);
+        }
     }
 }

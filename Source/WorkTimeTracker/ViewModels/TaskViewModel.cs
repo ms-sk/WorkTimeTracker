@@ -1,4 +1,6 @@
-﻿namespace WorkTimeTracker.ViewModels;
+﻿using System;
+
+namespace WorkTimeTracker.ViewModels;
 
 public class TaskViewModel : ViewModel
 {

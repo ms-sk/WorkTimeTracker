@@ -23,6 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <GroupBox
@@ -99,8 +100,9 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" SharedSizeGroup="C1" />
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="C2" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <TextBox
@@ -109,16 +111,64 @@
                             Margin="0,2,0,3"
                             VerticalContentAlignment="Center"
                             Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
                         <TextBox
                             Grid.Column="1"
                             Width="40"
                             Height="25"
                             Margin="5,2,0,3"
                             VerticalContentAlignment="Center"
-                            Text="{Binding WorkTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            Text="{Binding WorkTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+
+                        <Button
+                            Grid.Column="2"
+                            Width="Auto"
+                            Height="Auto"
+                            Margin="5,2,0,3"
+                            Command="{Binding DataContext.DetailsViewModel.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Mode=OneTime}"
+                            CommandParameter="{Binding .}">
+                            <Rectangle Width="16" Height="16">
+                                <Rectangle.Resources>
+                                    <SolidColorBrush x:Key="canvas" Opacity="0" />
+                                    <SolidColorBrush
+                                        x:Key="Light-Defaultgrey-10"
+                                        Opacity="0.1"
+                                        Color="#212121" />
+                                    <SolidColorBrush
+                                        x:Key="Light-Defaultgrey"
+                                        Opacity="1"
+                                        Color="#212121" />
+                                </Rectangle.Resources>
+                                <Rectangle.Fill>
+                                    <DrawingBrush Stretch="None">
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <DrawingGroup x:Name="canvas">
+                                                    <GeometryDrawing Brush="{DynamicResource canvas}" Geometry="F1M16,16H0V0H16Z" />
+                                                </DrawingGroup>
+                                                <DrawingGroup x:Name="level_1">
+                                                    <GeometryDrawing Brush="{DynamicResource Light-Defaultgrey-10}" Geometry="F1M12.5,2.5v13H2.5V2.5Z" />
+                                                    <GeometryDrawing Brush="{DynamicResource Light-Defaultgrey}" Geometry="F1M14,2H10V1A1,1,0,0,0,9,0H6A1,1,0,0,0,5,1V2H1V3H2V15.5l.5.5h10l.5-.5V3h1ZM6,1H9V2H6Zm6,14H3V3h9ZM5,13V5H6v8Zm5,0H9V5h1ZM8,13H7V5H8Z" />
+                                                </DrawingGroup>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="5"
+            HorizontalAlignment="Right">
+            <Button
+                Width="80"
+                Command="{Binding DetailsViewModel.CreateCommand, Mode=OneTime}"
+                Content="Create" />
+        </StackPanel>
     </Grid>
 </UserControl>
