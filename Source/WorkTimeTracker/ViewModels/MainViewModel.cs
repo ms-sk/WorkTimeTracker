@@ -6,17 +6,17 @@ namespace WorkTimeTracker.ViewModels
     {
         // readonly IStorage<WorkTime> _workTimeStorage;
         // private readonly IStorage<Settings> _settingsStorage;
-        // readonly WorkTimeTodayUpdater _updater;
+        //readonly WorkTimeTodayUpdater _updater;
         // readonly WorkTimeViewModelFactory _factory;
 
         public MainViewModel(
             MasterViewModel masterViewModel,
             DetailsViewModel detailsViewModel
+            //WorkTimeTodayUpdater updater
             // IStorage<WorkTime> workTimeStorage,
             // IStorage<Settings> settingsStorage,
             // WorkTimeViewModelFactory factory,
             //WorkTimeDtoFactory dtoFactory,
-            //WorkTimeTodayUpdater updater,
             //WorkTimeUpdater workTimeUpdater,
             //SumViewModel sum
             )
