@@ -5,6 +5,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WorkTimeTracker;component/UI/Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WorkTimeTracker;component/UI/Resources/Margins.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/WorkTimeTracker;component/UI/SumDataTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

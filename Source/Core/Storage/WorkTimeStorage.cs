@@ -26,7 +26,17 @@ namespace Core.Storage
                     return new WorkTime { Days = new List<Day>() };
                 }
 
-                return JsonSerializer.Deserialize<WorkTime>(json) ?? new WorkTime() { Days = new List<Day>() };
+                var workTime = JsonSerializer.Deserialize<WorkTime>(json) ?? new WorkTime() { Days = new List<Day>() };
+
+                foreach (var day in workTime.Days)
+                {
+                    if (day.Id == null)
+                    {
+                        day.Id = Guid.NewGuid();
+                    }
+                }
+
+                return workTime;
             }
 
             return new WorkTime { Days = new List<Day>() };
