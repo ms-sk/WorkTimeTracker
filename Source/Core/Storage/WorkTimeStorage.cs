@@ -28,12 +28,19 @@ namespace Core.Storage
 
                 var workTime = JsonSerializer.Deserialize<WorkTime>(json) ?? new WorkTime() { Days = new List<Day>() };
 
+                var shouldSave = false;
                 foreach (var day in workTime.Days)
                 {
                     if (day.Id == null)
                     {
                         day.Id = Guid.NewGuid();
+                        shouldSave = true;
                     }
+                }
+
+                if (shouldSave)
+                {
+                    await Save(workTime);
                 }
 
                 return workTime;

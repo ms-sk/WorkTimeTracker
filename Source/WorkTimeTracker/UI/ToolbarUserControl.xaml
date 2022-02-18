@@ -17,6 +17,7 @@
                 DisplayMemberPath="DisplayText"
                 ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
                 SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
+            <Button Command="{Binding ToolbarViewModel.Add}" Content="{StaticResource Add}" />
             <Separator />
             <Button
                 Command="{Binding ToolbarViewModel.Save}"

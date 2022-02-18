@@ -21,19 +21,20 @@ namespace Core.Storage
 
             foreach (var day in days)
             {
-                foreach (var updatedDay in ds)
+                var updatedDay = ds.FirstOrDefault(d => d.Id == day.Id);
+                if (updatedDay != null)
                 {
-                    if (day.Id == updatedDay.Id)
+                    day.Start = updatedDay.Start;
+                    day.End = updatedDay.End;
+                    day.Break = updatedDay.Break;
+                    day.Time = updatedDay.Time;
+
+                    if (day.Tasks == null)
                     {
-                        day.Start = updatedDay.Start;
-                        day.End = updatedDay.End;
-                        day.Break = updatedDay.Break;
-                        day.Time = updatedDay.Time;
-                        if (day.Tasks != null)
-                        {
-                            day.Tasks.Replace(updatedDay.Tasks ?? new List<TaskDto>());
-                        }
+                        day.Tasks = new List<TaskDto>();
                     }
+
+                    day.Tasks.Replace(updatedDay.Tasks ?? new List<TaskDto>());
                 }
             }
 
