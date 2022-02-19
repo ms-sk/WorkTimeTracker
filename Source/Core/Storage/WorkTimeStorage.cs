@@ -13,6 +13,11 @@ namespace Core.Storage
             _paths = paths;
         }
 
+        public Task Delete(WorkTime t)
+        {
+            throw new InvalidOperationException();
+        }
+
         public async Task<WorkTime> Load()
         {
             CreateRootFolder();

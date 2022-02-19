@@ -15,6 +15,18 @@
     ResizeMode="CanResizeWithGrip"
     WindowStyle="SingleBorderWindow"
     mc:Ignorable="d">
+    <Window.InputBindings>
+        <KeyBinding
+            Key="S"
+            Command="{Binding ToolbarViewModel.Save}"
+            CommandParameter="{Binding MasterViewModel.SelectedDay}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="S"
+            Command="{Binding ToolbarViewModel.SaveAll}"
+            CommandParameter="{Binding MasterViewModel.WorkTimes}"
+            Modifiers="Ctrl+Shift" />
+    </Window.InputBindings>
 
     <Grid>
         <Grid.RowDefinitions>

@@ -14,30 +14,30 @@ namespace Core.Storage
 
         public async Task Save(List<Day> ds)
         {
-            var guids = ds.Select(t => t.Id);
-
             var workTime = await _storage.Load();
-            var days = workTime.Days.Where(d => guids.Contains(d.Id)).ToList();
 
-            foreach (var day in days)
+            foreach (var day in ds)
             {
-                var updatedDay = ds.FirstOrDefault(d => d.Id == day.Id);
-                if (updatedDay != null)
+                var existingDay = workTime.Days.FirstOrDefault(d => d.Id == day.Id);
+                if (existingDay != null)
                 {
-                    day.Start = updatedDay.Start;
-                    day.End = updatedDay.End;
-                    day.Break = updatedDay.Break;
-                    day.Time = updatedDay.Time;
+                    existingDay.Start = day.Start;
+                    existingDay.End = day.End;
+                    existingDay.Break = day.Break;
+                    existingDay.Time = day.Time;
 
-                    if (day.Tasks == null)
+                    if (existingDay.Tasks == null)
                     {
-                        day.Tasks = new List<TaskDto>();
+                        existingDay.Tasks = new List<TaskDto>();
                     }
 
-                    day.Tasks.Replace(updatedDay.Tasks ?? new List<TaskDto>());
+                    existingDay.Tasks.Replace(day.Tasks ?? new List<TaskDto>());
+                }
+                else
+                {
+                    workTime.Days.Add(day);
                 }
             }
-
             await _storage.Save(workTime);
         }
 
@@ -45,6 +45,22 @@ namespace Core.Storage
         {
             var workTime = await _storage.Load();
             return workTime.Days;
+        }
+
+        public async Task Delete(List<Day> t)
+        {
+            var workTime = await _storage.Load();
+
+            foreach (var day in t)
+            {
+                var delete = workTime.Days.FirstOrDefault(d => day.Id == d.Id);
+                if (delete != null)
+                {
+                    workTime.Days.Remove(delete);
+                }
+            }
+
+            _storage.Save(workTime);
         }
     }
 }

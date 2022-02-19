@@ -34,7 +34,7 @@ public sealed class MasterViewModel : ViewModel
 
         SelectedFilterChanged += async (_, _) =>
         {
-            if(_settings != null && SelectedFilter != null)
+            if (_settings != null && SelectedFilter != null)
             {
                 _settings.Filter = SelectedFilter.Filter;
             }
@@ -90,7 +90,8 @@ public sealed class MasterViewModel : ViewModel
     internal async Task LoadWorkTimes()
     {
         WorkTimes.Clear();
-        
+        _allWorkTimes.Clear();
+
         var workTime = await _workTimeStorage.Load();
         workTime.Days = workTime.Days.OrderByDescending(x => x.Start).ToList();
 

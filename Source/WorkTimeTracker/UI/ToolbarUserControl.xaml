@@ -17,13 +17,24 @@
                 DisplayMemberPath="DisplayText"
                 ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
                 SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
-            <Button Command="{Binding ToolbarViewModel.Add}" Content="{StaticResource Add}" />
+            <Separator />
+            <Button
+                Command="{Binding ToolbarViewModel.Add}"
+                CommandParameter="{Binding MasterViewModel}"
+                Content="{StaticResource Add}" />
+            <Button
+                Command="{Binding ToolbarViewModel.Delete}"
+                CommandParameter="{Binding MasterViewModel}"
+                Content="{StaticResource Trash}" />
             <Separator />
             <Button
                 Command="{Binding ToolbarViewModel.Save}"
                 CommandParameter="{Binding MasterViewModel.SelectedDay}"
                 Content="{StaticResource Save}" />
-            <Button CommandParameter="{Binding MasterViewModel.WorkTimes}" Content="{StaticResource SaveAll}" />
+            <Button
+                Command="{Binding ToolbarViewModel.SaveAll}"
+                CommandParameter="{Binding MasterViewModel.WorkTimes}"
+                Content="{StaticResource SaveAll}" />
             <Separator />
             <Button Content="{StaticResource Settings}" />
         </ToolBar>

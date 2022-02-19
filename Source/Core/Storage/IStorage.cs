@@ -5,5 +5,7 @@
         Task<T> Load();
 
         Task Save(T t);
+
+        Task Delete(T t);
     }
 }

@@ -13,6 +13,11 @@ namespace Core.Storage
             _paths = paths;
         }
 
+        public Task Delete(Settings t)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Settings> Load()
         {
             CreateRootFolder();
