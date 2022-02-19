@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker", "WorkTime
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{880EF859-B4BD-4AF2-B48A-27EBE177D6A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Test", "Core.Test\Core.Test.csproj", "{18F2CB8B-03BD-43A0-A7D3-C10295D7732D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Test", "Core.Test\Core.Test.csproj", "{18F2CB8B-03BD-43A0-A7D3-C10295D7732D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Wpf", "Core.Wpf\Core.Wpf.csproj", "{96A8466E-574C-4B23-8CF1-FA9DF64603B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{18F2CB8B-03BD-43A0-A7D3-C10295D7732D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18F2CB8B-03BD-43A0-A7D3-C10295D7732D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18F2CB8B-03BD-43A0-A7D3-C10295D7732D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A8466E-574C-4B23-8CF1-FA9DF64603B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A8466E-574C-4B23-8CF1-FA9DF64603B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A8466E-574C-4B23-8CF1-FA9DF64603B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A8466E-574C-4B23-8CF1-FA9DF64603B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

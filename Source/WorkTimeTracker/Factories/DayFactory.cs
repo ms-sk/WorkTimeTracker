@@ -15,7 +15,7 @@ namespace WorkTimeTracker.Factories
 
             var day = new Day
             {
-                Id = dayViewModel.Dto.Id,
+                Id = dayViewModel.Dto?.Id ?? Guid.NewGuid(),
                 Tasks = new System.Collections.Generic.List<TaskDto>()
             };
 

@@ -1,4 +1,5 @@
 ﻿using Core.Modules;
+using Core.Wpf.Loading;
 using Ninject;
 using WorkTimeTracker.ViewModels;
 
@@ -17,7 +18,8 @@ namespace WorkTimeTracker
             kernel.Bind<WorkTimeTodayUpdater>().To<WorkTimeTodayUpdater>();
             kernel.Bind<MasterViewModel>().To<MasterViewModel>();
             kernel.Bind<DetailsViewModel>().To<DetailsViewModel>();
-            
+            kernel.Bind<LoaderViewModel>().ToSelf().InSingletonScope();
+
             Startup += (_, _) =>
             {
                 MainWindow = kernel.Get<MainWindow>();

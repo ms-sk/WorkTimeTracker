@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WorkTimeTracker.ViewModels;
+namespace Core.Wpf.Commands;
 
 /// <summary>
 /// Defines a WPF command.

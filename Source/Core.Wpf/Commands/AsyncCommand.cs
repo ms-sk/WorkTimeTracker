@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WorkTimeTracker.ViewModels;
+namespace Core.Wpf.Commands;
 
 public sealed class AsyncCommand : ICommand
 {

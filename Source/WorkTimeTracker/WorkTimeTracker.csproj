@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core.Wpf\Core.Wpf.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 

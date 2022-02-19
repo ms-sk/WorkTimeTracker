@@ -11,6 +11,7 @@
     Width="800"
     Height="500"
     d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}"
+    Cursor="{Binding LoaderViewModel.Cursor, Mode=OneWay}"
     ResizeMode="CanResizeWithGrip"
     WindowStyle="SingleBorderWindow"
     mc:Ignorable="d">

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Dtos;
 using Core.Extensions;
 using Core.Storage;
+using Core.Wpf.ViewModels;
 using WorkTimeTracker.Builder;
 
 namespace WorkTimeTracker.ViewModels;
@@ -31,13 +32,13 @@ public sealed class MasterViewModel : ViewModel
         Filters.Replace(factory.CreateFilterViewModels());
         SelectedFilter = Filters.FirstOrDefault();
 
-        SelectedFilterChanged += (_, _) =>
+        SelectedFilterChanged += async (_, _) =>
         {
             if(_settings != null && SelectedFilter != null)
             {
                 _settings.Filter = SelectedFilter.Filter;
             }
-            _settingsStorage.Save(_settings ?? new Settings());
+            await _settingsStorage.Save(_settings ?? new Settings());
 
             Filter();
         };

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WorkTimeTracker.ViewModels
+namespace Core.Wpf.ViewModels
 {
     public class ViewModel : INotifyPropertyChanged
     {

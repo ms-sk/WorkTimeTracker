@@ -1,5 +1,7 @@
 ﻿using Core.Dtos;
 using Core.Storage;
+using Core.Wpf.Commands;
+using Core.Wpf.Loading;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,11 +15,12 @@ namespace WorkTimeTracker.ViewModels
         readonly IStorage<List<Day>> storage;
         readonly DayFactory dayFactory;
 
-        public ToolbarViewModel(SumViewModel sum, IStorage<List<Day>> storage, DayFactory dayFactory)
+        public ToolbarViewModel(SumViewModel sum, IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel)
         {
             Sum = sum ?? throw new System.ArgumentNullException(nameof(sum));
             this.storage = storage;
             this.dayFactory = dayFactory;
+            LoaderViewModel = loaderViewModel;
             Sum.DisplayText = "8.25";
 
             Add = new Command(ExecuteAdd, (_) => true);
@@ -27,6 +30,8 @@ namespace WorkTimeTracker.ViewModels
         }
 
         public SumViewModel Sum { get; }
+
+        public LoaderViewModel LoaderViewModel { get; }
 
         public ICommand Add { get; }
 
@@ -38,10 +43,13 @@ namespace WorkTimeTracker.ViewModels
 
         async Task ExecuteSave(object? parameter)
         {
-            if (parameter is DayViewModel dayViewModel)
+            using (LoaderViewModel.Load())
             {
-                var dto = dayFactory.CreateDay(dayViewModel);
-                await storage.Save(new List<Day>() { dto });
+                if (parameter is DayViewModel dayViewModel)
+                {
+                    var dto = dayFactory.CreateDay(dayViewModel);
+                    await storage.Save(new List<Day>() { dto });
+                }
             }
         }
 

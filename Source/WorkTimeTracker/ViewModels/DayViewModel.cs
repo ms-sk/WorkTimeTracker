@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Core.Dtos;
+using Core.Wpf.ViewModels;
 
 namespace WorkTimeTracker.ViewModels
 {

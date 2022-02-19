@@ -1,4 +1,6 @@
-﻿namespace WorkTimeTracker.ViewModels
+﻿using Core.Wpf.ViewModels;
+
+namespace WorkTimeTracker.ViewModels
 {
     public sealed class SumViewModel : ViewModel
     {
