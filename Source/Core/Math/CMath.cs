@@ -9,17 +9,13 @@
             {
                 breakTime = 0;
             }
-            else if (hours > 6.0 && hours <= 9.5)
+            else if (hours is > 6.0 and <= 9.5)
             {
                 breakTime = 0.5;
             }
-            else if (hours > 9.75 && hours < 11)
-            {
-                breakTime = 0.75;
-            }
             else
             {
-                breakTime = 1;
+                breakTime = 0.75;
             }
 
             return breakTime;

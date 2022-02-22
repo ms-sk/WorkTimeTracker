@@ -23,11 +23,11 @@ namespace WorkTimeTracker.ViewModels
             LoaderViewModel = loaderViewModel;
             Sum.DisplayText = "8.25";
 
-            Add = new AsyncCommand(ExecuteAdd, (_) => true);
-            Save = new AsyncCommand(ExecuteSave, (_) => true);
-            SaveAll = new AsyncCommand(ExecuteSaveAll, CanExecuteAll);
-            Settings = new Command(ExecuteSettings, (_) => true);
-            Delete = new AsyncCommand(ExecuteDelete, (_) => true);
+            Add = new AsyncCommand(ExecuteAdd, _ => true);
+            Save = new AsyncCommand(ExecuteSave, _ => true);
+            SaveAll = new AsyncCommand(ExecuteSaveAll, _ => true);
+            Settings = new Command(ExecuteSettings, _ => true);
+            Delete = new AsyncCommand(ExecuteDelete, _ => true);
         }
 
         public SumViewModel Sum { get; }
