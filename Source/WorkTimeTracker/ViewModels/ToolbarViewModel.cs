@@ -15,13 +15,11 @@ namespace WorkTimeTracker.ViewModels
         readonly IStorage<List<Day>> storage;
         readonly DayFactory dayFactory;
 
-        public ToolbarViewModel(SumViewModel sum, IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel)
+        public ToolbarViewModel(IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel)
         {
-            Sum = sum ?? throw new System.ArgumentNullException(nameof(sum));
             this.storage = storage;
             this.dayFactory = dayFactory;
             LoaderViewModel = loaderViewModel;
-            Sum.DisplayText = "8.25";
 
             Add = new AsyncCommand(ExecuteAdd, _ => true);
             Save = new AsyncCommand(ExecuteSave, _ => true);
@@ -29,8 +27,6 @@ namespace WorkTimeTracker.ViewModels
             Settings = new Command(ExecuteSettings, _ => true);
             Delete = new AsyncCommand(ExecuteDelete, _ => true);
         }
-
-        public SumViewModel Sum { get; }
 
         public LoaderViewModel LoaderViewModel { get; }
 

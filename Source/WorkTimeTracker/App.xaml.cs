@@ -13,12 +13,13 @@ namespace WorkTimeTracker
         public App()
         {
             var kernel = new StandardKernel(new CoreBindings());
-            kernel.Bind<MainWindow>().To<MainWindow>();
-            kernel.Bind<WorkTimeUpdater>().To<WorkTimeUpdater>();
-            kernel.Bind<WorkTimeTodayUpdater>().To<WorkTimeTodayUpdater>();
-            kernel.Bind<MasterViewModel>().To<MasterViewModel>();
-            kernel.Bind<DetailsViewModel>().To<DetailsViewModel>();
+            kernel.Bind<MainWindow>().ToSelf().InSingletonScope();
+            kernel.Bind<WorkTimeUpdater>().ToSelf().InSingletonScope();
+            kernel.Bind<WorkTimeTodayUpdater>().ToSelf().InSingletonScope();
+            kernel.Bind<MasterViewModel>().ToSelf().InSingletonScope();
+            kernel.Bind<DetailsViewModel>().ToSelf().InSingletonScope();
             kernel.Bind<LoaderViewModel>().ToSelf().InSingletonScope();
+            kernel.Bind<FooterViewModel>().ToSelf().InSingletonScope();
 
             Startup += (_, _) =>
             {

@@ -1,24 +1,19 @@
-﻿using Core.Wpf.ViewModels;
+﻿using Core.Models;
+using Core.Wpf.ViewModels;
 
 namespace WorkTimeTracker.ViewModels
 {
     public sealed class SumViewModel : ViewModel
     {
-        public decimal Sum
+        public WorkType Type
         {
-            get => GetValue<decimal>();
+            get => GetValue<WorkType>();
             set => SetValue(value);
         }
 
-        public decimal BreakSum
+        public double Sum
         {
-            get => GetValue<decimal>();
-            set => SetValue(value);
-        }
-
-        public string? DisplayText
-        {
-            get => GetValue<string>();
+            get => GetValue<double>();
             set => SetValue(value);
         }
     }

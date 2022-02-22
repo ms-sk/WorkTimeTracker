@@ -17,18 +17,17 @@ public sealed class MasterViewModel : ViewModel
     private readonly SettingsStorage _settingsStorage;
     private readonly WorkTimeViewModelFactory _factory;
     private readonly WorkTimeTodayUpdater _updater;
-
     private readonly List<DayViewModel> _allWorkTimes = new();
 
     Settings? _settings;
 
-    public MasterViewModel(IStorage<WorkTime> workTimeStorage, SettingsStorage settingsStorage, WorkTimeViewModelFactory factory, WorkTimeTodayUpdater updater)
+    public MasterViewModel(IStorage<WorkTime> workTimeStorage, SettingsStorage settingsStorage, WorkTimeViewModelFactory factory, WorkTimeTodayUpdater updater, FooterViewModel footer)
     {
         _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
         _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
         _factory = factory ?? throw new ArgumentNullException(nameof(factory));
         _updater = updater ?? throw new ArgumentNullException(nameof(updater));
-
+        Footer = footer ?? throw new ArgumentNullException(nameof(footer));
         Filters.Replace(factory.CreateFilterViewModels());
         SelectedFilter = Filters.FirstOrDefault();
 
@@ -41,6 +40,8 @@ public sealed class MasterViewModel : ViewModel
             await _settingsStorage.Save(_settings ?? new Settings());
 
             Filter();
+
+            Footer.Update(WorkTimes.ToList());
         };
     }
 
@@ -59,7 +60,10 @@ public sealed class MasterViewModel : ViewModel
     }
 
     public ObservableCollection<FilterViewModel> Filters { get; } = new ObservableCollection<FilterViewModel>();
+
     public ObservableCollection<DayViewModel> WorkTimes { get; } = new ObservableCollection<DayViewModel>();
+
+    public FooterViewModel Footer { get; }
 
     public DayViewModel? SelectedDay
     {
@@ -110,6 +114,7 @@ public sealed class MasterViewModel : ViewModel
         }
 
         WorkTimes.Replace(_allWorkTimes);
+        Footer.Update(WorkTimes.ToList());
     }
 
     internal async Task LoadSettings()

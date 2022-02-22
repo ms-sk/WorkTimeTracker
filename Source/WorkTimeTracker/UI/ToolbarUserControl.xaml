@@ -9,7 +9,6 @@
     mc:Ignorable="d">
     <ToolBarTray Background="DarkGray">
         <ToolBar>
-            <ContentPresenter Margin="{StaticResource Right}" Content="{Binding ToolbarViewModel.Sum}" />
             <ComboBox
                 x:Name="FilterComboBox"
                 Width="200"
