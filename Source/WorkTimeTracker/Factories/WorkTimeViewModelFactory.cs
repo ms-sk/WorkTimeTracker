@@ -23,6 +23,7 @@ namespace WorkTimeTracker.Factories
             viewModel.Date = dto.Start.Date;
             viewModel.StartTime = TimeOnly.FromDateTime(dto.Start);
             viewModel.EndTime = dto.End.HasValue ? TimeOnly.FromDateTime(dto.End.Value) : TimeOnly.MinValue;
+            viewModel.Type = dto.Type;
 
             var time = dto.Time.GetValueOrDefault();
             if (time == 0.0 && viewModel.EndTime > TimeOnly.MinValue)

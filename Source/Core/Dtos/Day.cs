@@ -1,4 +1,6 @@
-﻿namespace Core.Dtos
+﻿using Core.Models;
+
+namespace Core.Dtos
 {
     public sealed class Day
     {
@@ -18,5 +20,7 @@
         public double? Break { get; set; }
 
         public List<TaskDto>? Tasks { get; set; }
+        
+        public WorkType Type { get; set; }
     }
 }

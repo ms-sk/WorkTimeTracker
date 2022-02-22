@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Core.Dtos;
+using Core.Models;
 using Core.Wpf.ViewModels;
 
 namespace WorkTimeTracker.ViewModels
@@ -55,6 +56,12 @@ namespace WorkTimeTracker.ViewModels
         public Day? Dto { get; set; }
 
         public ObservableCollection<TaskViewModel> Tasks { get; } = new();
+
+        public WorkType Type
+        {
+            get => GetValue<WorkType>();
+            set => SetValue(value);
+        }
 
         void DayChanged()
         {

@@ -25,6 +25,7 @@ namespace Core.Storage
                     existingDay.End = day.End;
                     existingDay.Break = day.Break;
                     existingDay.Time = day.Time;
+                    existingDay.Type = day.Type;
 
                     if (existingDay.Tasks == null)
                     {

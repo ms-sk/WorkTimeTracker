@@ -1,7 +1,8 @@
 ﻿using Core.Wpf.Commands;
 using Core.Wpf.ViewModels;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using Core.Models;
 
 namespace WorkTimeTracker.ViewModels
 {
@@ -11,6 +12,8 @@ namespace WorkTimeTracker.ViewModels
         {
             CreateCommand = new Command(ExecuteCreateCommand, _ => true);
             DeleteCommand = new Command(ExecuteDeleteCommand, _ => true);
+
+            Types = Enum.GetValues<WorkType>();
         }
         
         public DayViewModel? SelectedDay
@@ -30,6 +33,8 @@ namespace WorkTimeTracker.ViewModels
             get => GetValue<Command>();
             set => SetValue(value);
         }
+        
+        public IEnumerable<WorkType> Types { get; }
 
         public void Reinitialize(DayViewModel selectedDay)
         {

@@ -41,6 +41,18 @@ namespace Core.Storage
                         day.Id = Guid.NewGuid();
                         shouldSave = true;
                     }
+
+                    if (day.Tasks?.Any() == true)
+                    {
+                        foreach (var task in day.Tasks)
+                        {
+                            if (task.Id == null)
+                            {
+                                task.Id = Guid.NewGuid();
+                                shouldSave = true;
+                            }
+                        }
+                    }
                 }
 
                 if (shouldSave)

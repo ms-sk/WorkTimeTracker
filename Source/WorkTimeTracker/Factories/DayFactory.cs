@@ -17,7 +17,8 @@ namespace WorkTimeTracker.Factories
             {
                 Id = viewModel.Dto?.Id ?? Guid.NewGuid(),
                 Tasks = new System.Collections.Generic.List<TaskDto>(),
-                Break = viewModel.Break
+                Break = viewModel.Break,
+                Type = viewModel.Type
             };
 
             if (viewModel.Date.HasValue)
@@ -28,7 +29,7 @@ namespace WorkTimeTracker.Factories
 
             foreach (var task in viewModel.Tasks)
             {
-                day.Tasks.Add(new TaskDto { Description = task.Description, WorkTime = task.WorkTime });
+                day.Tasks.Add(new TaskDto { Description = task.Description, WorkTime = task.WorkTime, Type = task.Type});
             }
 
             viewModel.Dto = day;

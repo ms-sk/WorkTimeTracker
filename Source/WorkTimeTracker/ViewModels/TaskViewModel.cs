@@ -1,5 +1,6 @@
-﻿using Core.Wpf.ViewModels;
-using System;
+﻿using Core.Dtos;
+using Core.Wpf.ViewModels;
+using Core.Models;
 
 namespace WorkTimeTracker.ViewModels;
 
@@ -16,4 +17,11 @@ public class TaskViewModel : ViewModel
         get => GetValue<double>();
         set => SetValue(value);
     }
+
+    public WorkType Type
+    {
+        get => GetValue<WorkType>();
+        set => SetValue(value);
+    }
+    public TaskDto? Dto { get; set; }
 }
