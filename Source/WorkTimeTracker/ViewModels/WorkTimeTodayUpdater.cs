@@ -1,7 +1,7 @@
 ﻿using Core.Math;
 using System;
 using System.Timers;
-using WorkTimeTracker.Builder;
+using WorkTimeTracker.Factories;
 
 namespace WorkTimeTracker.ViewModels
 {

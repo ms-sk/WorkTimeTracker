@@ -7,7 +7,7 @@ using Core.Dtos;
 using Core.Extensions;
 using Core.Storage;
 using Core.Wpf.ViewModels;
-using WorkTimeTracker.Builder;
+using WorkTimeTracker.Factories;
 
 namespace WorkTimeTracker.ViewModels;
 
@@ -100,7 +100,7 @@ public sealed class MasterViewModel : ViewModel
         {
             var vm = _factory.CreateWorkTimeViewModel(day);
 
-            if (day.Start.HasValue && day.Start.Value.Date == today)
+            if (day.Start.Date == today)
             {
                 _updater.DayViewModel = vm;
                 //_updater.Start();

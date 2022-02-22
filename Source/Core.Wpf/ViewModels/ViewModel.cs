@@ -14,7 +14,11 @@ namespace Core.Wpf.ViewModels
         {
             if (_propertyStore.ContainsKey(propertyName))
             {
-                return (T) _propertyStore[propertyName]!;
+                var value = _propertyStore[propertyName];
+                if (value != null)
+                {
+                    return (T) value;
+                }
             }
 
             return default;

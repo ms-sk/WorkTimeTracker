@@ -6,41 +6,32 @@ namespace WorkTimeTracker.Factories
 {
     public sealed class DayFactory
     {
-        public Day CreateDay(DayViewModel dayViewModel)
+        public Day CreateDay(DayViewModel viewModel)
         {
-            if (dayViewModel is null)
+            if (viewModel is null)
             {
-                throw new ArgumentNullException(nameof(dayViewModel));
+                throw new ArgumentNullException(nameof(viewModel));
             }
 
             var day = new Day
             {
-                Id = dayViewModel.Dto?.Id ?? Guid.NewGuid(),
-                Tasks = new System.Collections.Generic.List<TaskDto>()
+                Id = viewModel.Dto?.Id ?? Guid.NewGuid(),
+                Tasks = new System.Collections.Generic.List<TaskDto>(),
+                Break = viewModel.Break
             };
 
-            if (decimal.TryParse(dayViewModel.Break, out var br))
+            if (viewModel.Date.HasValue)
             {
-                day.Break = br;
+                    day.Start = viewModel.Date.Value.Add(viewModel.StartTime.ToTimeSpan());
+                    day.End = viewModel.EndTime.HasValue ? viewModel.Date.Value.Add(viewModel.EndTime.Value.ToTimeSpan()) : null;
             }
 
-            if (DateTime.TryParse(dayViewModel.StartTime, out var start))
+            foreach (var task in viewModel.Tasks)
             {
-                day.Start = start;
+                day.Tasks.Add(new TaskDto { Description = task.Description, WorkTime = task.WorkTime });
             }
 
-            if (DateTime.TryParse(dayViewModel.EndTime, out var end))
-            {
-                day.End = end;
-            }
-
-            foreach (var task in dayViewModel.Tasks)
-            {
-
-                day.Tasks.Add(new TaskDto() { Description = task.Description, WorkTime = task.WorkTime });
-            }
-
-            dayViewModel.Dto = day;
+            viewModel.Dto = day;
 
             return day;
         }

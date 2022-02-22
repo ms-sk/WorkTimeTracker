@@ -5,7 +5,7 @@ using System.Globalization;
 namespace Core.Test.Math
 {
     [TestClass]
-    public sealed class CMath_Tests
+    public sealed class CMathTests
     {
         [TestMethod]
         [DataRow(-1.30, "-1.25")]
@@ -35,7 +35,7 @@ namespace Core.Test.Math
         [DataRow("152", "1")]
         public void CalculateBreak(string hours, string expected)
         {
-            var value = decimal.Parse(hours, CultureInfo.InvariantCulture.NumberFormat);
+            var value = double.Parse(hours, CultureInfo.InvariantCulture.NumberFormat);
             var expectedValue = decimal.Parse(expected, CultureInfo.InvariantCulture.NumberFormat);
 
             var result = CMath.CalculateBreak(value);

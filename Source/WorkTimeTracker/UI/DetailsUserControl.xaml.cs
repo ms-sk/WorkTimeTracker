@@ -2,7 +2,7 @@
 
 namespace WorkTimeTracker.UI;
 
-public partial class DetailsUserControl : UserControl
+public partial class DetailsUserControl
 {
     public DetailsUserControl()
     {

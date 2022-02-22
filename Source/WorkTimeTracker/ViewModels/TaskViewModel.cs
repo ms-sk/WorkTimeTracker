@@ -11,9 +11,9 @@ public class TaskViewModel : ViewModel
         set => SetValue(value);
     }
         
-    public decimal WorkTime
+    public double WorkTime
     {
-        get => GetValue<decimal>();
+        get => GetValue<double>();
         set => SetValue(value);
     }
 }

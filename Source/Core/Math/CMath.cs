@@ -2,32 +2,32 @@
 {
     public static class CMath
     {
-        public static decimal CalculateBreak(decimal hours)
+        public static double CalculateBreak(double hours)
         {
-            decimal breakTime;
-            if (hours <= 6M)
+            double breakTime;
+            if (hours <= 6.0)
             {
                 breakTime = 0;
             }
-            else if (hours > 6M && hours <= 9.5M)
+            else if (hours > 6.0 && hours <= 9.5)
             {
-                breakTime = 0.5M;
+                breakTime = 0.5;
             }
-            else if (hours > 9.75M && hours < 11M)
+            else if (hours > 9.75 && hours < 11)
             {
-                breakTime = 0.75M;
+                breakTime = 0.75;
             }
             else
             {
-                breakTime = 1M;
+                breakTime = 1;
             }
 
             return breakTime;
         }
 
-        public static decimal RoundQuarter(double value)
+        public static double RoundQuarter(double value)
         {
-            return (decimal)(System.Math.Round(value * 4, MidpointRounding.ToEven) / 4.0);
+            return System.Math.Round(value * 4, MidpointRounding.ToEven) / 4.0;
         }
     }
 }

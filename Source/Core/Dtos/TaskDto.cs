@@ -4,5 +4,5 @@ public class TaskDto
 {
     public string? Description { get; set; }
 
-    public decimal WorkTime { get; set; } = 0.0m;
+    public double WorkTime { get; set; }
 }

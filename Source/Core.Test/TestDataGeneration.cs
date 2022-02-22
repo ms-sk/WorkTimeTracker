@@ -13,9 +13,9 @@ namespace Core.Test
         [TestMethod]
         public void GenerateWorkTimesTestData()
         {
-            var worktimeStorage = new WorkTimeStorage(new Paths());
+            var workTimeStorage = new WorkTimeStorage(new Paths());
 
-            var worktime = new WorkTime();
+            var workTime = new WorkTime();
             var date = new DateTime(2021, 12, 1);
             var rnd = new Random();
             while (date <= DateTime.Today)
@@ -25,12 +25,12 @@ namespace Core.Test
 
                 var hours = (end - start).TotalHours;
 
-                worktime.Days.Add(new Day { Start = start, End = end, Time = CMath.RoundQuarter(hours), Break = CMath.CalculateBreak((decimal)hours) });
+                workTime.Days.Add(new Day { Start = start, End = end, Time = CMath.RoundQuarter(hours), Break = CMath.CalculateBreak(hours) });
 
                 date = date.AddDays(1);
             }
 
-            worktimeStorage.Save(worktime);
+            workTimeStorage.Save(workTime);
         }
     }
 }

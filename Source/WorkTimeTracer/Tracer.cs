@@ -1,4 +1,5 @@
 ﻿using Core.Dtos;
+using Core.Math;
 using Core.Storage;
 
 namespace WorkTimeTracer
@@ -16,7 +17,7 @@ namespace WorkTimeTracer
         {
             var workTime = await _workTimeStorage.Load();
 
-            var today = workTime.Days.FirstOrDefault(day => day.Start.HasValue && day.Start.Value.Date == DateTime.Today);
+            var today = workTime.Days.FirstOrDefault(day => day.Start.Date == DateTime.Today);
 
             if (today == null)
             {
@@ -34,14 +35,14 @@ namespace WorkTimeTracer
         internal async Task Logoff()
         {
             var workTime = await _workTimeStorage.Load();
-            var today = workTime.Days.First(day => day.Start.HasValue && day.Start.Value.Date == DateTime.Today);
+            var today = workTime.Days.First(day => day.Start.Date == DateTime.Today);
             today.End = DateTime.Now;
 
-            if (today.End.HasValue && today.Start.HasValue)
+            if (today.End.HasValue)
             {
                 var hours = (today.End - today.Start).Value.TotalHours;
-                var rounded = Math.Round(hours * 4, MidpointRounding.ToEven) / 4.0;
-                today.Time = (decimal)rounded;
+                var rounded = CMath.RoundQuarter(hours);
+                today.Time = rounded;
             }
 
             await _workTimeStorage.Save(workTime);

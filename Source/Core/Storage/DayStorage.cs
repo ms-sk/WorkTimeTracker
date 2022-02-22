@@ -60,7 +60,7 @@ namespace Core.Storage
                 }
             }
 
-            _storage.Save(workTime);
+            await _storage.Save(workTime);
         }
     }
 }

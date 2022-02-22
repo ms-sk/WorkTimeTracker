@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Core.Dtos;
 using Core.Wpf.ViewModels;
 
@@ -6,27 +7,34 @@ namespace WorkTimeTracker.ViewModels
 {
     public class DayViewModel : ViewModel
     {
-        public string? Date
+        public DayViewModel()
         {
-            get => GetValue<string>();
+            Date = DateTime.Today;
+            StartTime = TimeOnly.MinValue;
+            EndTime = TimeOnly.MinValue;
+        }
+        
+        public DateTime? Date
+        {
+            get => GetValue<DateTime?>();
             set => SetValue(value);
         }
 
-        public string? StartTime
+        public TimeOnly StartTime
         {
-            get => GetValue<string>(); 
+            get => GetValue<TimeOnly>(); 
             set => SetValue(value);
         }
 
-        public string? EndTime
+        public TimeOnly? EndTime
         {
-            get => GetValue<string>(); 
+            get => GetValue<TimeOnly?>(); 
             set => SetValue(value);
         }
 
-        public string? WorkTime
+        public double WorkTime
         {
-            get => GetValue<string>();
+            get => GetValue<double>();
             set
             {
                 SetValue(value);
@@ -34,9 +42,9 @@ namespace WorkTimeTracker.ViewModels
             }
         }
 
-        public string? Break
+        public double Break
         {
-            get => GetValue<string>();
+            get => GetValue<double>();
             set
             {
                 SetValue(value);
@@ -55,23 +63,23 @@ namespace WorkTimeTracker.ViewModels
                 return;
             }
 
-            if (decimal.TryParse(Break, out var result))
+            if (Break > 0.0)
             {
-                Dto.Break = result;
+                Dto.Break = Break;
             }
-            else
-            {
-                Break = Dto.Break.GetValueOrDefault().ToString("F");
-            }
+            // else
+            // {
+            //     Break = Dto.Break.GetValueOrDefault();
+            // }
 
-            if (decimal.TryParse(WorkTime, out var workTime))
+            if (WorkTime > 0.0)
             {
-                Dto.Time = workTime + Dto.Break;
+                Dto.Time = WorkTime + Dto.Break;
             }
-            else
-            {
-                WorkTime = (Dto.Time.GetValueOrDefault() - Dto.Break.GetValueOrDefault()).ToString("F");
-            }
+            // else
+            // {
+            //     WorkTime = Dto.Time.GetValueOrDefault() - Dto.Break.GetValueOrDefault();
+            // }
         }
 
         public void DeleteTask(TaskViewModel model)
