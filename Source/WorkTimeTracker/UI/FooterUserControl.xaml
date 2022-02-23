@@ -11,7 +11,7 @@
     <ItemsControl ItemsSource="{Binding Footer.Sums}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <UniformGrid Background="Gray" Columns="4" />
+                <UniformGrid Background="{StaticResource Primary}" Columns="4" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>

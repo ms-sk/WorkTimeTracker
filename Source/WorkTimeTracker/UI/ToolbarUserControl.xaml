@@ -2,40 +2,42 @@
     x:Class="WorkTimeTracker.UI.ToolbarUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Core.Wpf.Controls;assembly=Core.Wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:WorkTimeTracker.ViewModels"
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
     mc:Ignorable="d">
-    <ToolBarTray Background="DarkGray">
-        <ToolBar>
-            <ComboBox
-                x:Name="FilterComboBox"
-                Width="200"
-                Margin="{StaticResource Left}"
-                DisplayMemberPath="DisplayText"
-                ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
-                SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
-            <Separator />
-            <Button
-                Command="{Binding ToolbarViewModel.Add}"
-                CommandParameter="{Binding MasterViewModel}"
-                Content="{StaticResource Add}" />
-            <Button
-                Command="{Binding ToolbarViewModel.Delete}"
-                CommandParameter="{Binding MasterViewModel}"
-                Content="{StaticResource Trash}" />
-            <Separator />
-            <Button
-                Command="{Binding ToolbarViewModel.Save}"
-                CommandParameter="{Binding MasterViewModel.SelectedDay}"
-                Content="{StaticResource Save}" />
-            <Button
-                Command="{Binding ToolbarViewModel.SaveAll}"
-                CommandParameter="{Binding MasterViewModel.WorkTimes}"
-                Content="{StaticResource SaveAll}" />
-            <Separator />
-            <Button Content="{StaticResource Settings}" />
-        </ToolBar>
-    </ToolBarTray>
+    <StackPanel Orientation="Horizontal">
+        <ComboBox
+            x:Name="FilterComboBox"
+            Width="200"
+            Margin="{StaticResource Left}"
+            DisplayMemberPath="DisplayText"
+            ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
+            SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
+        <controls:CButton
+            Command="{Binding ToolbarViewModel.Add}"
+            CommandParameter="{Binding MasterViewModel}"
+            Content="Add"
+            Icon="{DynamicResource Add}" />
+        <controls:CButton
+            Command="{Binding ToolbarViewModel.Delete}"
+            CommandParameter="{Binding MasterViewModel}"
+            Content="Delete"
+            Icon="{StaticResource Trash}" />
+        <controls:CButton
+            Command="{Binding ToolbarViewModel.Save}"
+            CommandParameter="{Binding MasterViewModel.SelectedDay}"
+            Content="Save"
+            Icon="{StaticResource Save}"
+            ToolTip="ctrl+s" />
+        <controls:CButton
+            Command="{Binding ToolbarViewModel.SaveAll}"
+            CommandParameter="{Binding MasterViewModel.WorkTimes}"
+            Content="Save all"
+            Icon="{StaticResource SaveAll}"
+            ToolTip="ctrl+shift+s" />
+        <controls:CButton Content="Settings" Icon="{StaticResource Settings}" />
+    </StackPanel>
 </UserControl>

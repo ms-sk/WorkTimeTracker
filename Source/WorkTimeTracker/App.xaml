@@ -7,6 +7,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Resources/Icons.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Resources/Margins.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Resources/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CSeparator.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
