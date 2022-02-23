@@ -8,9 +8,10 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="local:CSeparator">
                         <Border
-                            Width="1"
                             Margin="{StaticResource LeftRight}"
-                            Background="{StaticResource Dark}" />
+                            VerticalAlignment="Stretch"
+                            BorderBrush="{StaticResource Dark}"
+                            BorderThickness="1,0,0,0" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
