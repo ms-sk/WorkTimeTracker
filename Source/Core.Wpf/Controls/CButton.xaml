@@ -12,10 +12,18 @@
                             Padding="{StaticResource All}"
                             Background="{TemplateBinding Background}"
                             BorderThickness="0,0,0,2">
-                            <StackPanel Orientation="Horizontal">
-                                <ContentPresenter VerticalAlignment="Center" Content="{TemplateBinding Icon}" />
+                            <Grid x:Name="PART_Grid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                                 <ContentPresenter
-                                    Margin="{StaticResource Left}"
+                                    x:Name="PART_Icon"
+                                    Margin="{StaticResource LeftRight}"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Icon}" />
+                                <ContentPresenter
+                                    x:Name="PART_Content"
                                     VerticalAlignment="Center"
                                     Content="{TemplateBinding Content}">
                                     <ContentPresenter.Style>
@@ -28,7 +36,7 @@
                                         </Style>
                                     </ContentPresenter.Style>
                                 </ContentPresenter>
-                            </StackPanel>
+                            </Grid>
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
                                     <Style.Triggers>

@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Resources/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CButton.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CSeparator.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CComboBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -9,9 +9,8 @@
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
     mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
-        <ComboBox
+        <controls:CComboBox
             x:Name="FilterComboBox"
-            Width="200"
             Margin="{StaticResource Left}"
             DisplayMemberPath="DisplayText"
             ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
