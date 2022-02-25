@@ -6,11 +6,8 @@
     xmlns:converter="clr-namespace:Core.Wpf.Converter;assembly=Core.Wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:WorkTimeTracker.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
     mc:Ignorable="d">
     <UserControl.Resources>
         <converter:TimeOnlyConverter x:Key="TimeOnlyConverter" />
@@ -69,16 +66,6 @@
                     Margin="5,5,5,0"
                     Text="Type" />
 
-                <!--  <ComboBox  -->
-                <!--  Grid.Row="0"  -->
-                <!--  Grid.Column="3"  -->
-                <!--  Width="80"  -->
-                <!--  Height="25"  -->
-                <!--  Margin="5,5,5,0"  -->
-                <!--  HorizontalAlignment="Left"  -->
-                <!--  VerticalAlignment="Center"  -->
-                <!--  ItemsSource="{Binding DetailsViewModel.Types, Mode=OneWay}"  -->
-                <!--  SelectedItem="{Binding DetailsViewModel.SelectedDay.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />  -->
                 <controls:CComboBox
                     Grid.Row="0"
                     Grid.Column="3"
@@ -165,14 +152,6 @@
                                         VerticalContentAlignment="Center"
                                         Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                                    <!--  <ComboBox  -->
-                                    <!--  Grid.Column="1"  -->
-                                    <!--  Width="80"  -->
-                                    <!--  Height="25"  -->
-                                    <!--  Margin="5,5,0,0"  -->
-                                    <!--  VerticalContentAlignment="Center"  -->
-                                    <!--  ItemsSource="{Binding DataContext.DetailsViewModel.Types, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"  -->
-                                    <!--  SelectedItem="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />  -->
                                     <controls:CComboBox
                                         Grid.Column="1"
                                         Margin="{StaticResource LeftRight}"
@@ -187,14 +166,6 @@
                                         VerticalContentAlignment="Center"
                                         Text="{Binding WorkTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
 
-                                    <!--  <Button  -->
-                                    <!--  Grid.Column="3"  -->
-                                    <!--  Width="Auto"  -->
-                                    <!--  Height="Auto"  -->
-                                    <!--  Margin="5,5,5,0"  -->
-                                    <!--  Command="{Binding DataContext.DetailsViewModel.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Mode=OneTime}"  -->
-                                    <!--  CommandParameter="{Binding .}"  -->
-                                    <!--  Content="{StaticResource Trash}" />  -->
                                     <controls:CButton
                                         Grid.Column="3"
                                         Margin="{StaticResource LeftTopRight}"
