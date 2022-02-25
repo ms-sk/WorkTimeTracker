@@ -31,9 +31,9 @@ namespace WorkTimeTracker.Factories
                 time = (viewModel.EndTime - viewModel.StartTime).Value.TotalHours;
                 time = CMath.RoundQuarter(time);
             }
-            
+
             var breakTime = dto.Break.GetValueOrDefault();
-            if (breakTime == 0.0)
+            if (breakTime == 0.0 && (viewModel.Type != WorkType.Illness && viewModel.Type != WorkType.Holiday))
             {
                 breakTime = CMath.CalculateBreak(time);
             }
