@@ -5,6 +5,11 @@ namespace WorkTimeTracker.ViewModels
 {
     public sealed class SumViewModel : ViewModel
     {
+        public string DisplayText
+        {
+            get => GetValue<string>() ?? string.Empty;
+            set => SetValue(value);
+        }
         public WorkType Type
         {
             get => GetValue<WorkType>();

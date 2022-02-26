@@ -11,7 +11,7 @@
     <ItemsControl ItemsSource="{Binding Footer.Sums}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <UniformGrid Background="{StaticResource Primary}" Columns="4" />
+                <UniformGrid Background="{StaticResource Primary}" Columns="5" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
@@ -22,7 +22,7 @@
                     Orientation="Horizontal"
                     TextBlock.FontWeight="Bold"
                     TextBlock.Foreground="White">
-                    <TextBlock Text="{Binding Type}" />
+                    <TextBlock Text="{Binding DisplayText}" />
                     <TextBlock Margin="{StaticResource Left}" Text="{Binding Sum, StringFormat=N2}" />
                 </StackPanel>
             </DataTemplate>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WorkTimeTracker.Factories;
+using WorkTimeTracker.UI;
 
 namespace WorkTimeTracker.ViewModels
 {
@@ -15,13 +16,14 @@ namespace WorkTimeTracker.ViewModels
     {
         readonly IStorage<List<Day>> storage;
         readonly DayFactory dayFactory;
+        readonly SettingsViewModel settingsViewModel;
 
-        public ToolbarViewModel(IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel)
+        public ToolbarViewModel(IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel, SettingsViewModel settingsViewModel)
         {
             this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
             this.dayFactory = dayFactory ?? throw new ArgumentNullException(nameof(dayFactory));
             LoaderViewModel = loaderViewModel ?? throw new ArgumentNullException(nameof(loaderViewModel));
-
+            this.settingsViewModel = settingsViewModel;
             Add = new AsyncCommand(ExecuteAdd, _ => true);
             Save = new AsyncCommand(ExecuteSave, _ => true);
             SaveAll = new AsyncCommand(ExecuteSaveAll, _ => true);
@@ -99,7 +101,7 @@ namespace WorkTimeTracker.ViewModels
 
         void ExecuteSettings(object? obj)
         {
-            throw new NotImplementedException();
+            new SettingsWindow(settingsViewModel).ShowDialog();
         }
 
         async Task ExecuteDelete(object? arg)

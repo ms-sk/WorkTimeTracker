@@ -37,6 +37,9 @@
             Content="Save all"
             Icon="{StaticResource SaveAll}"
             ToolTip="ctrl+shift+s" />
-        <controls:CButton Content="Settings" Icon="{StaticResource Settings}" />
+        <controls:CButton
+            Command="{Binding ToolbarViewModel.Settings}"
+            Content="Settings"
+            Icon="{StaticResource Settings}" />
     </StackPanel>
 </UserControl>

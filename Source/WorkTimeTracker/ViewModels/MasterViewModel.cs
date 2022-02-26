@@ -41,7 +41,7 @@ public sealed class MasterViewModel : ViewModel
 
             Filter();
 
-            Footer.Update(WorkTimes.ToList());
+            await Footer.Update(WorkTimes.ToList());
         };
     }
 
@@ -114,7 +114,7 @@ public sealed class MasterViewModel : ViewModel
         }
 
         WorkTimes.Replace(_allWorkTimes);
-        Footer.Update(WorkTimes.ToList());
+        await Footer.Update(WorkTimes.ToList());
     }
 
     internal async Task LoadSettings()
