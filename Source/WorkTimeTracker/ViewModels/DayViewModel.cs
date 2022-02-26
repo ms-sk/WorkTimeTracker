@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using Core.Dtos;
 using Core.Models;
 using Core.Wpf.ViewModels;
@@ -14,7 +15,7 @@ namespace WorkTimeTracker.ViewModels
             StartTime = TimeOnly.MinValue;
             EndTime = TimeOnly.MinValue;
         }
-        
+
         public DateTime? Date
         {
             get => GetValue<DateTime?>();
@@ -23,13 +24,13 @@ namespace WorkTimeTracker.ViewModels
 
         public TimeOnly StartTime
         {
-            get => GetValue<TimeOnly>(); 
+            get => GetValue<TimeOnly>();
             set => SetValue(value);
         }
 
         public TimeOnly? EndTime
         {
-            get => GetValue<TimeOnly?>(); 
+            get => GetValue<TimeOnly?>();
             set => SetValue(value);
         }
 
@@ -91,6 +92,12 @@ namespace WorkTimeTracker.ViewModels
 
         public void DeleteTask(TaskViewModel model)
         {
+            var result = MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+
             if (!Tasks.Contains(model))
             {
                 return;

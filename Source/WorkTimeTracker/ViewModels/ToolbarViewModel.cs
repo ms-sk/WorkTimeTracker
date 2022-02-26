@@ -5,6 +5,7 @@ using Core.Wpf.Loading;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WorkTimeTracker.Factories;
 
@@ -103,11 +104,17 @@ namespace WorkTimeTracker.ViewModels
 
         async Task ExecuteDelete(object? arg)
         {
+            var result = MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+
             if (arg is MasterViewModel masterViewModel)
             {
                 if (masterViewModel.SelectedDay?.Dto == null)
                 {
-                    throw new ArgumentNullException(nameof(masterViewModel.SelectedDay.Dto));
+                    throw new(nameof(masterViewModel.SelectedDay.Dto));
                 }
 
                 using (LoaderViewModel.Load())
