@@ -5,9 +5,6 @@ using WorkTimeTracker.ViewModels;
 
 namespace WorkTimeTracker
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App
     {
         public App()

@@ -6,14 +6,17 @@ namespace Core.Wpf.Commands;
 
 public sealed class AsyncCommand : ICommand
 {
-    private Func<object?, Task> _executeCallback;
-    private Func<object?, bool>? _canExecuteCallback;
+    Func<object?, Task> _executeCallback;
+    Func<object?, bool>? _canExecuteCallback;
 
     public AsyncCommand(Func<object?, Task> executeCallback, Func<object?, bool> canExecuteCallback)
     {
         _executeCallback = executeCallback ?? throw new ArgumentNullException(nameof(executeCallback));
-        _canExecuteCallback = canExecuteCallback;
+        _canExecuteCallback = canExecuteCallback ?? throw new ArgumentNullException(nameof(canExecuteCallback));
     }
+
+    public event EventHandler? CanExecuteChanged;
+
     public bool CanExecute(object? parameter)
     {
         if (_canExecuteCallback == null)
@@ -33,8 +36,6 @@ public sealed class AsyncCommand : ICommand
 
         await _executeCallback.Invoke(parameter);
     }
-
-    public event EventHandler? CanExecuteChanged;
 
     public void NotifyCanExecuteChanged()
     {

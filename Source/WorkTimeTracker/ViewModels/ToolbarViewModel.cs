@@ -17,9 +17,9 @@ namespace WorkTimeTracker.ViewModels
 
         public ToolbarViewModel(IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel)
         {
-            this.storage = storage;
-            this.dayFactory = dayFactory;
-            LoaderViewModel = loaderViewModel;
+            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            this.dayFactory = dayFactory ?? throw new ArgumentNullException(nameof(dayFactory));
+            LoaderViewModel = loaderViewModel ?? throw new ArgumentNullException(nameof(loaderViewModel));
 
             Add = new AsyncCommand(ExecuteAdd, _ => true);
             Save = new AsyncCommand(ExecuteSave, _ => true);

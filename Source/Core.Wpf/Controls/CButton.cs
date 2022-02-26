@@ -8,7 +8,7 @@ namespace Core.Wpf.Controls
     {
         ContentPresenter? iconContentPresenter;
         ContentPresenter? contentPresenter;
-        private Grid grid;
+        Grid? grid;
 
         static CButton()
         {
@@ -23,6 +23,9 @@ namespace Core.Wpf.Controls
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register(nameof(Icon), typeof(object), typeof(CButton), new PropertyMetadata(null));
 
+        public static readonly DependencyProperty IconPositionProperty =
+            DependencyProperty.Register(nameof(IconPosition), typeof(IconPosition), typeof(CButton), new PropertyMetadata(IconPosition.Left));
+
         public object Icon
         {
             get { return GetValue(IconProperty); }
@@ -34,10 +37,6 @@ namespace Core.Wpf.Controls
             get { return (IconPosition)GetValue(IconPositionProperty); }
             set { SetValue(IconPositionProperty, value); }
         }
-
-        public static readonly DependencyProperty IconPositionProperty =
-            DependencyProperty.Register(nameof(IconPosition), typeof(IconPosition), typeof(CButton), new PropertyMetadata(IconPosition.Left));
-
 
         public override void OnApplyTemplate()
         {

@@ -2,14 +2,8 @@
 
 namespace WorkTimeTracker.UI
 {
-    /// <summary>
-    /// Interaction logic for FooterUserControl.xaml
-    /// </summary>
     public partial class FooterUserControl : UserControl
     {
-        public FooterUserControl()
-        {
-            InitializeComponent();
-        }
+        public FooterUserControl() => InitializeComponent();
     }
 }

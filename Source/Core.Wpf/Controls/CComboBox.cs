@@ -5,7 +5,7 @@ namespace Core.Wpf.Controls
 {
     public sealed class CComboBox : ComboBox
     {
-        CButton button;
+        CButton? button;
 
         static CComboBox()
         {
@@ -18,6 +18,7 @@ namespace Core.Wpf.Controls
 
             button = (CButton)GetTemplateChild("ToggleButton");
 
+            // TODO: could be done with a ToggleButton.
             button.Click -= ToggleDropDown;
             button.Click += ToggleDropDown;
         }

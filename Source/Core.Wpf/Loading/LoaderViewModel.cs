@@ -22,9 +22,9 @@ namespace Core.Wpf.Loading
             return _disposable ?? throw new InvalidOperationException();
         }
 
-        void SetCursor(object? sender, Cursor e)
+        void SetCursor(object? sender, Cursor cursor)
         {
-            Cursor = e;
+            Cursor = cursor;
         }
 
         void CreateDisposable()

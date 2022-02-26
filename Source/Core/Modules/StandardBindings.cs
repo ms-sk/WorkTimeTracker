@@ -10,10 +10,10 @@ namespace Core.Modules
     {
         public override void Load()
         {
-            Bind<IStorage<List<Day>>>().To<DayStorage>();
-            Bind<IStorage<WorkTime>>().To<WorkTimeStorage>();
-            Bind<IStorage<Settings>>().To<SettingsStorage>();
-            Bind<ILogger>().To<Logger>();
+            Bind<IStorage<List<Day>>>().To<DayStorage>().InSingletonScope();
+            Bind<IStorage<WorkTime>>().To<WorkTimeStorage>().InSingletonScope();
+            Bind<IStorage<Settings>>().To<SettingsStorage>().InSingletonScope();
+            Bind<ILogger>().To<Logger>().InSingletonScope();
         }
     }
 }

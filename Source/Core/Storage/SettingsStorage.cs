@@ -15,7 +15,7 @@ namespace Core.Storage
 
         public Task Delete(Settings t)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();    
         }
 
         public async Task<Settings> Load()

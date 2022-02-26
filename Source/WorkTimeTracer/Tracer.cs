@@ -21,7 +21,7 @@ namespace WorkTimeTracer
 
             if (today == null)
             {
-                workTime.Days.Add(new Day{ Start = DateTime.Now });
+                workTime.Days.Add(new Day { Start = DateTime.Now });
             }
             else
             {

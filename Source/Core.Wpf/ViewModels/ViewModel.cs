@@ -6,7 +6,7 @@ namespace Core.Wpf.ViewModels
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        private Dictionary<string, object?> _propertyStore = new();
+        readonly Dictionary<string, object?> _propertyStore = new();
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -17,7 +17,7 @@ namespace Core.Wpf.ViewModels
                 var value = _propertyStore[propertyName];
                 if (value != null)
                 {
-                    return (T) value;
+                    return (T)value;
                 }
             }
 

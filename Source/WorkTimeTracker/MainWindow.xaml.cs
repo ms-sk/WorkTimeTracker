@@ -7,22 +7,19 @@ using WorkTimeTracker.ViewModels;
 
 namespace WorkTimeTracker
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
-        private readonly MainViewModel _mainViewModel;
-        private readonly ILogger _logger;
+        readonly MainViewModel _mainViewModel;
+        readonly ILogger _logger;
 
         public MainWindow(MainViewModel mainViewModel, ILogger logger)
         {
             InitializeComponent();
-            
+
             _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            DataContext = mainViewModel;
-            
+            DataContext = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
+
             AppDomain.CurrentDomain.UnhandledException += HandleException;
 
             Loaded += LoadWorkTimes;

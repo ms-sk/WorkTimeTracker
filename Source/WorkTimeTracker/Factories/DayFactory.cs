@@ -16,20 +16,20 @@ namespace WorkTimeTracker.Factories
             var day = new Day
             {
                 Id = viewModel.Dto?.Id ?? Guid.NewGuid(),
-                Tasks = new System.Collections.Generic.List<TaskDto>(),
+                Tasks = new(),
                 Break = viewModel.Break,
                 Type = viewModel.Type
             };
 
             if (viewModel.Date.HasValue)
             {
-                    day.Start = viewModel.Date.Value.Add(viewModel.StartTime.ToTimeSpan());
-                    day.End = viewModel.EndTime.HasValue ? viewModel.Date.Value.Add(viewModel.EndTime.Value.ToTimeSpan()) : null;
+                day.Start = viewModel.Date.Value.Add(viewModel.StartTime.ToTimeSpan());
+                day.End = viewModel.EndTime.HasValue ? viewModel.Date.Value.Add(viewModel.EndTime.Value.ToTimeSpan()) : null;
             }
 
             foreach (var task in viewModel.Tasks)
             {
-                day.Tasks.Add(new TaskDto { Description = task.Description, WorkTime = task.WorkTime, Type = task.Type});
+                day.Tasks.Add(new TaskDto { Description = task.Description, WorkTime = task.WorkTime, Type = task.Type });
             }
 
             viewModel.Dto = day;

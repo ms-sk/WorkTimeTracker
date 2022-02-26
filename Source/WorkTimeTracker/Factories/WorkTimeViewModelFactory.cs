@@ -9,7 +9,6 @@ using WorkTimeTracker.ViewModels;
 
 namespace WorkTimeTracker.Factories
 {
-    // ReSharper disable once ClassNeverInstantiated.Global
     public sealed class WorkTimeViewModelFactory
     {
         public DayViewModel CreateWorkTimeViewModel(Day dto)
