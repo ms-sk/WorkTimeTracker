@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
+  </data>
+  <data name="Break" xml:space="preserve">
+    <value>Break</value>
   </data>
   <data name="CurrentMonth" xml:space="preserve">
     <value>Current Month</value>
@@ -132,8 +138,14 @@
   <data name="CurrentYear" xml:space="preserve">
     <value>Current Year</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
     <value>Last Month</value>
@@ -144,7 +156,25 @@
   <data name="LastYear" xml:space="preserve">
     <value>Last Year</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Save all</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
+  </data>
+  <data name="WorkTime" xml:space="preserve">
+    <value>WorkTime</value>
   </data>
 </root>

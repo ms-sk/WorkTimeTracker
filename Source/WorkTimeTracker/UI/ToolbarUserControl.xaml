@@ -5,6 +5,7 @@
     xmlns:controls="clr-namespace:Core.Wpf.Controls;assembly=Core.Wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:Resources;assembly=Resources"
     xmlns:viewmodels="clr-namespace:WorkTimeTracker.ViewModels"
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
     mc:Ignorable="d">
@@ -18,28 +19,28 @@
         <controls:CButton
             Command="{Binding ToolbarViewModel.Add}"
             CommandParameter="{Binding MasterViewModel}"
-            Content="Add"
+            Content="{x:Static resources:Translations.Add}"
             Icon="{DynamicResource Add}" />
         <controls:CButton
             Command="{Binding ToolbarViewModel.Delete}"
             CommandParameter="{Binding MasterViewModel}"
-            Content="Delete"
+            Content="{x:Static resources:Translations.Delete}"
             Icon="{StaticResource Trash}" />
         <controls:CButton
             Command="{Binding ToolbarViewModel.Save}"
             CommandParameter="{Binding MasterViewModel.SelectedDay}"
-            Content="Save"
+            Content="{x:Static resources:Translations.Save}"
             Icon="{StaticResource Save}"
             ToolTip="ctrl+s" />
         <controls:CButton
             Command="{Binding ToolbarViewModel.SaveAll}"
             CommandParameter="{Binding MasterViewModel.WorkTimes}"
-            Content="Save all"
+            Content="{x:Static resources:Translations.SaveAll}"
             Icon="{StaticResource SaveAll}"
             ToolTip="ctrl+shift+s" />
         <controls:CButton
             Command="{Binding ToolbarViewModel.Settings}"
-            Content="Settings"
+            Content="{x:Static resources:Translations.Settings}"
             Icon="{StaticResource Settings}" />
     </StackPanel>
 </UserControl>
