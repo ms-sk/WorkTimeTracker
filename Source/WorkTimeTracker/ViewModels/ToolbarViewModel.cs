@@ -2,6 +2,7 @@
 using Core.Storage;
 using Core.Wpf.Commands;
 using Core.Wpf.Loading;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -106,7 +107,7 @@ namespace WorkTimeTracker.ViewModels
 
         async Task ExecuteDelete(object? arg)
         {
-            var result = MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo);
+            var result = MessageBox.Show(Translations.AreYouSure, Translations.Delete, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
             {
                 return;

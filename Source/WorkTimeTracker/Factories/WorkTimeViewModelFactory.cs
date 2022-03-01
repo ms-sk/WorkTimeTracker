@@ -5,6 +5,7 @@ using Core.Dtos;
 using Core.Extensions;
 using Core.Math;
 using Core.Models;
+using Resources;
 using WorkTimeTracker.ViewModels;
 
 namespace WorkTimeTracker.Factories
@@ -69,14 +70,14 @@ namespace WorkTimeTracker.Factories
         {
             return new List<FilterViewModel>
             {
-                new() { Filter = Filter.None, DisplayText = "All" },
-                new() { Filter = Filter.Today, DisplayText = "Today" },
-                new() { Filter = Filter.Week, DisplayText = "Current Week" },
-                new() { Filter = Filter.LastWeek, DisplayText = "Last Week" },
-                new() { Filter = Filter.Month , DisplayText = "Current Month"},
-                new() { Filter = Filter.LastMonth , DisplayText = "Last Month"},
-                new() { Filter = Filter.Year, DisplayText = "Current Year" },
-                new() { Filter = Filter.LastYear, DisplayText = "Last Year" },
+                new() { Filter = Filter.None, DisplayText = Translations.All },
+                new() { Filter = Filter.Today, DisplayText = Translations.Today },
+                new() { Filter = Filter.Week, DisplayText = Translations.CurrentWeek },
+                new() { Filter = Filter.LastWeek, DisplayText = Translations.LastWeek },
+                new() { Filter = Filter.Month , DisplayText = Translations.CurrentMonth},
+                new() { Filter = Filter.LastMonth , DisplayText = Translations.LastMonth},
+                new() { Filter = Filter.Year, DisplayText = Translations.CurrentYear},
+                new() { Filter = Filter.LastYear, DisplayText = Translations.LastYear },
             };
         }
     }
