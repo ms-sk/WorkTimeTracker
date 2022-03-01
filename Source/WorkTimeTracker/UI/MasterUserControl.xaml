@@ -2,10 +2,8 @@
     x:Class="WorkTimeTracker.UI.MasterUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:Core.Wpf.Controls;assembly=Core.Wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="clr-namespace:Core.Models;assembly=Core"
     xmlns:viewModels="clr-namespace:WorkTimeTracker.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
     mc:Ignorable="d">
@@ -14,12 +12,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:CListBox
+        <ListBox
             Grid.Row="0"
             Grid.Column="0"
+            ItemContainerStyle="{StaticResource DataWithTypeListBoxItemStyle}"
             ItemsSource="{Binding MasterViewModel.WorkTimes, Mode=OneWay}"
             SelectedItem="{Binding MasterViewModel.SelectedDay, Mode=TwoWay}">
-            <controls:CListBox.ItemTemplate>
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -43,30 +42,9 @@
                             Margin="5,2,5,2"
                             HorizontalAlignment="Right"
                             Text="{Binding WorkTime, StringFormat=({0})}" />
-                        <Grid.Style>
-                            <Style TargetType="{x:Type Grid}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static models:WorkType.Illness}">
-                                        <DataTrigger.Setters>
-                                            <Setter Property="Background" Value="Red" />
-                                        </DataTrigger.Setters>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static models:WorkType.Education}">
-                                        <DataTrigger.Setters>
-                                            <Setter Property="Background" Value="Blue" />
-                                        </DataTrigger.Setters>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static models:WorkType.Holiday}">
-                                        <DataTrigger.Setters>
-                                            <Setter Property="Background" Value="Green" />
-                                        </DataTrigger.Setters>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Grid.Style>
                     </Grid>
                 </DataTemplate>
-            </controls:CListBox.ItemTemplate>
-        </controls:CListBox>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

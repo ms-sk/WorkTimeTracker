@@ -10,11 +10,10 @@
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Resources/Margins.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CSeparator.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CComboBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Controls/CListBox.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Styles/ScrollBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WorkTimeTracker;component/UI/Styles/ListBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

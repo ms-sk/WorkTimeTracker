@@ -6,5 +6,9 @@
     <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
     <SolidColorBrush x:Key="Light" Color="{StaticResource LightColor}" />
     <SolidColorBrush x:Key="Dark" Color="{StaticResource DarkColor}" />
+
     <SolidColorBrush x:Key="White" Color="White" />
+    <SolidColorBrush x:Key="Red" Color="#ff5252" />
+    <SolidColorBrush x:Key="Blue" Color="#448aff" />
+    <SolidColorBrush x:Key="Green" Color="#69f0ae" />
 </ResourceDictionary>
