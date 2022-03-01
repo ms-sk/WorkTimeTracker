@@ -31,18 +31,20 @@ namespace WorkTimeTracker.ViewModels
             };
         }
 
-        public MasterViewModel MasterViewModel { get; }
-
         public DetailsViewModel? DetailsViewModel
         {
             get => GetValue<DetailsViewModel>();
             private set => SetValue(value);
         }
 
+        public MasterViewModel MasterViewModel { get; }
+
         public ToolbarViewModel ToolbarViewModel { get; }
 
         public LoaderViewModel LoaderViewModel { get; }
+
         public FooterViewModel Footer { get; }
+
         public SettingsViewModel Settings { get; }
     }
 }

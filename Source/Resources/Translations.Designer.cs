@@ -142,11 +142,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Education.
+        /// </summary>
+        public static string Education {
+            get {
+                return ResourceManager.GetString("Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End.
         /// </summary>
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Holiday.
+        /// </summary>
+        public static string Holiday {
+            get {
+                return ResourceManager.GetString("Holiday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hours per day.
+        /// </summary>
+        public static string HoursPerDay {
+            get {
+                return ResourceManager.GetString("HoursPerDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Illness.
+        /// </summary>
+        public static string Illness {
+            get {
+                return ResourceManager.GetString("Illness", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace Resources {
         public static string LastYear {
             get {
                 return ResourceManager.GetString("LastYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overtime.
+        /// </summary>
+        public static string Overtime {
+            get {
+                return ResourceManager.GetString("Overtime", resourceCulture);
             }
         }
         
@@ -228,6 +282,15 @@ namespace Resources {
         public static string Today {
             get {
                 return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work.
+        /// </summary>
+        public static string Work {
+            get {
+                return ResourceManager.GetString("Work", resourceCulture);
             }
         }
         

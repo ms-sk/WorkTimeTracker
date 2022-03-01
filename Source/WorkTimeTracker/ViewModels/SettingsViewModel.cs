@@ -5,6 +5,7 @@ using Core.Storage;
 using Core.Wpf.Commands;
 using Core.Wpf.Loading;
 using Core.Wpf.ViewModels;
+using Resources;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -43,12 +44,12 @@ namespace WorkTimeTracker.ViewModels
                     Items.Clear();
                     Items.Add(new SettingsItemViewModel<Filter>()
                     {
-                        Title = "Filter",
+                        Title = Translations.Filter,
                         Value = settings.Filter
                     });
                     Items.Add(new SettingsItemViewModel<double>()
                     {
-                        Title = "HoursPerDay",
+                        Title = Translations.HoursPerDay,
                         Value = settings.HoursPerDay
                     });
                 }
@@ -66,12 +67,12 @@ namespace WorkTimeTracker.ViewModels
                 var settings = new Settings();
                 foreach (var item in Items)
                 {
-                    if (string.Equals(item.Title, "Filter"))
+                    if (string.Equals(item.Title, Translations.Filter))
                     {
                         settings.Filter = (Filter)(item.Value ?? Filter.None);
                     }
 
-                    if (string.Equals(item.Title, "HoursPerDay"))
+                    if (string.Equals(item.Title, Translations.HoursPerDay))
                     {
                         settings.HoursPerDay = (double)(item.Value ?? 8);
                     }

@@ -144,8 +144,23 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Holiday" xml:space="preserve">
+    <value>Holiday</value>
+  </data>
+  <data name="HoursPerDay" xml:space="preserve">
+    <value>Hours per day</value>
+  </data>
+  <data name="Illness" xml:space="preserve">
+    <value>Illness</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
     <value>Last Month</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="LastYear" xml:space="preserve">
     <value>Last Year</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -173,6 +191,9 @@
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>Work</value>
   </data>
   <data name="WorkTime" xml:space="preserve">
     <value>WorkTime</value>

@@ -75,7 +75,7 @@ public sealed class MasterViewModel : ViewModel
         }
     }
 
-    private void Filter()
+    void Filter()
     {
         if (SelectedFilter != null)
         {

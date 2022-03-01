@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Core.Wpf\Core.Wpf.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Resources\Resources.csproj" />
   </ItemGroup>
 
 </Project>

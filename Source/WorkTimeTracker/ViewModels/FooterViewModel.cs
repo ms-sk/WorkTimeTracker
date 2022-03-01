@@ -2,6 +2,7 @@
 using Core.Models;
 using Core.Storage;
 using Core.Wpf.ViewModels;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,10 +19,11 @@ namespace WorkTimeTracker.ViewModels
         {
             foreach (var workType in Enum.GetValues<WorkType>())
             {
-                Sums.Add(new SumViewModel { Type = workType, DisplayText = workType.ToString() });
+                var translation = GetTranslation(workType);
+                Sums.Add(new SumViewModel { Type = workType, DisplayText = translation });
             }
 
-            OverTime = new SumViewModel() { Type = WorkType.Work, DisplayText = "Overtime", Sum = 0 };
+            OverTime = new SumViewModel() { Type = WorkType.Work, DisplayText = Translations.Overtime, Sum = 0 };
             Sums.Add(OverTime);
             this.storage = storage;
         }
@@ -48,7 +50,23 @@ namespace WorkTimeTracker.ViewModels
                     OverTime.Sum = sum.Sum - (sett.HoursPerDay * group.Count());
                 }
             }
+        }
 
+        string GetTranslation(WorkType workType)
+        {
+            switch (workType)
+            {
+                case WorkType.Work:
+                    return Translations.Work;
+                case WorkType.Illness:
+                    return Translations.Illness;
+                case WorkType.Holiday:
+                    return Translations.Holiday;
+                case WorkType.Education:
+                    return Translations.Education;
+                default:
+                    return string.Empty;
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using Core.Dtos;
 using Core.Models;
+using Core.Wpf.MessageBoxes;
 using Core.Wpf.ViewModels;
 
 namespace WorkTimeTracker.ViewModels
@@ -92,7 +93,7 @@ namespace WorkTimeTracker.ViewModels
 
         public void DeleteTask(TaskViewModel model)
         {
-            var result = MessageBox.Show("Are you sure?", "Delete", MessageBoxButton.YesNo);
+            var result = CMessageBox.Delete();
             if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
             {
                 return;
