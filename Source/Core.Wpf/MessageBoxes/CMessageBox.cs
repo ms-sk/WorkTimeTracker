@@ -7,7 +7,18 @@ namespace Core.Wpf.MessageBoxes
     {
         public static MessageBoxResult Delete()
         {
-            return MessageBox.Show(Translations.AreYouSure, Translations.Delete, MessageBoxButton.YesNo);
+            var messageBox = new CoreMessageBox();
+            var viewModel = new CoreMessageBoxViewModel()
+            {
+                Title = Translations.AreYouSure,
+                Message = Translations.Delete
+            };
+
+            messageBox.DataContext = viewModel;
+
+            messageBox.ShowDialog();
+
+            return viewModel.Result;
         }
     }
 }
