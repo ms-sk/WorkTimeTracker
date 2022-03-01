@@ -2,7 +2,9 @@
 using Core.Modules;
 using Ninject;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using WorkTimeTracker.ViewModels;
 
 namespace WorkTimeTracker
@@ -31,6 +33,16 @@ namespace WorkTimeTracker
         }
 
         async void LoadWorkTimes(object sender, RoutedEventArgs e)
+        {
+            await Refresh();
+        }
+
+        async void OnRefresh(object sender, ExecutedRoutedEventArgs e)
+        {
+            await Refresh();
+        }
+
+        async Task Refresh()
         {
             await _mainViewModel.MasterViewModel.LoadWorkTimes();
             await _mainViewModel.MasterViewModel.LoadSettings();

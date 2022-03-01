@@ -26,7 +26,11 @@
             Command="{Binding ToolbarViewModel.SaveAll}"
             CommandParameter="{Binding MasterViewModel.WorkTimes}"
             Modifiers="Ctrl+Shift" />
+
     </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static NavigationCommands.Refresh}" Executed="OnRefresh" />
+    </Window.CommandBindings>
 
     <Grid>
         <Grid.RowDefinitions>
