@@ -1,6 +1,10 @@
 ﻿using Core.Math;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Timers;
+using Core.Dtos;
+using Core.Storage;
 using WorkTimeTracker.Factories;
 
 namespace WorkTimeTracker.ViewModels
@@ -8,12 +12,23 @@ namespace WorkTimeTracker.ViewModels
     public sealed class WorkTimeTodayUpdater
     {
         readonly WorkTimeViewModelFactory _factory;
-        readonly Timer _timer;
+        readonly IStorage<List<Day>> _dayStorage;
+        readonly IStorage<Settings> _settingsStorage;
+        
+        Timer _timer;
 
-        public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory)
+        public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory, IStorage<List<Day>> dayStorage, IStorage<Settings> settingsStorage)
         {
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
-            _timer = new(10000);
+            _dayStorage = dayStorage ?? throw new ArgumentNullException(nameof(dayStorage));
+            _settingsStorage = settingsStorage;
+        }
+
+        public async Task Init()
+        {
+            var settings = await _settingsStorage.Load();
+            
+            _timer = new(settings.DefaultUpdateInterval.TotalMilliseconds);
             _timer.Elapsed += UpdateDayViewModel;
         }
 
@@ -27,6 +42,7 @@ namespace WorkTimeTracker.ViewModels
                 DayViewModel.Dto.Time = CMath.RoundQuarter(time);
 
                 _factory.UpdateDayViewModel(DayViewModel, DayViewModel.Dto);
+                _dayStorage.Save(new List<Day> {DayViewModel.Dto});
             }
         }
 
@@ -39,7 +55,10 @@ namespace WorkTimeTracker.ViewModels
 
         public void Stop()
         {
-            _timer.Stop();
+            if(_timer.Enabled)
+            {
+                _timer.Stop();
+            }
         }
     }
 }

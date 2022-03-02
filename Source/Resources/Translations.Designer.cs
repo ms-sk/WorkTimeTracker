@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default Update Interval.
+        /// </summary>
+        public static string DefaultUpdateInterval {
+            get {
+                return ResourceManager.GetString("DefaultUpdateInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {

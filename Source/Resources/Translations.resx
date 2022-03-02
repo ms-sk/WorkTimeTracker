@@ -162,6 +162,9 @@
   <data name="HoursPerDay" xml:space="preserve">
     <value>Hours per day</value>
   </data>
+  <data name="DefaultUpdateInterval" xml:space="preserve">
+    <value>Default Update Interval</value>
+  </data>
   <data name="Illness" xml:space="preserve">
     <value>Illness</value>
   </data>
