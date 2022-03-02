@@ -7,15 +7,14 @@
     xmlns:local="clr-namespace:Core.Wpf.MessageBoxes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:Resources;assembly=Resources"
+    Padding="10"
     d:DataContext="{d:DesignInstance {x:Type local:CoreMessageBoxViewModel}}"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterOwner"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border
-        Margin="{StaticResource All}"
-        BorderBrush="{StaticResource Primary}"
-        BorderThickness="1">
+    <Border BorderBrush="{StaticResource Primary}" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -27,21 +26,31 @@
                 HorizontalAlignment="Stretch"
                 Background="{StaticResource Primary}"
                 Orientation="Horizontal">
-                <TextBlock
-                    Margin="{StaticResource Left}"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource White}"
-                    Text="{Binding Title, Mode=OneWay}" />
+                <ContentPresenter
+                    Margin="{StaticResource All}"
+                    Content="{Binding Header, Mode=OneWay}"
+                    TextBlock.FontWeight="Bold"
+                    TextBlock.Foreground="{StaticResource White}" />
             </StackPanel>
-            <StackPanel Grid.Row="1">
-                <TextBlock Margin="{StaticResource Left}" Text="{Binding Message, Mode=OneWay}" />
-            </StackPanel>
+            <ContentPresenter
+                Grid.Row="1"
+                Margin="{StaticResource All}"
+                Content="{Binding Message, Mode=OneWay}" />
             <StackPanel
                 Grid.Row="2"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
-                <controls:CButton Margin="{StaticResource LeftRight}" Content="{x:Static resources:Translations.Yes}" />
-                <controls:CButton Margin="{StaticResource LeftRight}" Content="{x:Static resources:Translations.No}" />
+                <controls:CButton
+                    Margin="{StaticResource All}"
+                    Command="{Binding Save}"
+                    Content="{x:Static resources:Translations.Yes}"
+                    Icon="{StaticResource Checkmark}" />
+                <controls:CButton
+                    Margin="{StaticResource All}"
+                    Command="{Binding Cancel}"
+                    Content="{x:Static resources:Translations.No}"
+                    Icon="{StaticResource Cancel}" />
             </StackPanel>
         </Grid>
     </Border>
