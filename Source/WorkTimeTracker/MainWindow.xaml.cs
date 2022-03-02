@@ -46,6 +46,7 @@ namespace WorkTimeTracker
         {
             await _mainViewModel.MasterViewModel.Init();
             await _mainViewModel.MasterViewModel.LoadWorkTimes();
+            await _mainViewModel.MasterViewModel.InitDay();
             await _mainViewModel.MasterViewModel.LoadSettings();
         }
     }

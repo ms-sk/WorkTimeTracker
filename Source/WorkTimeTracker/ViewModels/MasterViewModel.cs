@@ -14,20 +14,30 @@ namespace WorkTimeTracker.ViewModels;
 public sealed class MasterViewModel : ViewModel
 {
     private readonly IStorage<WorkTime> _workTimeStorage;
+    private readonly IStorage<List<Day>> _dayStorage;
     private readonly SettingsStorage _settingsStorage;
     private readonly WorkTimeViewModelFactory _factory;
     private readonly WorkTimeTodayUpdater _updater;
+    private readonly DayFactory _dayFactory;
     private readonly List<DayViewModel> _allWorkTimes = new();
 
     Settings? _settings;
 
-    public MasterViewModel(IStorage<WorkTime> workTimeStorage, SettingsStorage settingsStorage,
-        WorkTimeViewModelFactory factory, WorkTimeTodayUpdater updater, FooterViewModel footer)
+    public MasterViewModel(
+        IStorage<WorkTime> workTimeStorage,
+        IStorage<List<Day>> dayStorage,
+        SettingsStorage settingsStorage,
+        WorkTimeViewModelFactory factory,
+        WorkTimeTodayUpdater updater,
+        FooterViewModel footer,
+        DayFactory dayFactory)
     {
         _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
+        _dayStorage = dayStorage ?? throw new ArgumentNullException(nameof(dayStorage));
         _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
         _factory = factory ?? throw new ArgumentNullException(nameof(factory));
         _updater = updater ?? throw new ArgumentNullException(nameof(updater));
+        _dayFactory = dayFactory ?? throw new ArgumentNullException(nameof(dayFactory));
         Footer = footer ?? throw new ArgumentNullException(nameof(footer));
         Filters.Replace(factory.CreateFilterViewModels());
         SelectedFilter = Filters.FirstOrDefault();
@@ -82,6 +92,24 @@ public sealed class MasterViewModel : ViewModel
         await _updater.Init();
     }
 
+    public async Task InitDay()
+    {
+        var todayViewModel = WorkTimes.FirstOrDefault(d => d.Date?.Date == DateTime.Today);
+        if (todayViewModel != null)
+        {
+            return;
+        }
+
+        todayViewModel = new DayViewModel
+        {
+            Date = DateTime.Today,
+            StartTime = TimeOnly.FromDateTime(DateTime.Now)
+        };
+        WorkTimes.Add(todayViewModel);
+        await _dayStorage.Save(new List<Day> { _dayFactory.CreateDay(todayViewModel) });
+        await LoadWorkTimes();
+    }
+
     void Filter()
     {
         if (SelectedFilter != null)
@@ -108,7 +136,7 @@ public sealed class MasterViewModel : ViewModel
 
         var workTime = await _workTimeStorage.Load();
         workTime.Days = workTime.Days.OrderByDescending(x => x.Start).ToList();
-
+        
         var today = DateTime.Today;
         foreach (var day in workTime.Days)
         {

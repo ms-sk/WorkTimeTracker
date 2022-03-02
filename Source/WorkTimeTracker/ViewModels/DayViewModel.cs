@@ -76,19 +76,11 @@ namespace WorkTimeTracker.ViewModels
             {
                 Dto.Break = Break;
             }
-            // else
-            // {
-            //     Break = Dto.Break.GetValueOrDefault();
-            // }
 
             if (WorkTime > 0.0)
             {
                 Dto.Time = WorkTime + Dto.Break;
             }
-            // else
-            // {
-            //     WorkTime = Dto.Time.GetValueOrDefault() - Dto.Break.GetValueOrDefault();
-            // }
         }
 
         public void DeleteTask(TaskViewModel model)
