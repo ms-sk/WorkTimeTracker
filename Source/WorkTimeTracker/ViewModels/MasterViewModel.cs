@@ -43,6 +43,8 @@ public sealed class MasterViewModel : ViewModel
 
             await Footer.Update(WorkTimes.ToList());
         };
+
+        Task.Run(async () => await _updater.Init());
     }
 
     public event EventHandler SelectedFilterChanged;
@@ -93,6 +95,8 @@ public sealed class MasterViewModel : ViewModel
 
     internal async Task LoadWorkTimes()
     {
+        _updater.Stop();
+        
         WorkTimes.Clear();
         _allWorkTimes.Clear();
 
@@ -107,7 +111,7 @@ public sealed class MasterViewModel : ViewModel
             if (day.Start.Date == today)
             {
                 _updater.DayViewModel = vm;
-                //_updater.Start();
+                _updater.Start();
             }
 
             _allWorkTimes.Add(vm);

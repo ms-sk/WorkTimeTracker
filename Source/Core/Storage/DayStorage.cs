@@ -5,18 +5,18 @@ namespace Core.Storage
 {
     public sealed class DayStorage : IStorage<List<Day>>
     {
-        readonly IStorage<WorkTime> _storage;
+        readonly IStorage<WorkTime> _workTimeStorage;
 
-        public DayStorage(IStorage<WorkTime> storage)
+        public DayStorage(IStorage<WorkTime> workTimeStorage)
         {
-            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
         }
 
-        public async Task Save(List<Day> ds)
+        public async Task Save(List<Day> days)
         {
-            var workTime = await _storage.Load();
+            var workTime = await _workTimeStorage.Load();
 
-            foreach (var day in ds)
+            foreach (var day in days)
             {
                 var existingDay = workTime.Days.FirstOrDefault(d => d.Id == day.Id);
                 if (existingDay != null)
@@ -39,18 +39,18 @@ namespace Core.Storage
                     workTime.Days.Add(day);
                 }
             }
-            await _storage.Save(workTime);
+            await _workTimeStorage.Save(workTime);
         }
 
         public async Task<List<Day>> Load()
         {
-            var workTime = await _storage.Load();
+            var workTime = await _workTimeStorage.Load();
             return workTime.Days;
         }
 
         public async Task Delete(List<Day> t)
         {
-            var workTime = await _storage.Load();
+            var workTime = await _workTimeStorage.Load();
 
             foreach (var day in t)
             {
@@ -61,7 +61,7 @@ namespace Core.Storage
                 }
             }
 
-            await _storage.Save(workTime);
+            await _workTimeStorage.Save(workTime);
         }
     }
 }

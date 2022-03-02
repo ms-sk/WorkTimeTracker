@@ -29,7 +29,8 @@ namespace WorkTimeTracker.ViewModels
             Save = new AsyncCommand(SaveSettings, (_) => true);
         }
 
-        public ObservableCollection<SettingsItemViewModel> Items { get; } = new ObservableCollection<SettingsItemViewModel>();
+        public ObservableCollection<SettingsItemViewModel> Items { get; } =
+            new ObservableCollection<SettingsItemViewModel>();
 
         public ICommand Save { get; }
 
@@ -52,6 +53,11 @@ namespace WorkTimeTracker.ViewModels
                         Title = Translations.HoursPerDay,
                         Value = settings.HoursPerDay
                     });
+                    Items.Add(new SettingsItemViewModel<TimeSpan>()
+                    {
+                        Title = Translations.DefaultUpdateInterval,
+                        Value = settings.DefaultUpdateInterval
+                    });
                 }
                 catch (Exception e)
                 {
@@ -69,12 +75,17 @@ namespace WorkTimeTracker.ViewModels
                 {
                     if (string.Equals(item.Title, Translations.Filter))
                     {
-                        settings.Filter = (Filter)(item.Value ?? Filter.None);
+                        settings.Filter = (Filter) (item.Value ?? Filter.None);
                     }
 
                     if (string.Equals(item.Title, Translations.HoursPerDay))
                     {
-                        settings.HoursPerDay = (double)(item.Value ?? 8);
+                        settings.HoursPerDay = (double) (item.Value ?? 8);
+                    }
+
+                    if (string.Equals(item.Title, Translations.DefaultUpdateInterval))
+                    {
+                        settings.DefaultUpdateInterval = (TimeSpan) (item.Value ?? new TimeSpan(0, 15, 0));
                     }
                 }
 
