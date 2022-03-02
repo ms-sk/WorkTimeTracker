@@ -1,21 +1,49 @@
-﻿using Core.Wpf.ViewModels;
+﻿using Core.Wpf.Commands;
+using Core.Wpf.ViewModels;
+using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Core.Wpf.MessageBoxes
 {
     public sealed class CoreMessageBoxViewModel : ViewModel
     {
-        public string Title
+        public CoreMessageBoxViewModel()
         {
-            get => GetValue<string>() ?? string.Empty;
-            set => SetValue(value);
+            Save = new Command(ExecuteSave, (_) => true);
+            Cancel = new Command(ExecuteCancel, (_) => true);
         }
-        public string Message
+
+        public event EventHandler Executed;
+
+        public object Header
         {
             get => GetValue<string>() ?? string.Empty;
             set => SetValue(value);
         }
 
+        public object Message
+        {
+            get => GetValue<object>() ?? string.Empty;
+            set => SetValue(value);
+        }
+
         public MessageBoxResult Result { get; set; } = MessageBoxResult.Cancel;
+
+        public ICommand Save { get; }
+
+        public ICommand Cancel { get; }
+
+        void ExecuteSave(object? obj)
+        {
+            Result = MessageBoxResult.Yes;
+            Executed?.Invoke(this, EventArgs.Empty);
+        }
+
+        void ExecuteCancel(object? obj)
+        {
+            Result = MessageBoxResult.No;
+            Executed?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

@@ -144,6 +144,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DoYouWantToDelete" xml:space="preserve">
+    <value>Do you really want to delete?</value>
+  </data>
   <data name="Education" xml:space="preserve">
     <value>Education</value>
   </data>

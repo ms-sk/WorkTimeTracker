@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete?.
+        /// </summary>
+        public static string DoYouWantToDelete {
+            get {
+                return ResourceManager.GetString("DoYouWantToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Education.
         /// </summary>
         public static string Education {

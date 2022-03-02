@@ -7,14 +7,20 @@ namespace Core.Wpf.MessageBoxes
     {
         public static MessageBoxResult Delete()
         {
-            var messageBox = new CoreMessageBox();
+            var messageBox = new CoreMessageBox()
+            {
+                Owner = Application.Current.MainWindow
+            };
+
             var viewModel = new CoreMessageBoxViewModel()
             {
-                Title = Translations.AreYouSure,
-                Message = Translations.Delete
+                Header = Translations.AreYouSure,
+                Message = Translations.DoYouWantToDelete
             };
 
             messageBox.DataContext = viewModel;
+
+            viewModel.Executed += (_, __) => messageBox?.Close();
 
             messageBox.ShowDialog();
 
