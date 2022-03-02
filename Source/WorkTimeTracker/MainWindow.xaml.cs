@@ -44,6 +44,7 @@ namespace WorkTimeTracker
 
         async Task Refresh()
         {
+            await _mainViewModel.MasterViewModel.Init();
             await _mainViewModel.MasterViewModel.LoadWorkTimes();
             await _mainViewModel.MasterViewModel.LoadSettings();
         }

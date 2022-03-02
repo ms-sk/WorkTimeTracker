@@ -21,7 +21,8 @@ public sealed class MasterViewModel : ViewModel
 
     Settings? _settings;
 
-    public MasterViewModel(IStorage<WorkTime> workTimeStorage, SettingsStorage settingsStorage, WorkTimeViewModelFactory factory, WorkTimeTodayUpdater updater, FooterViewModel footer)
+    public MasterViewModel(IStorage<WorkTime> workTimeStorage, SettingsStorage settingsStorage,
+        WorkTimeViewModelFactory factory, WorkTimeTodayUpdater updater, FooterViewModel footer)
     {
         _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
         _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
@@ -37,14 +38,13 @@ public sealed class MasterViewModel : ViewModel
             {
                 _settings.Filter = SelectedFilter.Filter;
             }
+
             await _settingsStorage.Save(_settings ?? new Settings());
 
             Filter();
 
             await Footer.Update(WorkTimes.ToList());
         };
-
-        Task.Run(async () => await _updater.Init());
     }
 
     public event EventHandler SelectedFilterChanged;
@@ -77,6 +77,11 @@ public sealed class MasterViewModel : ViewModel
         }
     }
 
+    public async Task Init()
+    {
+        await _updater.Init();
+    }
+
     void Filter()
     {
         if (SelectedFilter != null)
@@ -89,6 +94,7 @@ public sealed class MasterViewModel : ViewModel
                     filtered.Add(day);
                 }
             }
+
             WorkTimes.Replace(filtered);
         }
     }
@@ -96,7 +102,7 @@ public sealed class MasterViewModel : ViewModel
     internal async Task LoadWorkTimes()
     {
         _updater.Stop();
-        
+
         WorkTimes.Clear();
         _allWorkTimes.Clear();
 
@@ -130,6 +136,7 @@ public sealed class MasterViewModel : ViewModel
             SelectedFilter = Filters.FirstOrDefault(x => x.Filter == _settings.Filter);
             return;
         }
+
         SelectedFilter = Filters.FirstOrDefault();
     }
 }

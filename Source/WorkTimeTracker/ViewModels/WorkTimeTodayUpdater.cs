@@ -15,7 +15,7 @@ namespace WorkTimeTracker.ViewModels
         readonly IStorage<List<Day>> _dayStorage;
         readonly IStorage<Settings> _settingsStorage;
         
-        Timer _timer;
+        Timer? _timer;
 
         public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory, IStorage<List<Day>> dayStorage, IStorage<Settings> settingsStorage)
         {
@@ -55,7 +55,7 @@ namespace WorkTimeTracker.ViewModels
 
         public void Stop()
         {
-            if(_timer.Enabled)
+            if(_timer is {Enabled: true})
             {
                 _timer.Stop();
             }

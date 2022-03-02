@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Core.Dtos;
 using Core.Extensions;
 using Core.Math;
@@ -46,7 +47,7 @@ namespace WorkTimeTracker.Factories
 
             if (dto.Tasks?.Any() == true)
             {
-                viewModel.Tasks.Replace(dto.Tasks.Select(CreateTaskViewModel));
+                Application.Current.Dispatcher.Invoke(() => viewModel.Tasks.Replace(dto.Tasks.Select(CreateTaskViewModel)));
             }
 
             return viewModel;
