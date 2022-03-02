@@ -1,5 +1,5 @@
-﻿using Core.Dtos;
-using Core.Extensions;
+﻿using Core.Extensions;
+using Core.Models;
 
 namespace Core.Storage
 {

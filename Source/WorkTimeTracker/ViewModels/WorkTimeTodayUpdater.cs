@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Timers;
-using Core.Dtos;
 using Core.Storage;
 using WorkTimeTracker.Factories;
+using Core.Models;
 
 namespace WorkTimeTracker.ViewModels
 {

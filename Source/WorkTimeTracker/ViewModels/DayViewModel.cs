@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Core.Dtos;
 using Core.Models;
 using Core.Wpf.MessageBoxes;
 using Core.Wpf.ViewModels;

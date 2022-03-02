@@ -1,6 +1,4 @@
-﻿using Core.Models;
-
-namespace Core.Dtos
+﻿namespace Core.Models
 {
     public sealed class Day
     {
@@ -8,7 +6,7 @@ namespace Core.Dtos
         {
             Start = DateTime.Today;
         }
-        
+
         public Guid? Id { get; set; }
 
         public DateTime Start { get; set; }
@@ -20,7 +18,7 @@ namespace Core.Dtos
         public double? Break { get; set; }
 
         public List<TaskDto>? Tasks { get; set; }
-        
+
         public WorkType Type { get; set; }
     }
 }

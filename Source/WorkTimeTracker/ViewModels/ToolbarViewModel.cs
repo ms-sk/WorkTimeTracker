@@ -1,4 +1,4 @@
-﻿using Core.Dtos;
+﻿using Core.Models;
 using Core.Storage;
 using Core.Wpf.Commands;
 using Core.Wpf.Loading;

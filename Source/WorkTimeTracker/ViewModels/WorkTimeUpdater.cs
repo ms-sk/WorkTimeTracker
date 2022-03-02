@@ -1,5 +1,5 @@
-﻿using Core.Dtos;
-using Core.Logging;
+﻿using Core.Logging;
+using Core.Models;
 using Core.Storage;
 using System;
 using System.Timers;

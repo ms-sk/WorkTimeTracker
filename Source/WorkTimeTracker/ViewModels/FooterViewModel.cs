@@ -1,5 +1,4 @@
-﻿using Core.Dtos;
-using Core.Models;
+﻿using Core.Models;
 using Core.Storage;
 using Core.Wpf.ViewModels;
 using Resources;

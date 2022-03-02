@@ -1,4 +1,4 @@
-﻿using Core.Dtos;
+﻿using Core.Models;
 using System;
 using WorkTimeTracker.ViewModels;
 

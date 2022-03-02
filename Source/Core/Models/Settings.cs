@@ -1,6 +1,4 @@
-﻿using Core.Models;
-
-namespace Core.Dtos
+﻿namespace Core.Models
 {
     public sealed class Settings
     {
@@ -14,7 +12,7 @@ namespace Core.Dtos
         public Filter Filter { get; set; }
 
         public double HoursPerDay { get; set; }
-        
+
         public TimeSpan DefaultUpdateInterval { get; set; }
     }
 }

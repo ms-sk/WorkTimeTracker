@@ -1,4 +1,4 @@
-﻿namespace Core.Dtos
+﻿namespace Core.Models
 {
     public sealed class WorkTime
     {
