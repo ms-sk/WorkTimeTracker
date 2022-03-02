@@ -28,27 +28,23 @@
                         <DataTrigger Binding="{Binding Type}" Value="{x:Static model:WorkType.Work}">
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{StaticResource White}" />
                             <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource White}" />
+                            <Setter TargetName="Bd" Property="TextBlock.Foreground" Value="Black" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Type}" Value="{x:Static model:WorkType.Holiday}">
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{StaticResource Green}" />
                             <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource Green}" />
+                            <Setter TargetName="Bd" Property="TextBlock.Foreground" Value="{StaticResource White}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Type}" Value="{x:Static model:WorkType.Illness}">
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{StaticResource Red}" />
                             <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource Red}" />
+                            <Setter TargetName="Bd" Property="TextBlock.Foreground" Value="{StaticResource White}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Type}" Value="{x:Static model:WorkType.Education}">
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{StaticResource Blue}" />
                             <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource Blue}" />
+                            <Setter TargetName="Bd" Property="TextBlock.Foreground" Value="{StaticResource White}" />
                         </DataTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Selector.IsSelectionActive" Value="False" />
-                                <Condition Property="Selector.IsSelected" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="Bd" Property="Panel.Background" Value="Transparent" />
-                            <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource Primary}" />
-                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="Selector.IsSelectionActive" Value="True" />
@@ -56,10 +52,12 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{StaticResource Primary}" />
                             <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource Primary}" />
+                            <Setter TargetName="Bd" Property="TextBlock.Foreground" Value="{StaticResource White}" />
                         </MultiTrigger>
                         <Trigger Property="UIElement.IsMouseOver" Value="True">
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{StaticResource Primary}" />
                             <Setter TargetName="Bd" Property="Border.BorderBrush" Value="{StaticResource Primary}" />
+                            <Setter TargetName="Bd" Property="TextBlock.Foreground" Value="{StaticResource White}" />
                         </Trigger>
                         <Trigger Property="UIElement.IsEnabled" Value="False">
                             <Setter TargetName="Bd" Property="TextElement.Foreground">

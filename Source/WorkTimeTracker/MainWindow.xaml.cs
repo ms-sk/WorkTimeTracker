@@ -1,6 +1,4 @@
 ﻿using Core.Logging;
-using Core.Modules;
-using Ninject;
 using System;
 using System.Threading.Tasks;
 using System.Windows;

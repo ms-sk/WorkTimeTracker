@@ -14,7 +14,7 @@ namespace Core.Wpf.MessageBoxes
             Cancel = new Command(ExecuteCancel, (_) => true);
         }
 
-        public event EventHandler Executed;
+        public event EventHandler? Executed;
 
         public object Header
         {
