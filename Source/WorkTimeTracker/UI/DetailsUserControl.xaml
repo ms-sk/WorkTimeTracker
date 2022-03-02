@@ -84,7 +84,7 @@
                     Grid.Column="1"
                     Margin="5,5,5,0"
                     VerticalAlignment="Center"
-                    Text="{Binding DetailsViewModel.SelectedDay.StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource TimeOnlyConverter}}" />
+                    Text="{Binding DetailsViewModel.SelectedDay.StartTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeOnlyConverter}}" />
 
                 <TextBlock
                     Grid.Row="2"
@@ -96,7 +96,7 @@
                     Grid.Column="1"
                     Margin="{StaticResource All}"
                     VerticalAlignment="Center"
-                    Text="{Binding DetailsViewModel.SelectedDay.EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource TimeOnlyConverter}}" />
+                    Text="{Binding DetailsViewModel.SelectedDay.EndTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeOnlyConverter}}" />
 
                 <TextBlock
                     Grid.Row="1"
@@ -108,7 +108,7 @@
                     Grid.Column="3"
                     Margin="5,5,5,0"
                     VerticalAlignment="Center"
-                    Text="{Binding DetailsViewModel.SelectedDay.WorkTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+                    Text="{Binding DetailsViewModel.SelectedDay.WorkTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=N2}" />
 
                 <TextBlock
                     Grid.Row="2"
@@ -120,7 +120,7 @@
                     Grid.Column="3"
                     Margin="{StaticResource All}"
                     VerticalAlignment="Center"
-                    Text="{Binding DetailsViewModel.SelectedDay.Break, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+                    Text="{Binding DetailsViewModel.SelectedDay.Break, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=N2}" />
             </Grid>
         </GroupBox>
 
@@ -165,7 +165,7 @@
                                         Height="25"
                                         Margin="5,5,0,0"
                                         VerticalContentAlignment="Center"
-                                        Text="{Binding WorkTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+                                        Text="{Binding WorkTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=N2}" />
 
                                     <controls:CButton
                                         Grid.Column="3"
