@@ -14,6 +14,7 @@
 
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Styles/ScrollBar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Styles/GroupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Core.Wpf;component/Styles/TextBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/WorkTimeTracker;component/UI/Styles/ListBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
