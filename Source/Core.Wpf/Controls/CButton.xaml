@@ -5,22 +5,25 @@
 
     <Style TargetType="{x:Type local:CButton}">
         <Style.Setters>
+            <Setter Property="MouseOverBorderBrush" Value="{StaticResource Primary}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Gray}" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="local:CButton">
                         <Border
-                            Padding="{StaticResource All}"
+                            x:Name="PART_Border"
+                            Padding="{StaticResource SmallAll}"
                             Background="{TemplateBinding Background}"
                             BorderThickness="0,0,0,2">
                             <Grid x:Name="PART_Grid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="5" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter
                                     x:Name="PART_Icon"
-                                    Margin="{StaticResource LeftRight}"
                                     VerticalAlignment="Center"
                                     Content="{TemplateBinding Icon}" />
                                 <ContentPresenter
@@ -38,19 +41,6 @@
                                     </ContentPresenter.Style>
                                 </ContentPresenter>
                             </Grid>
-                            <Border.Style>
-                                <Style TargetType="{x:Type Border}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="BorderBrush" Value="{StaticResource Primary}" />
-                                        </Trigger>
-
-                                        <Trigger Property="IsMouseOver" Value="False">
-                                            <Setter Property="BorderBrush" Value="{StaticResource White}" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>

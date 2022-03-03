@@ -17,28 +17,33 @@
             ItemsSource="{Binding MasterViewModel.Filters, Mode=OneWay}"
             SelectedItem="{Binding MasterViewModel.SelectedFilter, Mode=TwoWay}" />
         <controls:CButton
+            Margin="{StaticResource Left}"
             Command="{Binding ToolbarViewModel.Add}"
             CommandParameter="{Binding MasterViewModel}"
             Content="{x:Static resources:Translations.Add}"
             Icon="{DynamicResource Add}" />
         <controls:CButton
+            Margin="{StaticResource Left}"
             Command="{Binding ToolbarViewModel.Delete}"
             CommandParameter="{Binding MasterViewModel}"
             Content="{x:Static resources:Translations.Delete}"
             Icon="{StaticResource Trash}" />
         <controls:CButton
+            Margin="{StaticResource Left}"
             Command="{Binding ToolbarViewModel.Save}"
             CommandParameter="{Binding MasterViewModel.SelectedDay}"
             Content="{x:Static resources:Translations.Save}"
             Icon="{StaticResource Save}"
             ToolTip="ctrl+s" />
         <controls:CButton
+            Margin="{StaticResource Left}"
             Command="{Binding ToolbarViewModel.SaveAll}"
             CommandParameter="{Binding MasterViewModel.WorkTimes}"
             Content="{x:Static resources:Translations.SaveAll}"
             Icon="{StaticResource SaveAll}"
             ToolTip="ctrl+shift+s" />
         <controls:CButton
+            Margin="{StaticResource Left}"
             Command="{Binding ToolbarViewModel.Settings}"
             Content="{x:Static resources:Translations.Settings}"
             Icon="{StaticResource Settings}" />
