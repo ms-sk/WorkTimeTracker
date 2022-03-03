@@ -105,18 +105,6 @@
                     Text="{Binding DetailsViewModel.SelectedDay.StartTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeOnlyConverter}}" />
 
                 <TextBlock
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Margin="{StaticResource All}"
-                    Text="{x:Static resources:Translations.End}" />
-                <TextBox
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="{StaticResource All}"
-                    VerticalAlignment="Center"
-                    Text="{Binding DetailsViewModel.SelectedDay.EndTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeOnlyConverter}}" />
-
-                <TextBlock
                     Grid.Row="1"
                     Grid.Column="2"
                     Margin="5,5,5,0"
@@ -127,6 +115,18 @@
                     Margin="5,5,5,0"
                     VerticalAlignment="Center"
                     Text="{Binding DetailsViewModel.SelectedDay.WorkTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=N2}" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="{StaticResource All}"
+                    Text="{x:Static resources:Translations.End}" />
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="{StaticResource All}"
+                    VerticalAlignment="Center"
+                    Text="{Binding DetailsViewModel.SelectedDay.EndTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus, Converter={StaticResource TimeOnlyConverter}}" />
 
                 <TextBlock
                     Grid.Row="2"
