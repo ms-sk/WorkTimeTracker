@@ -10,6 +10,8 @@
     Title="Worktime Tracker"
     Width="800"
     Height="500"
+    MinWidth="750"
+    MinHeight="450"
     d:DataContext="{d:DesignInstance {x:Type viewModels:MainViewModel}}"
     Cursor="{Binding LoaderViewModel.Cursor, Mode=OneWay}"
     ResizeMode="CanResizeWithGrip"

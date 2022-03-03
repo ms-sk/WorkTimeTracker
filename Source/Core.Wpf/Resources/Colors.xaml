@@ -2,6 +2,7 @@
     <Color x:Key="PrimaryColor">#64b5f6</Color>
     <Color x:Key="DarkColor">#2286c3</Color>
     <Color x:Key="LightColor">#9be7ff</Color>
+    <Color x:Key="GrayColor">#b0bec5</Color>
 
     <SolidColorBrush x:Key="Primary" Color="{StaticResource PrimaryColor}" />
     <SolidColorBrush x:Key="Light" Color="{StaticResource LightColor}" />
@@ -13,5 +14,5 @@
     <SolidColorBrush x:Key="Blue" Color="#448aff" />
     <SolidColorBrush x:Key="Green" Color="#69f0ae" />
 
-    <SolidColorBrush x:Key="Gray" Color="#b0bec5" />
+    <SolidColorBrush x:Key="Gray" Color="{StaticResource GrayColor}" />
 </ResourceDictionary>

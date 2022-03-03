@@ -10,6 +10,7 @@
     </ControlTemplate>
 
     <Style x:Key="{x:Type local:CComboBox}" TargetType="{x:Type local:CComboBox}">
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />

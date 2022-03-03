@@ -84,7 +84,9 @@ namespace Core.Wpf.Controls
         {
             base.OnPropertyChanged(e);
 
-            if (e.Property == IsMouseOverProperty)
+            if (e.Property == IsMouseOverProperty
+                || e.Property == IsFocusedProperty
+                || e.Property == IsKeyboardFocusWithinProperty)
             {
                 var bl = (bool)e.NewValue;
                 border.BorderBrush = bl ? MouseOverBorderBrush : BorderBrush;
