@@ -64,6 +64,12 @@ namespace Core.Wpf.Controls
                 return;
             }
 
+
+            if (Content == null || Icon == null)
+            {
+                grid.ColumnDefinitions[1].Width = new GridLength(0);
+            }
+
             if (IconPosition == IconPosition.Right)
             {
                 Grid.SetColumn(contentPresenter, 0);
