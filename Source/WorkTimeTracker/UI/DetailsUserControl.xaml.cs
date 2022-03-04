@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace WorkTimeTracker.UI;
+﻿namespace WorkTimeTracker.UI;
 
 public partial class DetailsUserControl
 {

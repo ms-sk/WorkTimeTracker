@@ -15,7 +15,7 @@ namespace WorkTimeTracker.ViewModels
 
             Types = Enum.GetValues<WorkType>();
         }
-        
+
         public DayViewModel? SelectedDay
         {
             get => GetValue<DayViewModel>();
@@ -27,13 +27,13 @@ namespace WorkTimeTracker.ViewModels
             get => GetValue<Command>();
             set => SetValue(value);
         }
-        
+
         public Command? DeleteCommand
         {
             get => GetValue<Command>();
             set => SetValue(value);
         }
-        
+
         public IEnumerable<WorkType> Types { get; }
 
         public void Reinitialize(DayViewModel selectedDay)
