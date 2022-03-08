@@ -14,7 +14,7 @@ namespace WorkTimeTracker.UI.ViewModels
         readonly WorkTimeViewModelFactory _factory;
         readonly IStorage<List<Day>> _dayStorage;
         readonly IStorage<Settings> _settingsStorage;
-        
+
         Timer? _timer;
 
         public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory, IStorage<List<Day>> dayStorage, IStorage<Settings> settingsStorage)
@@ -27,7 +27,7 @@ namespace WorkTimeTracker.UI.ViewModels
         public async Task Init()
         {
             var settings = await _settingsStorage.Load();
-            
+
             _timer = new(settings.DefaultUpdateInterval.TotalMilliseconds);
             _timer.Elapsed += UpdateDayViewModel;
         }
@@ -50,6 +50,11 @@ namespace WorkTimeTracker.UI.ViewModels
 
         public void Start()
         {
+            if(_timer == null)
+            {
+                throw new NullReferenceException(nameof(_timer));
+            }
+
             _timer.Start();
         }
 

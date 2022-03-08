@@ -12,6 +12,11 @@ namespace WorkTimeTracker.UI.ViewModels
 
         internal bool Matches(DayViewModel dayViewModel)
         {
+            if (dayViewModel?.Dto is null)
+            {
+                throw new ArgumentNullException(nameof(dayViewModel));
+            }
+
             var today = DateTime.Today;
 
             var startDate = dayViewModel.Dto.Start.Date;

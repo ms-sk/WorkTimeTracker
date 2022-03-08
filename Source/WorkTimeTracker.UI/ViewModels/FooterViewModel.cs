@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+
 using WorkTimeTracker.Core.Models;
 using WorkTimeTracker.Core.Storage;
 using WorkTimeTracker.Core.Wpf.ViewModels;
@@ -37,10 +38,12 @@ namespace WorkTimeTracker.UI.ViewModels
             foreach (var group in groups)
             {
                 var sum = Sums.FirstOrDefault(s => s.Type == group.Key);
-                if (sum != null)
+                if (sum == null)
                 {
-                    sum.Sum = group.Sum(x => x.WorkTime);
+                    return;
                 }
+
+                sum.Sum = group.Sum(x => x.WorkTime);
 
                 if (group.Key == WorkType.Work)
                 {

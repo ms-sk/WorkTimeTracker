@@ -95,7 +95,11 @@ namespace WorkTimeTracker.Core.Wpf.Controls
                 || e.Property == IsKeyboardFocusWithinProperty)
             {
                 var bl = (bool)e.NewValue;
-                border.BorderBrush = bl ? MouseOverBorderBrush : BorderBrush;
+
+                if (border != null)
+                {
+                    border.BorderBrush = bl ? MouseOverBorderBrush : BorderBrush;
+                }
             }
         }
     }

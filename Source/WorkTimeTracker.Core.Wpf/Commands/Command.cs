@@ -7,7 +7,6 @@ public sealed class Command : ICommand
 {
     readonly Action<object?> _executeCallback;
     readonly Func<object?, bool>? _canExecuteCallback;
-    readonly Action? _callBack;
 
     public Command(Action<object?> executeCallback, Func<object?, bool>? canExecuteCallback)
     {
