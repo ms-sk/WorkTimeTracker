@@ -10,7 +10,7 @@ public class TaskViewModel : ViewModel
         get => GetValue<string>();
         set => SetValue(value);
     }
-        
+
     public double WorkTime
     {
         get => GetValue<double>();
