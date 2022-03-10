@@ -1,3 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Text.Json;
 
-Console.WriteLine("Hello, World!");
+var filePath = "Files.json";
+var sourceDirectory = "";
+var targetDirectory = "";
+
+var files = JsonSerializer.Deserialize<List<string>>(filePath);
+
+foreach (var file in files)
+{
+    var path = Path.Combine(sourceDirectory, file);
+    File.Copy(path, targetDirectory, true);
+}
