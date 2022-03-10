@@ -124,6 +124,7 @@ public sealed class MasterViewModel : ViewModel
             }
 
             WorkTimes.Replace(filtered);
+            SelectedDay = WorkTimes.FirstOrDefault();
         }
     }
 
@@ -136,7 +137,7 @@ public sealed class MasterViewModel : ViewModel
 
         var workTime = await _workTimeStorage.Load();
         workTime.Days = workTime.Days.OrderByDescending(x => x.Start).ToList();
-        
+
         var today = DateTime.Today;
         foreach (var day in workTime.Days)
         {
@@ -149,6 +150,8 @@ public sealed class MasterViewModel : ViewModel
             }
 
             _allWorkTimes.Add(vm);
+
+            SelectedDay = WorkTimes.FirstOrDefault();
         }
 
         WorkTimes.Replace(_allWorkTimes);

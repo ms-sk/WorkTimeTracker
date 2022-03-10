@@ -26,12 +26,16 @@ namespace WorkTimeTracker.UI.ViewModels
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
             Save = new AsyncCommand(SaveSettings, (_) => true);
+            Cancel = new Command(ExecuteCancel, (_) => true);
         }
 
-        public ObservableCollection<SettingsItemViewModel> Items { get; } =
-            new ObservableCollection<SettingsItemViewModel>();
+        public event EventHandler? Cancelled;
+
+        public ObservableCollection<SettingsItemViewModel> Items { get; } = new ObservableCollection<SettingsItemViewModel>();
 
         public ICommand Save { get; }
+
+        public ICommand Cancel { get; }
 
         public async Task LoadSettings()
         {
@@ -74,22 +78,28 @@ namespace WorkTimeTracker.UI.ViewModels
                 {
                     if (string.Equals(item.Title, Translations.Filter))
                     {
-                        settings.Filter = (Filter) (item.Value ?? Filter.None);
+                        settings.Filter = (Filter)(item.Value ?? Filter.None);
                     }
 
                     if (string.Equals(item.Title, Translations.HoursPerDay))
                     {
-                        settings.HoursPerDay = (double) (item.Value ?? 8);
+                        settings.HoursPerDay = (double)(item.Value ?? 8);
                     }
 
                     if (string.Equals(item.Title, Translations.DefaultUpdateInterval))
                     {
-                        settings.DefaultUpdateInterval = (TimeSpan) (item.Value ?? new TimeSpan(0, 15, 0));
+                        settings.DefaultUpdateInterval = (TimeSpan)(item.Value ?? new TimeSpan(0, 15, 0));
                     }
                 }
 
                 await settingsStorage.Save(settings);
             }
         }
+
+        void ExecuteCancel(object? obj)
+        {
+            Cancelled?.Invoke(this, EventArgs.Empty);
+        }
+
     }
 }

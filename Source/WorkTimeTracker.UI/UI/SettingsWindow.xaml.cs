@@ -12,7 +12,16 @@ namespace WorkTimeTracker.UI.UI
             InitializeComponent();
             DataContext = this.settingsViewModel = settingsViewModel ?? throw new System.ArgumentNullException(nameof(settingsViewModel));
 
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
             Loaded += LoadSettings;
+            settingsViewModel.Cancelled += CloseOnCancelled;
+        }
+
+        void CloseOnCancelled(object? sender, System.EventArgs e)
+        {
+            Close();
         }
 
         async void LoadSettings(object sender, RoutedEventArgs e)

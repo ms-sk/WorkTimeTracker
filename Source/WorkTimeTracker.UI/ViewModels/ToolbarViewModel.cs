@@ -102,7 +102,8 @@ namespace WorkTimeTracker.UI.ViewModels
 
         void ExecuteSettings(object? obj)
         {
-            new SettingsWindow(settingsViewModel).ShowDialog();
+            var window = new SettingsWindow(settingsViewModel);
+            window.ShowDialog();
         }
 
         async Task ExecuteDelete(object? arg)
