@@ -12,6 +12,7 @@ public sealed class CoreBindings : NinjectModule
         Bind<IStorage<List<Day>>>().To<DayStorage>().InSingletonScope();
         Bind<IStorage<WorkTime>>().To<WorkTimeStorage>().InSingletonScope();
         Bind<IStorage<Settings>>().To<SettingsStorage>().InSingletonScope();
+        Bind<IStorage<List<string>>>().To<StringStorage>().InSingletonScope();
         Bind<ILogger>().To<Logger>().InSingletonScope();
     }
 }
