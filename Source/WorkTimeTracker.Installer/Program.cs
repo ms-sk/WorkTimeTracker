@@ -11,3 +11,8 @@ foreach (var file in files)
     var path = Path.Combine(sourceDirectory, file);
     File.Copy(path, targetDirectory, true);
 }
+
+async Task Run()
+{
+
+}

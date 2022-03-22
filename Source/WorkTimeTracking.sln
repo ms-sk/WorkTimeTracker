@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Core.Test",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Core.Wpf", "WorkTimeTracker.Core.Wpf\WorkTimeTracker.Core.Wpf.csproj", "{96A8466E-574C-4B23-8CF1-FA9DF64603B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTimeTracker.Resources", "WorkTimeTracker.Resources\WorkTimeTracker.Resources.csproj", "{F9E8A65F-4695-416B-BA61-45D75B2C63B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Resources", "WorkTimeTracker.Resources\WorkTimeTracker.Resources.csproj", "{F9E8A65F-4695-416B-BA61-45D75B2C63B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTimeTracker.Installer", "WorkTimeTracker.Installer\WorkTimeTracker.Installer.csproj", "{CBEA0177-B018-4546-A4A8-6F1FBF80DE59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Installer", "WorkTimeTracker.Installer\WorkTimeTracker.Installer.csproj", "{CBEA0177-B018-4546-A4A8-6F1FBF80DE59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTimeTracker.Installer.Packing", "WorkTimeTracker.Installer.Packing\WorkTimeTracker.Installer.Packing.csproj", "{858BC980-9BB8-4171-B62D-C72646171C22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{CBEA0177-B018-4546-A4A8-6F1FBF80DE59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBEA0177-B018-4546-A4A8-6F1FBF80DE59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBEA0177-B018-4546-A4A8-6F1FBF80DE59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{858BC980-9BB8-4171-B62D-C72646171C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{858BC980-9BB8-4171-B62D-C72646171C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{858BC980-9BB8-4171-B62D-C72646171C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{858BC980-9BB8-4171-B62D-C72646171C22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
