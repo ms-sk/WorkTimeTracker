@@ -97,6 +97,15 @@ namespace WorkTimeTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Month.
         /// </summary>
         public static string CurrentMonth {

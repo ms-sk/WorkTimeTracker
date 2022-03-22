@@ -184,11 +184,17 @@
                 <StackPanel
                     Grid.Row="1"
                     Margin="{StaticResource All}"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
                     <controls:CButton
                         Command="{Binding DetailsViewModel.CreateCommand, Mode=OneTime}"
                         Content="{x:Static resources:Translations.Add}"
                         Icon="{DynamicResource Add}" />
+                    <controls:CButton
+                        Margin="{StaticResource LeftRight}"
+                        Command="{Binding DetailsViewModel.CopyCommand, Mode=OneTime}"
+                        Content="{x:Static resources:Translations.Copy}"
+                        Icon="{DynamicResource Copy}" />
                 </StackPanel>
             </Grid>
         </GroupBox>

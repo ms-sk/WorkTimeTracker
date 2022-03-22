@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Windows;
 using WorkTimeTracker.Core.Models;
 using WorkTimeTracker.Core.Wpf.Commands;
 using WorkTimeTracker.Core.Wpf.ViewModels;
@@ -12,6 +14,7 @@ namespace WorkTimeTracker.UI.ViewModels
         {
             CreateCommand = new Command(ExecuteCreateCommand, _ => true);
             DeleteCommand = new Command(ExecuteDeleteCommand, _ => true);
+            CopyCommand = new Command(ExecuteCopyCommand, _ => true);
 
             Types = Enum.GetValues<WorkType>();
         }
@@ -33,6 +36,7 @@ namespace WorkTimeTracker.UI.ViewModels
             get => GetValue<Command>();
             set => SetValue(value);
         }
+        public Command CopyCommand { get; }
 
         public IEnumerable<WorkType> Types { get; }
 
@@ -57,6 +61,16 @@ namespace WorkTimeTracker.UI.ViewModels
             if (parameter is not TaskViewModel model) throw new InvalidOperationException(nameof(parameter));
 
             SelectedDay?.DeleteTask(model);
+        }
+
+        void ExecuteCopyCommand(object? obj)
+        {
+            var builder = new StringBuilder();
+            foreach (var task in SelectedDay?.Tasks)
+            {
+                builder.AppendLine(task.Description);
+            }
+            Clipboard.SetText(builder.ToString());
         }
     }
 }
