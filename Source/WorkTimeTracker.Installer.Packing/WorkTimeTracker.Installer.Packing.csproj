@@ -2,9 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&quot;C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe&quot; -file D:\Source\WorkTimeTracker\Source\WorkTimeTracker.Installer.Packing\Scripts\installer.ps1 $(SolutionDir) $(ProjectDir) $(Configuration)" />
+  </Target>
 
 </Project>
