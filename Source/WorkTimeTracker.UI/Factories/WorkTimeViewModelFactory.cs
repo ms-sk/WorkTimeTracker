@@ -5,7 +5,7 @@ using System.Windows;
 using WorkTimeTracker.Core.Extensions;
 using WorkTimeTracker.Core.Math;
 using WorkTimeTracker.Core.Models;
-using WorkTimeTracker.Resources;
+using WorkTimeTracker.Core.Wpf;
 using WorkTimeTracker.UI.ViewModels;
 
 namespace WorkTimeTracker.UI.Factories

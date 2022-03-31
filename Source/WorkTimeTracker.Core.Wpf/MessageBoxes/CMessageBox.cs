@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using WorkTimeTracker.Resources;
 
 namespace WorkTimeTracker.Core.Wpf.MessageBoxes
 {

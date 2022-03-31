@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 using WorkTimeTracker.Core.Models;
 using WorkTimeTracker.Core.Storage;
+using WorkTimeTracker.Core.Wpf;
 using WorkTimeTracker.Core.Wpf.ViewModels;
-using WorkTimeTracker.Resources;
 
 namespace WorkTimeTracker.UI.ViewModels
 {

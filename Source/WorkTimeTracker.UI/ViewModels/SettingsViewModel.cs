@@ -5,10 +5,10 @@ using System.Windows.Input;
 using WorkTimeTracker.Core.Logging;
 using WorkTimeTracker.Core.Models;
 using WorkTimeTracker.Core.Storage;
+using WorkTimeTracker.Core.Wpf;
 using WorkTimeTracker.Core.Wpf.Commands;
 using WorkTimeTracker.Core.Wpf.Loading;
 using WorkTimeTracker.Core.Wpf.ViewModels;
-using WorkTimeTracker.Resources;
 
 namespace WorkTimeTracker.UI.ViewModels
 {
