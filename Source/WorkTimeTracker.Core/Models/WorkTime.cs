@@ -1,5 +1,6 @@
 ﻿namespace WorkTimeTracker.Core.Models;
 
+[Obsolete]
 public sealed class WorkTime
 {
     public WorkTime()

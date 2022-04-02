@@ -15,16 +15,17 @@ namespace WorkTimeTracker.UI.ViewModels
 {
     public sealed class ToolbarViewModel
     {
-        readonly IStorage<List<Day>> storage;
-        readonly DayFactory dayFactory;
-        readonly SettingsViewModel settingsViewModel;
+        readonly IDayStorage _storage;
+        readonly DayFactory _dayFactory;
+        readonly SettingsViewModel _settingsViewModel;
 
-        public ToolbarViewModel(IStorage<List<Day>> storage, DayFactory dayFactory, LoaderViewModel loaderViewModel, SettingsViewModel settingsViewModel)
+        public ToolbarViewModel(IDayStorage storage, DayFactory dayFactory, LoaderViewModel loaderViewModel, SettingsViewModel settingsViewModel)
         {
-            this.storage = storage ?? throw new ArgumentNullException(nameof(storage));
-            this.dayFactory = dayFactory ?? throw new ArgumentNullException(nameof(dayFactory));
+            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _dayFactory = dayFactory ?? throw new ArgumentNullException(nameof(dayFactory));
+            _settingsViewModel = settingsViewModel;
             LoaderViewModel = loaderViewModel ?? throw new ArgumentNullException(nameof(loaderViewModel));
-            this.settingsViewModel = settingsViewModel;
+
             Add = new AsyncCommand(ExecuteAdd, _ => true);
             Save = new AsyncCommand(ExecuteSave, _ => true);
             SaveAll = new AsyncCommand(ExecuteSaveAll, _ => true);
@@ -53,19 +54,9 @@ namespace WorkTimeTracker.UI.ViewModels
 
             using (LoaderViewModel.Load())
             {
-                var dto = dayFactory.CreateDay(dayViewModel);
-                await storage.Save(new List<Day>() { dto });
+                var dto = _dayFactory.CreateDay(dayViewModel);
+                await _storage.Save(new List<Day>() { dto });
             }
-        }
-
-        bool CanExecuteAll(object? arg)
-        {
-            if (arg is ICollection<DayViewModel> list)
-            {
-                return list.Count > 0;
-            }
-
-            return false;
         }
 
         async Task ExecuteSaveAll(object? arg)
@@ -77,11 +68,11 @@ namespace WorkTimeTracker.UI.ViewModels
                 var dtos = new List<Day>();
                 foreach (var viewModel in list)
                 {
-                    var dto = dayFactory.CreateDay(viewModel);
+                    var dto = _dayFactory.CreateDay(viewModel);
                     dtos.Add(dto);
                 }
 
-                await storage.Save(dtos);
+                await _storage.Save(dtos);
             }
         }
 
@@ -91,7 +82,7 @@ namespace WorkTimeTracker.UI.ViewModels
             {
                 var dto = new Day();
 
-                await storage.Save(new List<Day> { dto });
+                await _storage.Save(new List<Day> { dto });
 
                 if (arg is MasterViewModel masterViewModel)
                 {
@@ -102,7 +93,7 @@ namespace WorkTimeTracker.UI.ViewModels
 
         void ExecuteSettings(object? obj)
         {
-            var window = new SettingsWindow(settingsViewModel);
+            var window = new SettingsWindow(_settingsViewModel);
             window.ShowDialog();
         }
 
@@ -123,7 +114,7 @@ namespace WorkTimeTracker.UI.ViewModels
 
                 using (LoaderViewModel.Load())
                 {
-                    await storage.Delete(new List<Day>() { masterViewModel.SelectedDay.Dto });
+                    await _storage.Delete(new List<Day>() { masterViewModel.SelectedDay.Dto });
 
                     await masterViewModel.LoadWorkTimes();
                 }

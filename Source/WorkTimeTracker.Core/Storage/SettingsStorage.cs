@@ -4,7 +4,7 @@ using WorkTimeTracker.Core.Models;
 
 namespace WorkTimeTracker.Core.Storage;
 
-public sealed class SettingsStorage : IStorage<Settings>
+public sealed class SettingsStorage : ISettingsStorage
 {
     readonly Paths _paths;
 

@@ -13,10 +13,9 @@ namespace WorkTimeTracker.UI.ViewModels;
 
 public sealed class MasterViewModel : ViewModel
 {
-    private readonly IStorage<WorkTime> _workTimeStorage;
-    private readonly IStorage<List<Day>> _dayStorage;
+    private readonly IDayStorage _dayStorage;
     private readonly SettingsStorage _settingsStorage;
-    private readonly WorkTimeViewModelFactory _factory;
+    private readonly ViewModelFactory _factory;
     private readonly WorkTimeTodayUpdater _updater;
     private readonly DayFactory _dayFactory;
     private readonly List<DayViewModel> _allWorkTimes = new();
@@ -24,15 +23,13 @@ public sealed class MasterViewModel : ViewModel
     Settings? _settings;
 
     public MasterViewModel(
-        IStorage<WorkTime> workTimeStorage,
-        IStorage<List<Day>> dayStorage,
+        IDayStorage dayStorage,
         SettingsStorage settingsStorage,
-        WorkTimeViewModelFactory factory,
+        ViewModelFactory factory,
         WorkTimeTodayUpdater updater,
         FooterViewModel footer,
         DayFactory dayFactory)
     {
-        _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
         _dayStorage = dayStorage ?? throw new ArgumentNullException(nameof(dayStorage));
         _settingsStorage = settingsStorage ?? throw new ArgumentNullException(nameof(settingsStorage));
         _factory = factory ?? throw new ArgumentNullException(nameof(factory));
@@ -135,18 +132,17 @@ public sealed class MasterViewModel : ViewModel
         WorkTimes.Clear();
         _allWorkTimes.Clear();
 
-        var workTime = await _workTimeStorage.Load();
-        workTime.Days = workTime.Days.OrderByDescending(x => x.Start).ToList();
+        var days = await _dayStorage.Load();
+        days = days.OrderByDescending(x => x.Start).ToList();
 
         var today = DateTime.Today;
-        foreach (var day in workTime.Days)
+        foreach (var day in days)
         {
             var vm = _factory.CreateWorkTimeViewModel(day);
 
             if (day.Start.Date == today)
             {
                 _updater.DayViewModel = vm;
-                _updater.Start();
             }
 
             _allWorkTimes.Add(vm);
@@ -156,6 +152,11 @@ public sealed class MasterViewModel : ViewModel
 
         WorkTimes.Replace(_allWorkTimes);
         await Footer.Update(WorkTimes.ToList());
+
+        if(_updater?.DayViewModel != null)
+        {
+            _updater.Start();
+        }
     }
 
     internal async Task LoadSettings()
