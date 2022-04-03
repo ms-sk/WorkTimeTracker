@@ -6,14 +6,13 @@ namespace WorkTimeTracker.UI.ViewModels
 {
     public sealed class MainViewModel : ViewModel
     {
-        public MainViewModel(MasterViewModel masterViewModel, DetailsViewModel detailsViewModel, ToolbarViewModel toolbarViewModel, LoaderViewModel loaderViewModel, FooterViewModel footer, SettingsViewModel settings)
+        public MainViewModel(MasterViewModel masterViewModel, DetailsViewModel detailsViewModel, ToolbarViewModel toolbarViewModel, LoaderViewModel loaderViewModel, FooterViewModel footerViewModel)
         {
             MasterViewModel = masterViewModel ?? throw new ArgumentNullException(nameof(masterViewModel));
             DetailsViewModel = detailsViewModel ?? throw new ArgumentNullException(nameof(detailsViewModel));
             ToolbarViewModel = toolbarViewModel ?? throw new ArgumentNullException(nameof(toolbarViewModel));
             LoaderViewModel = loaderViewModel ?? throw new ArgumentNullException(nameof(loaderViewModel));
-            Footer = footer ?? throw new ArgumentNullException(nameof(footer));
-            Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+            FooterViewModel = footerViewModel ?? throw new ArgumentNullException(nameof(footerViewModel));
 
             MasterViewModel.SelectedDayChanged += (_, _) =>
             {
@@ -48,8 +47,6 @@ namespace WorkTimeTracker.UI.ViewModels
 
         public LoaderViewModel LoaderViewModel { get; }
 
-        public FooterViewModel Footer { get; }
-
-        public SettingsViewModel Settings { get; }
+        public FooterViewModel FooterViewModel { get; }
     }
 }

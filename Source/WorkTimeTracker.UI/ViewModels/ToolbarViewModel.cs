@@ -23,7 +23,7 @@ namespace WorkTimeTracker.UI.ViewModels
         {
             _storage = storage ?? throw new ArgumentNullException(nameof(storage));
             _dayFactory = dayFactory ?? throw new ArgumentNullException(nameof(dayFactory));
-            _settingsViewModel = settingsViewModel;
+            _settingsViewModel = settingsViewModel ?? throw new ArgumentNullException(nameof(settingsViewModel));
             LoaderViewModel = loaderViewModel ?? throw new ArgumentNullException(nameof(loaderViewModel));
 
             Add = new AsyncCommand(ExecuteAdd, _ => true);

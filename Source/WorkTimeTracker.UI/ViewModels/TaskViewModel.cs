@@ -1,26 +1,26 @@
 ﻿using WorkTimeTracker.Core.Models;
 using WorkTimeTracker.Core.Wpf.ViewModels;
 
-namespace WorkTimeTracker.UI.ViewModels;
-
-public class TaskViewModel : ViewModel
+namespace WorkTimeTracker.UI.ViewModels
 {
-    public string? Description
+    public class TaskViewModel : ViewModel
     {
-        get => GetValue<string>();
-        set => SetValue(value);
-    }
+        public string? Description
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
 
-    public double WorkTime
-    {
-        get => GetValue<double>();
-        set => SetValue(value);
-    }
+        public double WorkTime
+        {
+            get => GetValue<double>();
+            set => SetValue(value);
+        }
 
-    public WorkType Type
-    {
-        get => GetValue<WorkType>();
-        set => SetValue(value);
+        public WorkType Type
+        {
+            get => GetValue<WorkType>();
+            set => SetValue(value);
+        }
     }
-    public TaskDto? Dto { get; set; }
 }
