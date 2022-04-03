@@ -3,10 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WorkTimeTracker"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="clr-namespace:WorkTimeTracker.UI"
-    xmlns:ui1="clr-namespace:WorkTimeTracker.UI.UI"
+    xmlns:ui="clr-namespace:WorkTimeTracker.UI.UI"
     xmlns:viewModels="clr-namespace:WorkTimeTracker.UI.ViewModels"
     Title="Work Time Tracker"
     Width="800"
@@ -46,16 +44,16 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ui1:ToolbarUserControl
+        <ui:ToolbarUserControl
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2" />
 
-        <ui1:MasterUserControl Grid.Row="1" Grid.Column="0" />
+        <ui:MasterUserControl Grid.Row="1" Grid.Column="0" />
 
-        <ui1:DetailsUserControl Grid.Row="1" Grid.Column="1" />
+        <ui:DetailsUserControl Grid.Row="1" Grid.Column="1" />
 
-        <ui1:FooterUserControl
+        <ui:FooterUserControl
             Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="2" />
