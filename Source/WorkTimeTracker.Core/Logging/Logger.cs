@@ -8,7 +8,7 @@ public class Logger : ILogger
 
     public Logger(Paths path)
     {
-        _path = path;
+        _path = path ?? throw new ArgumentNullException(nameof(path));
     }
 
     public void Error(Exception exception)

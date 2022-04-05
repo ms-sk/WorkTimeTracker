@@ -10,12 +10,12 @@ public sealed class SettingsStorage : ISettingsStorage
 
     public SettingsStorage(Paths paths)
     {
-        _paths = paths;
+        _paths = paths ?? throw new ArgumentNullException(nameof(paths));
     }
 
     public Task Delete(Settings t)
     {
-        throw new NotImplementedException();    
+        throw new NotSupportedException();    
     }
 
     public async Task<Settings> Load()

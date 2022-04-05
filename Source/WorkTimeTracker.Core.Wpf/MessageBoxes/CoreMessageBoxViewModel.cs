@@ -10,8 +10,8 @@ namespace WorkTimeTracker.Core.Wpf.MessageBoxes
     {
         public CoreMessageBoxViewModel()
         {
-            Save = new Command(ExecuteSave, (_) => true);
-            Cancel = new Command(ExecuteCancel, (_) => true);
+            Save = new Command(ExecuteSave);
+            Cancel = new Command(ExecuteCancel);
         }
 
         public event EventHandler? Executed;

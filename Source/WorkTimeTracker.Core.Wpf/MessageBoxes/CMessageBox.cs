@@ -2,7 +2,7 @@
 
 namespace WorkTimeTracker.Core.Wpf.MessageBoxes
 {
-    public sealed class CMessageBox
+    public static class CMessageBox
     {
         public static MessageBoxResult Delete()
         {

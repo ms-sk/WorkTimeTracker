@@ -16,7 +16,7 @@ namespace WorkTimeTracker.UI.ViewModels
 
             MasterViewModel.SelectedDayChanged += (_, _) =>
             {
-                if(ToolbarViewModel.SaveAll.CanExecute(MasterViewModel.WorkTimes))
+                if (ToolbarViewModel.SaveAll.CanExecute(MasterViewModel.WorkTimes))
                 {
                     ToolbarViewModel.SaveAll.Execute(MasterViewModel.WorkTimes);
                 }
@@ -35,11 +35,7 @@ namespace WorkTimeTracker.UI.ViewModels
             };
         }
 
-        public DetailsViewModel? DetailsViewModel
-        {
-            get => GetValue<DetailsViewModel>();
-            private set => SetValue(value);
-        }
+        public DetailsViewModel DetailsViewModel { get; }
 
         public MasterViewModel MasterViewModel { get; }
 

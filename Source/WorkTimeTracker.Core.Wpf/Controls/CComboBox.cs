@@ -18,7 +18,6 @@ namespace WorkTimeTracker.Core.Wpf.Controls
 
             button = (CButton)GetTemplateChild("ToggleButton");
 
-            // TODO: could be done with a ToggleButton.
             button.Click -= ToggleDropDown;
             button.Click += ToggleDropDown;
         }

@@ -25,8 +25,8 @@ namespace WorkTimeTracker.UI.ViewModels
             this.loaderViewModel = loaderViewModel ?? throw new ArgumentNullException(nameof(loaderViewModel));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-            Save = new AsyncCommand(SaveSettings, (_) => true);
-            Cancel = new Command(ExecuteCancel, (_) => true);
+            Save = new AsyncCommand(SaveSettings);
+            Cancel = new Command(ExecuteCancel);
         }
 
         public event EventHandler? Cancelled;

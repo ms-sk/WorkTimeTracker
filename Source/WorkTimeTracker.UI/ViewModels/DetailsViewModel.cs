@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using WorkTimeTracker.Core.Extensions;
 using WorkTimeTracker.Core.Models;
+using WorkTimeTracker.Core.Storage;
 using WorkTimeTracker.Core.Wpf.Commands;
 using WorkTimeTracker.Core.Wpf.ViewModels;
 
@@ -10,14 +14,20 @@ namespace WorkTimeTracker.UI.ViewModels
 {
     public sealed class DetailsViewModel : ViewModel
     {
-        public DetailsViewModel()
+        readonly ITaskStorage _taskStorage;
+
+        public DetailsViewModel(ITaskStorage taskStorage)
         {
-            CreateCommand = new Command(ExecuteCreateCommand, _ => true);
-            DeleteCommand = new Command(ExecuteDeleteCommand, _ => true);
-            CopyCommand = new Command(ExecuteCopyCommand, _ => true);
+            _taskStorage = taskStorage ?? throw new ArgumentNullException(nameof(taskStorage));
+
+            CreateCommand = new Command(ExecuteCreateCommand);
+            DeleteCommand = new Command(ExecuteDeleteCommand);
+            CopyCommand = new Command(ExecuteCopyCommand);
 
             Types = Enum.GetValues<WorkType>();
         }
+
+        public ObservableCollection<string> Descriptions { get; } = new ObservableCollection<string>();
 
         public DayViewModel? SelectedDay
         {
@@ -39,6 +49,12 @@ namespace WorkTimeTracker.UI.ViewModels
         public Command CopyCommand { get; }
 
         public IEnumerable<WorkType> Types { get; }
+
+        public async Task LoadTasks()
+        {
+            var tasks = await _taskStorage.Load();
+            Descriptions.Replace(tasks);
+        }
 
         public void Reinitialize(DayViewModel selectedDay)
         {

@@ -59,7 +59,7 @@ namespace WorkTimeTracker.Core.Wpf.Controls
             border.BorderBrush = BorderBrush;
             grid = (Grid)GetTemplateChild("PART_Grid");
 
-            if (iconContentPresenter == null || contentPresenter == null)
+            if (iconContentPresenter == null || contentPresenter == null || border == null || grid == null)
             {
                 return;
             }

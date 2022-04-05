@@ -148,11 +148,13 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBox
+                                    <ComboBox
                                         Grid.Column="0"
                                         Height="25"
-                                        Margin="5,5,0,0"
+                                        Margin="{StaticResource LeftTop}"
                                         VerticalContentAlignment="Center"
+                                        IsEditable="True"
+                                        ItemsSource="{Binding DataContext.DetailsViewModel.Descriptions, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
                                         Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                     <controls:CComboBox

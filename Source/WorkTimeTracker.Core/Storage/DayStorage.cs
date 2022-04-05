@@ -54,7 +54,7 @@ public sealed class DayStorage : IDayStorage
         {
             var json = await File.ReadAllTextAsync(_paths.WorkTime) ?? string.Empty;
 
-            if (json == string.Empty)
+            if (string.IsNullOrWhiteSpace(json))
             {
                 return new List<Day>();
             }

@@ -14,13 +14,14 @@ namespace WorkTimeTracker.UI.Factories
     {
         public DayViewModel CreateWorkTimeViewModel(Day dto)
         {
-            var viewModel = new DayViewModel();
-
-            viewModel.Dto = dto;
-            viewModel.Date = dto.Start.Date;
-            viewModel.StartTime = TimeOnly.FromDateTime(dto.Start);
-            viewModel.EndTime = dto.End.HasValue ? TimeOnly.FromDateTime(dto.End.Value) : TimeOnly.MinValue;
-            viewModel.Type = dto.Type;
+            var viewModel = new DayViewModel
+            {
+                Dto = dto,
+                Date = dto.Start.Date,
+                StartTime = TimeOnly.FromDateTime(dto.Start),
+                EndTime = dto.End.HasValue ? TimeOnly.FromDateTime(dto.End.Value) : TimeOnly.MinValue,
+                Type = dto.Type
+            };
 
             var time = dto.Time.GetValueOrDefault();
             if (time == 0.0 && viewModel.EndTime > TimeOnly.MinValue)

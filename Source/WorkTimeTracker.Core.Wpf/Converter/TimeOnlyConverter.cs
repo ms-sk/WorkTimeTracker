@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace WorkTimeTracker.Core.Wpf.Converter;
 
-public class TimeOnlyConverter : IValueConverter
+public sealed class TimeOnlyConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {

@@ -46,6 +46,7 @@ namespace WorkTimeTracker.UI
             await _mainViewModel.MasterViewModel.LoadWorkTimes();
             await _mainViewModel.MasterViewModel.InitDay();
             await _mainViewModel.MasterViewModel.LoadSettings();
+            await _mainViewModel.DetailsViewModel.LoadTasks();
         }
     }
 }
