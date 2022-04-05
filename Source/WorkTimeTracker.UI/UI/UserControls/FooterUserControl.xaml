@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:WorkTimeTracker.UI.ViewModels"
-    d:DataContext="{d:DesignInstance viewModels:MasterViewModel}"
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
     mc:Ignorable="d">
-    <ItemsControl ItemsSource="{Binding Footer.Sums}">
+    <ItemsControl ItemsSource="{Binding FooterViewModel.Sums}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <UniformGrid Background="{StaticResource Primary}" Columns="5" />
