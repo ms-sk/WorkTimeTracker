@@ -148,7 +148,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
-                                    <ComboBox
+                                    <controls:CComboBox
                                         Grid.Column="0"
                                         Height="25"
                                         Margin="{StaticResource LeftTop}"
