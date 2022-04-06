@@ -1,9 +1,8 @@
 ﻿using System.Windows;
-using WorkTimeTracker.Resources;
 
 namespace WorkTimeTracker.Core.Wpf.MessageBoxes
 {
-    public sealed class CMessageBox
+    public static class CMessageBox
     {
         public static MessageBoxResult Delete()
         {

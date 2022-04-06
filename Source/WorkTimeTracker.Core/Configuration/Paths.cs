@@ -11,13 +11,13 @@ public sealed class Paths
         Strings = Path.Combine(Root, "Strings.json");
     }
 
-    public string Root { get; set; }
+    public string Root { get; }
 
-    public string WorkTime { get; set; }
+    public string WorkTime { get; }
 
-    public string Log { get; set; }
+    public string Log { get; }
 
-    public string Settings { get; set; }
+    public string Settings { get; }
 
-    public string Strings { get; set; }
+    public string Strings { get; }
 }

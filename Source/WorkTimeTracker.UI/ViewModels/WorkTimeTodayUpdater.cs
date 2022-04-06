@@ -11,13 +11,13 @@ namespace WorkTimeTracker.UI.ViewModels
 {
     public sealed class WorkTimeTodayUpdater
     {
-        readonly WorkTimeViewModelFactory _factory;
-        readonly IStorage<List<Day>> _dayStorage;
-        readonly IStorage<Settings> _settingsStorage;
+        readonly ViewModelFactory _factory;
+        readonly IDayStorage _dayStorage;
+        readonly ISettingsStorage _settingsStorage;
 
         Timer? _timer;
 
-        public WorkTimeTodayUpdater(WorkTimeViewModelFactory factory, IStorage<List<Day>> dayStorage, IStorage<Settings> settingsStorage)
+        public WorkTimeTodayUpdater(ViewModelFactory factory, IDayStorage dayStorage, ISettingsStorage settingsStorage)
         {
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             _dayStorage = dayStorage ?? throw new ArgumentNullException(nameof(dayStorage));

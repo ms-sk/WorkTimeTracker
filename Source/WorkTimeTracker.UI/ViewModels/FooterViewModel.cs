@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 
 using WorkTimeTracker.Core.Models;
 using WorkTimeTracker.Core.Storage;
+using WorkTimeTracker.Core.Wpf;
 using WorkTimeTracker.Core.Wpf.ViewModels;
-using WorkTimeTracker.Resources;
 
 namespace WorkTimeTracker.UI.ViewModels
 {
     public sealed class FooterViewModel : ViewModel
     {
-        readonly SettingsStorage storage;
+        readonly SettingsStorage _settingsStorage;
 
-        public FooterViewModel(SettingsStorage storage)
+        public FooterViewModel(SettingsStorage settingsStorage)
+        {
+            _settingsStorage = settingsStorage;
+
+            BuildSumViewModels();
+        }
+
+        void BuildSumViewModels()
         {
             foreach (var workType in Enum.GetValues<WorkType>())
             {
@@ -23,14 +30,13 @@ namespace WorkTimeTracker.UI.ViewModels
                 Sums.Add(new SumViewModel { Type = workType, DisplayText = translation });
             }
 
-            OverTime = new SumViewModel() { Type = WorkType.Work, DisplayText = Translations.Overtime, Sum = 0 };
+            OverTime = new SumViewModel { Type = WorkType.Work, DisplayText = Translations.Overtime };
             Sums.Add(OverTime);
-            this.storage = storage;
         }
 
         public ObservableCollection<SumViewModel> Sums { get; } = new ObservableCollection<SumViewModel>();
 
-        public SumViewModel OverTime { get; }
+        public SumViewModel? OverTime { get; private set; }
 
         public async Task Update(IEnumerable<DayViewModel> workTimes)
         {
@@ -47,9 +53,9 @@ namespace WorkTimeTracker.UI.ViewModels
 
                 if (group.Key == WorkType.Work)
                 {
-                    var sett = await storage.Load();
+                    var settings = await _settingsStorage.Load();
 
-                    OverTime.Sum = sum.Sum - (sett.HoursPerDay * group.Count());
+                    OverTime.Sum = sum.Sum - (settings.HoursPerDay * group.Count());
                 }
             }
         }

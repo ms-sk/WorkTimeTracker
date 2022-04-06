@@ -1,24 +1,26 @@
-﻿using WorkTimeTracker.Core.Extensions;
+﻿using System.Text.Json;
+using WorkTimeTracker.Core.Configuration;
+using WorkTimeTracker.Core.Extensions;
 using WorkTimeTracker.Core.Models;
 
 namespace WorkTimeTracker.Core.Storage;
 
-public sealed class DayStorage : IStorage<List<Day>>
+public sealed class DayStorage : IDayStorage
 {
-    readonly IStorage<WorkTime> _workTimeStorage;
+    private readonly Paths _paths;
 
-    public DayStorage(IStorage<WorkTime> workTimeStorage)
+    public DayStorage(Paths paths)
     {
-        _workTimeStorage = workTimeStorage ?? throw new ArgumentNullException(nameof(workTimeStorage));
+        _paths = paths ?? throw new ArgumentNullException(nameof(paths));
     }
 
-    public async Task Save(List<Day> days)
+    public async Task Save(List<Day> daysToSave)
     {
-        var workTime = await _workTimeStorage.Load();
+        var days = await Load();
 
-        foreach (var day in days)
+        foreach (var day in daysToSave)
         {
-            var existingDay = workTime.Days.FirstOrDefault(d => d.Id == day.Id);
+            var existingDay = days.FirstOrDefault(d => d.Id == day.Id);
             if (existingDay != null)
             {
                 existingDay.Start = day.Start;
@@ -36,31 +38,56 @@ public sealed class DayStorage : IStorage<List<Day>>
             }
             else
             {
-                workTime.Days.Add(day);
+                days.Add(day);
             }
         }
-        await _workTimeStorage.Save(workTime);
+
+        var json = JsonSerializer.Serialize(days, new JsonSerializerOptions { WriteIndented = true });
+        await File.WriteAllTextAsync(_paths.WorkTime, json);
     }
 
     public async Task<List<Day>> Load()
     {
-        var workTime = await _workTimeStorage.Load();
-        return workTime.Days;
+        CreateRootFolder();
+
+        if (File.Exists(_paths.WorkTime))
+        {
+            var json = await File.ReadAllTextAsync(_paths.WorkTime) ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                return new List<Day>();
+            }
+
+            return JsonSerializer.Deserialize<List<Day>>(json) ?? new List<Day>();
+        }
+
+        return new List<Day>();
     }
 
-    public async Task Delete(List<Day> t)
+    public async Task Delete(List<Day> daysToDelete)
     {
-        var workTime = await _workTimeStorage.Load();
+        var days = await Load();
 
-        foreach (var day in t)
+        foreach (var day in daysToDelete)
         {
-            var delete = workTime.Days.FirstOrDefault(d => day.Id == d.Id);
+            var delete = days.FirstOrDefault(d => day.Id == d.Id);
             if (delete != null)
             {
-                workTime.Days.Remove(delete);
+                days.Remove(delete);
             }
         }
 
-        await _workTimeStorage.Save(workTime);
+        await Save(days);
+    }
+
+    void CreateRootFolder()
+    {
+        if (Directory.Exists(_paths.Root))
+        {
+            return;
+        }
+
+        Directory.CreateDirectory(_paths.Root);
     }
 }

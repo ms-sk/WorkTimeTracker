@@ -4,18 +4,18 @@ using WorkTimeTracker.Core.Models;
 
 namespace WorkTimeTracker.Core.Storage;
 
-public sealed class SettingsStorage : IStorage<Settings>
+public sealed class SettingsStorage : ISettingsStorage
 {
     readonly Paths _paths;
 
     public SettingsStorage(Paths paths)
     {
-        _paths = paths;
+        _paths = paths ?? throw new ArgumentNullException(nameof(paths));
     }
 
     public Task Delete(Settings t)
     {
-        throw new NotImplementedException();    
+        throw new NotSupportedException();    
     }
 
     public async Task<Settings> Load()

@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace WorkTimeTracker.Core.Wpf.Loading
 {
-    internal class LoaderDisposable : IDisposable
+    internal sealed class LoaderDisposable : IDisposable
     {
         public event EventHandler<Cursor>? Disposed;
 

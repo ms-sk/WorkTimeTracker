@@ -7,7 +7,7 @@ namespace WorkTimeTracker.UI
     {
         public App()
         {
-            var kernel = new StandardKernel (
+            var kernel = new StandardKernel(
                 new CoreBindings(),
                 new WorkTimeTrackerBindings()
             );

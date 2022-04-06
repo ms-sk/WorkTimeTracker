@@ -6,13 +6,13 @@ namespace WorkTimeTracker.Core.Wpf.Commands;
 
 public sealed class AsyncCommand : ICommand
 {
-    Func<object?, Task> _executeCallback;
-    Func<object?, bool>? _canExecuteCallback;
+    readonly Func<object?, Task> _executeCallback;
+    readonly Func<object?, bool>? _canExecuteCallback;
 
-    public AsyncCommand(Func<object?, Task> executeCallback, Func<object?, bool> canExecuteCallback)
+    public AsyncCommand(Func<object?, Task> executeCallback, Func<object?, bool>? canExecuteCallback = null)
     {
         _executeCallback = executeCallback ?? throw new ArgumentNullException(nameof(executeCallback));
-        _canExecuteCallback = canExecuteCallback ?? throw new ArgumentNullException(nameof(canExecuteCallback));
+        _canExecuteCallback = canExecuteCallback;
     }
 
     public event EventHandler? CanExecuteChanged;

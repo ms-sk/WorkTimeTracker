@@ -5,16 +5,49 @@ using System.Windows;
 using WorkTimeTracker.Core.Extensions;
 using WorkTimeTracker.Core.Math;
 using WorkTimeTracker.Core.Models;
-using WorkTimeTracker.Resources;
+using WorkTimeTracker.Core.Wpf;
 using WorkTimeTracker.UI.ViewModels;
 
 namespace WorkTimeTracker.UI.Factories
 {
-    public sealed class WorkTimeViewModelFactory
+    public sealed class ViewModelFactory
     {
         public DayViewModel CreateWorkTimeViewModel(Day dto)
         {
-            return UpdateDayViewModel(new DayViewModel(), dto);
+            var viewModel = new DayViewModel
+            {
+                Dto = dto,
+                Date = dto.Start.Date,
+                StartTime = TimeOnly.FromDateTime(dto.Start),
+                EndTime = dto.End.HasValue ? TimeOnly.FromDateTime(dto.End.Value) : TimeOnly.MinValue,
+                Type = dto.Type
+            };
+
+            var time = dto.Time.GetValueOrDefault();
+            if (time == 0.0 && viewModel.EndTime > TimeOnly.MinValue)
+            {
+                time = (viewModel.EndTime - viewModel.StartTime).Value.TotalHours;
+                time = CMath.RoundQuarter(time);
+            }
+
+            var breakTime = dto.Break.GetValueOrDefault();
+            if (breakTime == 0.0 && (viewModel.Type != WorkType.Illness && viewModel.Type != WorkType.Holiday))
+            {
+                breakTime = CMath.CalculateBreak(time);
+            }
+
+            var actualWorkTime = time - breakTime;
+            actualWorkTime = actualWorkTime < 0.0 ? 0.0 : actualWorkTime;
+
+            viewModel.WorkTime = actualWorkTime;
+            viewModel.Break = breakTime;
+
+            if (dto.Tasks?.Any() == true)
+            {
+                Application.Current.Dispatcher.Invoke(() => viewModel.Tasks.Replace(dto.Tasks.Select(CreateTaskViewModel)));
+            }
+
+            return viewModel;
         }
 
         public DayViewModel UpdateDayViewModel(DayViewModel viewModel, Day dto)
