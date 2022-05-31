@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Core.Test",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Core.Wpf", "WorkTimeTracker.Core.Wpf\WorkTimeTracker.Core.Wpf.csproj", "{96A8466E-574C-4B23-8CF1-FA9DF64603B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Core.Database", "WorkTimeTracker.Core.Database\WorkTimeTracker.Core.Database.csproj", "{0A10F367-0BA6-44F8-8CDF-212DA896F3C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTimeTracker.Database", "WorkTimeTracker.Database\WorkTimeTracker.Database.csproj", "{0A10F367-0BA6-44F8-8CDF-212DA896F3C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTimeTracker.Interfaces", "WorkTimeTracker.Interfaces\WorkTimeTracker.Interfaces.csproj", "{1F490548-014C-47D6-8F4A-E66D48A68303}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0A10F367-0BA6-44F8-8CDF-212DA896F3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A10F367-0BA6-44F8-8CDF-212DA896F3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A10F367-0BA6-44F8-8CDF-212DA896F3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F490548-014C-47D6-8F4A-E66D48A68303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F490548-014C-47D6-8F4A-E66D48A68303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F490548-014C-47D6-8F4A-E66D48A68303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F490548-014C-47D6-8F4A-E66D48A68303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

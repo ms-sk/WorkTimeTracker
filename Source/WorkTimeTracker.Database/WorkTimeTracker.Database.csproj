@@ -15,4 +15,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WorkTimeTracker.Interfaces\WorkTimeTracker.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\Configuration\" />
+  </ItemGroup>
+
 </Project>
