@@ -1,6 +1,6 @@
-﻿using WorkTimeTracker.Interfaces.Entities;
+﻿using WorkTimeTracker.Interfaces.Entity;
 
-namespace WorkTimeTracker.Database.Entities
+namespace WorkTimeTracker.Database.Entity
 {
     public class DayEntity : IEntity
     {

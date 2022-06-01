@@ -1,4 +1,6 @@
-﻿namespace WorkTimeTracker.Core.Storage
+﻿using WorkTimeTracker.Core.ModelsDeprecated;
+
+namespace WorkTimeTracker.Core.Storage
 {
     public sealed class TaskStorage : ITaskStorage
     {
@@ -23,7 +25,7 @@
                 return new List<string>();
             }
 
-            return days.SelectMany(d => d?.Tasks ?? new List<Models.TaskDto>()).Select(t => t?.Description ?? string.Empty).Distinct().OrderBy(x => x).ToList();
+            return days.SelectMany(d => d?.Tasks ?? new List<TaskDto>()).Select(t => t?.Description ?? string.Empty).Distinct().OrderBy(x => x).ToList();
         }
 
         public Task Save(List<string> t)

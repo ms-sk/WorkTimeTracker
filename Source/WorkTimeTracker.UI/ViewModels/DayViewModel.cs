@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using WorkTimeTracker.Core.Models;
+using WorkTimeTracker.Core.ModelsDeprecated;
 using WorkTimeTracker.Core.Wpf.MessageBoxes;
 using WorkTimeTracker.Core.Wpf.ViewModels;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WorkTimeTracker.Core.Models;
+using WorkTimeTracker.Core.ModelsDeprecated;
 using WorkTimeTracker.Core.Storage;
 using WorkTimeTracker.Core.Wpf.Commands;
 using WorkTimeTracker.Core.Wpf.Loading;

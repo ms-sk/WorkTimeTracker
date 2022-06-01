@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WorkTimeTracker.Database.Entities;
+using WorkTimeTracker.Database.Entity;
 
 namespace WorkTimeTracker.Database
 {
     public class WttContext : DbContext
     {
-        public WttContext(DbContextOptions<WttContext> options) : base(options)
+        public WttContext()
         {
             SetDbPath();
         }
@@ -24,7 +24,13 @@ namespace WorkTimeTracker.Database
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = Path.Combine(path, "WorkTimeTracker", "blogging.db");
+
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            DbPath = Path.Combine(path, "WorkTimeTracker", "worktimetracker.db");
         }
     }
 }

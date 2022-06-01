@@ -1,4 +1,4 @@
-﻿using WorkTimeTracker.Core.Models;
+﻿using WorkTimeTracker.Core.ModelsDeprecated;
 
 namespace WorkTimeTracker.Core.Storage;
 

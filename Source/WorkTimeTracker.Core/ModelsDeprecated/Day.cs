@@ -1,4 +1,6 @@
-﻿namespace WorkTimeTracker.Core.Models;
+﻿using WorkTimeTracker.Core.Models;
+
+namespace WorkTimeTracker.Core.ModelsDeprecated;
 
 public sealed class Day
 {

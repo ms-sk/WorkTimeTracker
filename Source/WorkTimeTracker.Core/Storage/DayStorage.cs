@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using WorkTimeTracker.Core.Configuration;
 using WorkTimeTracker.Core.Extensions;
-using WorkTimeTracker.Core.Models;
+using WorkTimeTracker.Core.ModelsDeprecated;
 
 namespace WorkTimeTracker.Core.Storage;
 

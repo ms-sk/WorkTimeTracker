@@ -1,5 +1,5 @@
 ﻿using System;
-using WorkTimeTracker.Core.Models;
+using WorkTimeTracker.Core.ModelsDeprecated;
 using WorkTimeTracker.UI.ViewModels;
 
 namespace WorkTimeTracker.UI.Factories

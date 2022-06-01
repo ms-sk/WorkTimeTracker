@@ -1,4 +1,4 @@
-﻿namespace WorkTimeTracker.Database.Entities
+﻿namespace WorkTimeTracker.Database.Entity
 {
     public enum WorkType
     {

@@ -1,4 +1,4 @@
-﻿namespace WorkTimeTracker.Interfaces.Entities
+﻿namespace WorkTimeTracker.Interfaces.Entity
 {
     public interface IEntity
     {
