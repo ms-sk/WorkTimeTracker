@@ -36,7 +36,7 @@ namespace WorkTimeTracker.UI.ViewModels
                 case Filter.Month:
                     return dayViewModel.Dto.Start.Date.Month == today.Month && dayViewModel.Dto.Start.Date.Year == today.Year;
                 case Filter.LastMonth:
-                    return dayViewModel.Dto.Start.Date.Month == today.AddMonths(-1).Month;
+                    return dayViewModel.Dto.Start.Date.Month == today.AddMonths(-1).Month && dayViewModel.Dto.Start.Date.Year == today.Year;
                 case Filter.Year:
                     return dayViewModel.Dto.Start.Date.Year == today.Year;
                 case Filter.LastYear:
